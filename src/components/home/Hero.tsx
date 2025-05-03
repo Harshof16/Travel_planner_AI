@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24" id='home'>
       {/* Parallax Background */}
       <div 
         className="absolute inset-0 z-0"

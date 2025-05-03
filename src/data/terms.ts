@@ -1,5 +1,4 @@
-export const terms = `TERMS AND CONDITIONS OF SERVICE AND USE
-
+export const terms = `
 1. GENERAL
 
  Escapenfly hereinafter referred to as the â€œCompanyâ€ (where such expression shall, unless repugnant to the context thereof, be deemed to include its respective legal heirs, representatives, administrators, permitted successors and assigns.) The creator of these Terms of Service ensures steady commitment to Your privacy with regard to the protection of your invaluable information. This document contains information about the Website   www.escapenfly.com hereinafter collectively referred to as the â€œPlatformâ€).

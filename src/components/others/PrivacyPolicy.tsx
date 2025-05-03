@@ -1,4 +1,5 @@
 import React from 'react';
+import { privacyPolicy } from '../../data/privacyPolicy';
 
 const PrivacyPolicy = () => {
   return (
@@ -8,13 +9,16 @@ const PrivacyPolicy = () => {
           <h1 className="text-4xl font-bold text-white">Privacy Policy</h1>
         </div>
       </div>
+
       <div className="container mx-auto px-4 py-8">
-        <p className="text-gray-500">Home &gt; Privacy Policy</p>
-        <div className="prose mx-auto">
-          <h2>Our Commitment to Your Privacy</h2>
-          <p>
-            At Escapenfly, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data.
-          </p>
+        <p className="text-gray-500 text-sm">Home &gt; Privacy Policy</p>
+        <div className="prose mx-auto mt-10">
+          <h2 className="text-2xl font-semibold mb-4">Our Commitment to Your Privacy</h2>
+          <section className="mb-6">
+            <pre className="whitespace-pre-wrap break-words overflow-wrap text-lg leading-relaxed font-sans">
+              {privacyPolicy}
+            </pre>
+          </section>
         </div>
       </div>
     </div>

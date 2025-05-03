@@ -60,19 +60,16 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">Home</a>
+                <a href="/" className="text-gray-400 hover:text-teal-500 transition-colors">Home</a>
               </li>
               <li>
-                <a href="#destinations" className="text-gray-400 hover:text-teal-500 transition-colors">Destinations</a>
+                <a href="/trips" className="text-gray-400 hover:text-teal-500 transition-colors">All Trips</a>
               </li>
               <li>
-                <a href="#experiences" className="text-gray-400 hover:text-teal-500 transition-colors">Experiences</a>
+                <a href="/#deals" className="text-gray-400 hover:text-teal-500 transition-colors">Deals</a>
               </li>
               <li>
-                <a href="#plan-trip" className="text-gray-400 hover:text-teal-500 transition-colors">Plan Trip</a>
-              </li>
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-teal-500 transition-colors">About Us</a>
+                <a href="/contact" className="text-gray-400 hover:text-teal-500 transition-colors">Contact</a>
               </li>
             </ul>
           </div>
@@ -92,9 +89,6 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="/refund-policy" className="text-gray-400 hover:text-teal-500 transition-colors">Refund Policy</a>
-              </li>
-              <li>
-                <a href="/feedback" className="text-gray-400 hover:text-teal-500 transition-colors">Feedback</a>
               </li>
             </ul>
           </div>

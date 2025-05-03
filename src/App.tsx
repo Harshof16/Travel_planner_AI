@@ -12,6 +12,7 @@ import PrivacyPolicy from './components/others/PrivacyPolicy';
 import RefundPolicy from './components/others/RefundPolicy';
 import Feedback from './components/others/Feedback';
 import Contact from './components/others/Contact';
+import TripDetails from './components/details/TripDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/trips" element={<TripDetails />} />
               <Route path="/about-us" element={<AboutUs/>} />
               <Route path="/terms-of-use" element={<Terms />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />

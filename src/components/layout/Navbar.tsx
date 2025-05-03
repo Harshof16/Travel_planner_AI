@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { companyName } from '../../data/constants';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const navigate = useNavigate();
 
   // Handle navbar background on scroll
   useEffect(() => {
@@ -45,7 +48,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center space-x-16">
-            <div className="text-2xl font-bold text-teal-700 dark:text-teal-400">
+            <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 cursor-pointer" onClick={() => navigate('/')}>
               {companyName}
             </div>
 
