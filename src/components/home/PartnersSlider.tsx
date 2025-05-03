@@ -71,11 +71,12 @@ const partners = [
 
 const sliderSettings = {
   infinite: true,
-  speed: 500,
+  speed: 5000,
   slidesToShow: 5,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 0,
+  cssEase: 'linear',
   responsive: [
     {
       breakpoint: 1024,
@@ -106,7 +107,7 @@ const PartnersSlider: React.FC = () => {
         <Slider {...sliderSettings}>
           {partners.map((partner) => (
             <div key={partner.id} className="px-4">
-              <div className="bg-gray-800 p-4 rounded-lg flex items-center justify-center">
+              <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-lg flex items-center justify-center">
                 <img
                   src={partner.logo}
                   alt={partner.name}

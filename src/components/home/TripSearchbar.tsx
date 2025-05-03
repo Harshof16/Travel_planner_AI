@@ -6,6 +6,10 @@ export default function TripToolkit() {
 
     const tabs = ["Trip Toolkit", "Visa Info", "Weather Watch", "Smart Travel Hacks"];
 
+    const months = [
+        "January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"]
+
     return (
         <div className="w-full max-w-7xl mx-auto mt-16">
             {/* Tabs */}
@@ -48,12 +52,16 @@ export default function TripToolkit() {
                         <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Month</label>
                         <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg relative dark:bg-gray-700">
                             <Calendar className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                            <select className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none">
-                                <option>August</option>
-                                <option>September</option>
-                                <option>October</option>
-                                <option>November</option>
-                                {/* More months */}
+                            <select className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer">
+                                {months.map((month) => (
+                                    <option
+                                        key={month}
+                                        value={month}
+                                        className="px-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 cursor-pointer"
+                                    >
+                                        {month}
+                                    </option>
+                                ))}
                             </select>
                             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none dark:text-gray-500">
                                 ▼
@@ -62,7 +70,7 @@ export default function TripToolkit() {
                     </div>
 
                     {/* Search Button */}
-                    <div className="flex justify-center md:justify-end mt-4 md:mt-0 ">
+                    <div className="flex justify-center md:justify-end mt-4 md:mt-0">
                         <button className="flex items-center gap-2 px-6 py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-lg shadow dark:bg-teal-600 dark:hover:bg-teal-500">
                             <Search className="w-5 h-5" />
                             Search

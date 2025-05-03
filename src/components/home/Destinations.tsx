@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardImage, CardBody, CardFooter } from '../ui/Card';
-import Button from '../ui/Button';
+import { Card, CardImage, CardBody } from '../ui/Card';
 import { MapPin } from 'lucide-react';
 
 interface Destination {
@@ -68,7 +67,7 @@ const Destinations: React.FC = () => {
           {destinations.map((destination) => (
             <Card 
               key={destination.id} 
-              className="group hover:translate-y-[-8px] transition-transform duration-300"
+              className="group hover:translate-y-[-8px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
             >
               <CardImage 
                 src={destination.image} 
@@ -95,9 +94,9 @@ const Destinations: React.FC = () => {
                   <span className="text-sm text-gray-500 dark:text-gray-400">per person</span>
                 </div> */}
               </CardBody>
-              <CardFooter className="flex justify-center">
+              {/* <CardFooter className="flex justify-center">
                 <Button variant="outline" className="w-full">View Details</Button>
-              </CardFooter>
+              </CardFooter> */}
             </Card>
           ))}
         </div>

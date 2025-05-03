@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
+import { Instagram, Facebook, Mail, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -15,14 +15,14 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
+                <Facebook size={20} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
                 <Instagram size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
-                <Facebook size={20} />
-              </a>
+                <Linkedin size={20} />
+              </a>              
               <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">
                 <Mail size={20} />
               </a>
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
             <div className="flex">
               <input 
                 type="email" 
-                placeholder="Your email" 
+                placeholder="Your email address" 
                 className="px-4 py-2 w-full rounded-l-md focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:text-white" 
               />
               <button className="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700 transition-colors">

@@ -56,10 +56,10 @@ const Navbar: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   className={`
-                  text-sm font-medium transition-colors underline underline-offset-4
+                  text-sm font-medium transition-colors hover:underline underline-offset-4
                   ${isScrolled ?
                       'text-gray-700 hover:text-teal-600 dark:text-gray-200 dark:hover:text-teal-400' :
-                      'text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
+                      'text-gray-400 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
                     }
                 `}
                 >
