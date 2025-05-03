@@ -82,19 +82,19 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Support</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">About Us</a>
+                <a href="/about-us" className="text-gray-400 hover:text-teal-500 transition-colors">About Us</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">Terms of Use</a>
+                <a href="/terms-of-use" className="text-gray-400 hover:text-teal-500 transition-colors">Terms of Use</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">Privacy Policy</a>
+                <a href="/privacy-policy" className="text-gray-400 hover:text-teal-500 transition-colors">Privacy Policy</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">Refund Policy</a>
+                <a href="/refund-policy" className="text-gray-400 hover:text-teal-500 transition-colors">Refund Policy</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-teal-500 transition-colors">Feedback</a>
+                <a href="/feedback" className="text-gray-400 hover:text-teal-500 transition-colors">Feedback</a>
               </li>
             </ul>
           </div>

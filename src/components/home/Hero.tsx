@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24">
       {/* Parallax Background */}
       <div 
         className="absolute inset-0 z-0"
@@ -33,28 +33,24 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 to-black/60" />
       
       {/* Content */}
-      <div className="container mx-auto px-4 z-20 text-center text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 transition-all duration-700 animate-fadeIn">
-          <span className="block">Discover Your Next</span>
-          <span className="text-teal-400">Adventure</span>
+      <div className="container mx-auto px-4 z-20 text-center text-white relative">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 transition-all duration-700 animate-fadeIn">
+          <span className="block"><span className="text-teal-400">Escape</span> the Ordinary</span>
+          Embrace the<span className="text-teal-400"> Extraordinary</span>
         </h1>
         
-        <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-gray-100">
-          Explore breathtaking destinations and create unforgettable memories with our expertly curated travel experiences.
+        <p className="text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-6 text-gray-100">
+          Epic destinations, unforgettable memories crafted just for you.
         </p>
         
         {/* Search Form */}
-       
-          <TripSearchBar/>
-          
-        
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div> */}
+        <div className="relative z-30">
+          <TripSearchBar />
+        </div>
       </div>
+
+      {/* Spacer to prevent collision with header on mobile */}
+      <div className="absolute top-0 left-0 right-0 h-20 md:h-24 bg-transparent z-30" />
     </section>
   );
 };

@@ -25,10 +25,10 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { label: 'Home', href: '#' },
-    { label: 'Trips', href: '#trips' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Home', href: '/' },
+    { label: 'Trips', href: '/trips' },
+    { label: 'About', href: '/about-us' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="flex items-center space-x-8">
+            <nav className="md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Google Rating Badge */}
-            <div className="flex flex-col items-center space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md">
+            <div className="md:flex flex-col items-center space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md">
               <img
                 src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000"
                 alt="Google Rating Badge"
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
                 (1,234 reviews)
               </span>
             </div>
-            
+
             {/* Mobile Menu Button */}
             <button 
               onClick={toggleMobileMenu}
@@ -109,17 +109,10 @@ const Navbar: React.FC = () => {
                 <Menu className="h-6 w-6 text-gray-700 dark:text-gray-200" />
               }
             </button>
-            
-            {/* Login Button - Desktop Only */}
-            {/* <div className="hidden md:block">
-              <Button variant="primary" size="sm">
-                Login
-              </Button>
-            </div> */}
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg">
@@ -135,9 +128,6 @@ const Navbar: React.FC = () => {
                   {item.label}
                 </a>
               ))}
-              {/* <Button variant="primary" size="sm" className="mt-2">
-                Login
-              </Button> */}
             </nav>
           </div>
         </div>
