@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../ui/Button';
 import { Award, MapPin, Clock, Heart } from 'lucide-react';
+import { companyName } from '../../data/constants';
 
 const About: React.FC = () => {
   const stats = [
@@ -60,11 +61,11 @@ const About: React.FC = () => {
           
           {/* Right Column - Content */}
           <div className="lg:w-1/2">
-            <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">About Escape N Fly</span>
+            <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">About {companyName}</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">We Create Unforgettable Travel Experiences</h2>
             
             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Founded in 2015, Escape N Fly has been crafting personalized travel experiences for adventurers from around the world. Our mission is to transform ordinary trips into extraordinary journeys that create lasting memories.
+              Founded in 2020, {companyName} has been crafting personalized travel experiences for adventurers from around the world. Our mission is to transform ordinary trips into extraordinary journeys that create lasting memories.
             </p>
             
             <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -82,7 +83,7 @@ const About: React.FC = () => {
             </div>
             
             <Button variant="primary" size="lg">
-              Meet Our Team
+              Contact Us
             </Button>
           </div>
         </div>

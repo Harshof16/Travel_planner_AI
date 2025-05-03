@@ -77,6 +77,7 @@ const sliderSettings = {
   autoplay: true,
   autoplaySpeed: 0,
   cssEase: 'linear',
+  arrows: false,  
   responsive: [
     {
       breakpoint: 1024,

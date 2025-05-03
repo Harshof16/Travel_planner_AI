@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { companyName } from '../../data/constants';
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -25,10 +26,9 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { label: 'Home', href: '#' },
-    { label: 'Destinations', href: '#destinations' },
-    { label: 'Experiences', href: '#experiences' },
-    { label: 'Plan Trip', href: '#plan-trip' },
-    { label: 'About Us', href: '#about' },
+    { label: 'Trips', href: '#trips' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' }
   ];
 
   return (
@@ -44,9 +44,9 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-12">
+          <div className="flex items-center space-x-16">
             <div className="text-2xl font-bold text-teal-700 dark:text-teal-400">
-              Escape N Fly
+              {companyName}
             </div>
 
             {/* Desktop Navigation */}
@@ -56,10 +56,10 @@ const Navbar: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   className={`
-                  text-sm font-medium transition-colors hover:underline underline-offset-4
+                  text-md font-medium transition-colors hover:underline underline-offset-4
                   ${isScrolled ?
                       'text-gray-700 hover:text-teal-600 dark:text-gray-200 dark:hover:text-teal-400' :
-                      'text-gray-400 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
+                      'text-gray-200 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
                     }
                 `}
                 >
@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
             >
               {theme === 'dark' ? 
                 <Sun className="h-5 w-5 text-amber-400" /> : 
-                <Moon className="h-5 w-5 text-gray-700" />
+                <Moon className="h-5 w-5 text-gray-500" />
               }
             </button>
 
@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
               <span className="text-sm font-medium text-white dark:text-gray-200">
                 4.8 <span className="text-yellow-500">★</span>
               </span>
-              <span className="text-xs text-white dark:text-gray-400">
+              <span className="text-xs text-gray-100 dark:text-gray-300">
                 (1,234 reviews)
               </span>
             </div>
