@@ -39,7 +39,7 @@ const experiences: Experience[] = [
   }
 ];
 
-const PersonalizedExperience: React.FC = () => {
+const ThemeTravel: React.FC = () => {
   return (
     <section id="experiences" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -75,48 +75,9 @@ const PersonalizedExperience: React.FC = () => {
             </div>
           ))}
         </div>
-        
-        {/* Testimonials Section */}
-        {/* <div className="mt-20">
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">What Our Travelers Say</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="bg-white dark:bg-gray-800 overflow-visible">
-                <CardBody>
-                  <div className="flex items-start gap-4">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                    <div>
-                      <h4 className="font-bold text-lg">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.location}</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 relative">
-                    <svg className="absolute -top-4 -left-4 w-8 h-8 text-teal-500 opacity-20" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                    <p className="text-gray-600 dark:text-gray-300 italic">
-                      "{testimonial.text}"
-                    </p>
-                  </div>
-                </CardBody>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button variant="secondary" size="lg">
-              Read More Reviews
-            </Button>
-          </div>
-        </div> */}
       </div>
     </section>
   );
 };
 
-export default PersonalizedExperience;
+export default ThemeTravel;

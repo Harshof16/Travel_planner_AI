@@ -12,15 +12,15 @@ const destinations = [
   { name: 'Spain', image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600' },
 ];
 
-const Explore: React.FC = () => {
+const ExploreWorld: React.FC = () => {
   return (
     <section className="py-16 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-12">Explore The Earth</h2>
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-12">Explore The World</h2>
         <div className="flex flex-wrap justify-center gap-6">
           {destinations.map((destination) => (
             <div key={destination.name} className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg">
+              <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
                 <img
                   src={destination.image}
                   alt={destination.name}
@@ -38,4 +38,4 @@ const Explore: React.FC = () => {
   );
 };
 
-export default Explore;
+export default ExploreWorld;

@@ -2,18 +2,18 @@ import './index.css';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/home/Hero';
-import Destinations from './components/home/Destinations';
-import Experiences from './components/home/Experiences';
 import About from './components/home/About';
 import Footer from './components/layout/Footer';
 import Testimonials from './components/home/Testimonials';
-import TravelFeatures from './components/home/TripPlanner';
-import Explore from './components/home/Explore';
-import PersonalizedExperience from './components/home/PersonalizedExperience';
-import DealsOfTheMonth from './components/home/DealsOfTheMonth';
+import TravelFeatures from './components/home/TravelFeatures';
+import DealsOfTheMonth from './components/home/Deals';
 import PartnersSlider from './components/home/PartnersSlider';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import InternationalDestinations from './components/home/InternationalDestinations';
+import IndianDestinations from './components/home/IndianDestinations';
+import ExploreWorld from './components/home/ExploreWorld';
+import ThemeTravel from './components/home/ThemeTravel';
 
 function App() {
   return (
@@ -23,10 +23,10 @@ function App() {
         <main>
           <Hero />
           <TravelFeatures />
-          <Destinations />
-          <Experiences />
-          <Explore />
-          <PersonalizedExperience />
+          <IndianDestinations />
+          <InternationalDestinations />
+          <ExploreWorld />
+          <ThemeTravel />
           <Testimonials />
           <DealsOfTheMonth />
           <About />

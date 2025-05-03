@@ -13,7 +13,7 @@ const experiences: Experience[] = [
     id: 1,
     title: 'Cultural Immersion',
     category: 'Adventure',
-    image: 'https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: 'https://images.pexels.com/photos/672630/pexels-photo-672630.jpeg?auto=compress&cs=tinysrgb&w=1600',
     description: 'Discover local traditions, participate in cultural activities, and connect with communities.'
   },
   {
@@ -21,7 +21,7 @@ const experiences: Experience[] = [
     title: 'Culinary Journeys',
     category: 'Food & Wine',
     image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Explore global cuisines through cooking classes, food tours, and dining experiences.'
+    description: 'Explore indian cuisines through cooking classes, food tours, and dining experiences.'
   },
   {
     id: 3,
@@ -32,15 +32,39 @@ const experiences: Experience[] = [
   }
 ];
 
-const Experiences: React.FC = () => {
+// const experiences: Experience[] = [
+//   {
+//     id: 1,
+//     title: 'Taj Mahal Tour',
+//     category: 'Heritage',
+//     image: 'https://images.pexels.com/photos/356844/pexels-photo-356844.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Experience the grandeur of the Taj Mahal, a symbol of love and one of the Seven Wonders of the World.'
+//   },
+//   {
+//     id: 2,
+//     title: 'Kerala Backwaters',
+//     category: 'Nature',
+//     image: 'https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Cruise through the serene backwaters of Kerala and enjoy the lush green landscapes.'
+//   },
+//   {
+//     id: 3,
+//     title: 'Rajasthan Desert Safari',
+//     category: 'Adventure',
+//     image: 'https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Embark on a thrilling desert safari in Rajasthan and explore the golden sands of the Thar Desert.'
+//   }
+// ];
+
+const IndianDestinations: React.FC = () => {
   return (
-    <section id="experiences" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="experiences" className="py-20 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Unforgettable moments</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Curated Experiences</h2>
+          <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Once-in-a-Lifetime Journey</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Incredible India Awaits You</h2>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Go beyond ordinary tourism with our specially crafted travel experiences.
+          Enjoy unbeatable deals through our exclusive travel partnerships your dream trip just got more affordable.
           </p>
         </div>
         
@@ -112,4 +136,4 @@ const Experiences: React.FC = () => {
   );
 };
 
-export default Experiences;
+export default IndianDestinations;

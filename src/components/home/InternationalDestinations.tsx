@@ -51,13 +51,13 @@ const destinations: Destination[] = [
   }
 ];
 
-const Destinations: React.FC = () => {
+const InternationalDestinations: React.FC = () => {
   return (
-    <section id="destinations" className="py-20 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
+    <section id="destinations" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Explore the world</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 ">Popular Destinations</h2>
+          <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Start Exploring</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 ">Turn Wanderlust Into Plans</h2>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
             Discover our handpicked selection of the most breathtaking locations around the globe.
           </p>
@@ -77,17 +77,18 @@ const Destinations: React.FC = () => {
               <CardBody>
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-xl font-bold">{destination.name}</h3>
-                  <span className="flex items-center text-amber-500">
+                  <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
+                  <MapPin size={16} className="mr-1 text-teal-600 dark:text-teal-400" />
+                  {destination.location}
+                </div>
+                  {/* <span className="flex items-center text-amber-500">
                     <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                     {destination.rating}
-                  </span>
+                  </span> */}
                 </div>
-                <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
-                  <MapPin size={16} className="mr-1 text-teal-600 dark:text-teal-400" />
-                  {destination.location}
-                </div>
+              
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{destination.description}</p>
                 {/* <div className="flex items-center justify-between">
                   <span className="text-xl font-bold text-teal-700 dark:text-teal-400">{destination.price}</span>
@@ -111,4 +112,4 @@ const Destinations: React.FC = () => {
   );
 };
 
-export default Destinations;
+export default InternationalDestinations;

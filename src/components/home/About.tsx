@@ -65,7 +65,7 @@ const About: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">We Create Unforgettable Travel Experiences</h2>
             
             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              Founded in 2020, {companyName} has been crafting personalized travel experiences for adventurers from around the world. Our mission is to transform ordinary trips into extraordinary journeys that create lasting memories.
+              Founded in 2015, {companyName} has been crafting personalized travel experiences for adventurers from around the world. Our mission is to transform ordinary trips into extraordinary journeys that create lasting memories.
             </p>
             
             <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">

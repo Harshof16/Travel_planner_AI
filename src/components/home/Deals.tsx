@@ -66,9 +66,9 @@ const settings = {
   ],
 };
 
-const DealsOfTheMonth: React.FC = () => {
+const Deals: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 bg-slate-100 dark:bg-gray-900">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Deals Of the Month</h2>
         <p className="text-gray-600 dark:text-gray-300 mb-8">
@@ -109,4 +109,4 @@ const DealsOfTheMonth: React.FC = () => {
   );
 };
 
-export default DealsOfTheMonth;
+export default Deals;
