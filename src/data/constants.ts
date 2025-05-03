@@ -1,0 +1,1 @@
+export const companyName = 'Escape N Fly';
