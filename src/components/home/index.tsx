@@ -8,8 +8,35 @@ import Testimonials from './Testimonials'
 import Deals from './Deals'
 import About from './About'
 import PartnersSlider from './PartnersSlider'
+import ContactModal from '../others/ContactModal'
+import { useState, useEffect } from 'react'
+import { getCookie, setCookie } from '../../utils'
 
 const Home = () => {
+    const [contactModalOpen, setContactModalOpen] = useState(false);
+
+    useEffect(() => {
+        const modalShown = getCookie('contactModalShown');
+
+        if (!modalShown) {
+            const testimonialsSection = document.getElementById('testimonials');
+            const checkVisibility = () => {
+                if (testimonialsSection) {
+                    const rect = testimonialsSection.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+            
+                    if (isVisible) {
+                        setContactModalOpen(true);
+                        setCookie('contactModalShown', 'true', 7);
+                        window.removeEventListener('scroll', checkVisibility);
+                    }
+                }
+            };
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility();
+        }
+    }, []);
+
     return (
         <>
             <Hero />
@@ -22,6 +49,7 @@ const Home = () => {
             <Deals />
             <About />
             <PartnersSlider />
+            <ContactModal isOpen={contactModalOpen} setIsOpen={setContactModalOpen} />
         </>
     )
 }
