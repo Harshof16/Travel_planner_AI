@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
           {/* Brand Section */}
           <div>
             <div className="flex items-center h-16 cursor-pointer mb-2">
-              <img src="/src/assets/logo/darkLogo.png" alt="Escape n fly" className="h-48 object-contain" />
+              <img src="/src/public/logo/darkLogo.png" alt="Escape n fly" className="h-48 object-contain" />
             </div>
 
             <p className="mb-4 text-gray-400">

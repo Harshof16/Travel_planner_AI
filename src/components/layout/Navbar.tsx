@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center space-x-16 gap-4">
             <div className="cursor-pointer" onClick={() => navigate('/')}>
             <img
-                src={(theme === 'dark' || !isScrolled) ? '/src/assets/logo/darkLogo.png' : '/src/assets/logo/lightLogo.png'}
+                src={(theme === 'dark' || !isScrolled) ? '/src/public/logo/darkLogo.png' : '/src/public/logo/lightLogo.png'}
                 alt="Company Logo"
                 className="h-48 w-auto"
               />
