@@ -56,9 +56,9 @@ const Contact = () => {
                                 <div className="flex-shrink-0 mt-1">
                                     <MapPin size={24} className="text-teal-600 dark:text-teal-400" />
                                 </div>
-                                <div className="ml-4">
+                                <div className="ml-4" onClick={() => window.open('https://www.google.com/maps/place/Escapenfly/@30.6593189,76.7304745,17z/data=!4m6!3m5!1s0x390fe9e57a8ebcc3:0x6c755ac036d38fcc!8m2!3d30.6593143!4d76.7330494!16s%2Fg%2F11ts3tk59v', '_blank')}>
                                     <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Office Address</h4>
-                                    <p className="text-gray-400 mt-1">
+                                    <p className="text-gray-400 mt-1 hover:text-teal-700 cursor-pointer">
                                         Plot No.75 , 2nd Floor, Sector 82, <br />Sahibzada Ajit Singh Nagar, Punjab 140308
                                     </p>
                                 </div>
@@ -70,7 +70,7 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Email Us</h4>
-                                    <p className="text-gray-400 mt-1">
+                                    <p className="text-gray-400 mt-1 hover:text-teal-700 cursor-pointer" onClick={() => window.open('mailto:enf@escapenfly.com', '_self')}>
                                         enf@escapenfly.com <br />
                                     </p>
                                 </div>
@@ -82,7 +82,7 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Call Us</h4>
-                                    <p className="text-gray-400 mt-1">
+                                    <p className="text-gray-400 mt-1 hover:text-teal-700 cursor-pointer" onClick={() => window.open('tel:+919851739851', '_self')}>
                                         +91-9851-73-9851 <br />
                                     </p>
                                 </div>
@@ -140,7 +140,7 @@ const Contact = () => {
 
                             <div className="mb-6">
                                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Phone Number
+                                    Whatsapp Number
                                 </label>
                                 <input
                                     type="tel"

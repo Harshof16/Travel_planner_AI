@@ -5,7 +5,6 @@ import InternationalDestinations from './InternationalDestinations'
 import ExploreWorld from './ExploreWorld'
 import ThemeTravel from './ThemeTravel'
 import Testimonials from './Testimonials'
-import Deals from './Deals'
 import About from './About'
 import PartnersSlider from './PartnersSlider'
 import ContactModal from '../others/ContactModal'
@@ -41,12 +40,13 @@ const Home = () => {
         <>
             <Hero />
             <TravelFeatures />
-            <IndianDestinations />
-            <InternationalDestinations />
             <ExploreWorld />
+            <InternationalDestinations />
+            <IndianDestinations />
             <ThemeTravel />
             <Testimonials />
-            <Deals />
+            <div className='h-2 dark:bg-gray-900'/>
+            {/* <Deals /> */}
             <About />
             <PartnersSlider />
             <ContactModal isOpen={contactModalOpen} setIsOpen={setContactModalOpen} />

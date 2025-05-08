@@ -2,72 +2,52 @@ import React from 'react';
 import Slider from 'react-slick';
 
 const partners = [
-    {
-      id: 1,
-      name: 'Webscale',
-      logo: 'https://brandfetch.com/webscale.com/logo.svg', // Official Webscale logo
-    },
-    {
-      id: 2,
-      name: 'Walmart',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/512px-Walmart_logo.svg.png', // Walmart logo
-    },
-    {
-      id: 3,
-      name: 'Vue.ai',
-      logo: 'https://brandfetch.com/vue.ai/logo.svg', // Vue.ai logo
-    },
-    {
-      id: 4,
-      name: 'TikTok',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/TikTok_logo.svg/512px-TikTok_logo.svg.png', // TikTok logo
-    },
-    {
-      id: 5,
-      name: 'Shopify Experts',
-      logo: 'https://www.kindpng.com/picc/m/298-2984234_shopify-experts-logo-hd-png-download.png', // Shopify Experts logo
-    },
-    {
-      id: 6,
-      name: 'ShipStation',
-      logo: 'https://www.shipstation.com/wp-content/themes/shipstation/images/shipstation-logo.svg', // ShipStation logo
-    },
-    {
-      id: 7,
-      name: 'Buy with Prime',
-      logo: 'https://m.media-amazon.com/images/G/01/BuyWithPrime/brand-assets/buy-with-prime-badge.svg', // Buy with Prime badge
-    },
-    {
-      id: 8,
-      name: 'Bonanza',
-      logo: 'https://www.bonanza.com/assets/bonanza_logo-3c3b0b9e3c3b0b9e3c3b0b9e3c3b0b9e.svg', // Bonanza logo
-    },
-    {
-      id: 9,
-      name: 'BlueSnap',
-      logo: 'https://developers.bluesnap.com/v8976-Tools/reference/bluesnap-logos/bluesnap_color_logo.jpg', // BlueSnap logo
-    },
-    {
-      id: 10,
-      name: 'Bing Ads',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Bing_Ads_2016_logo.svg/512px-Bing_Ads_2016_logo.svg.png', // Bing Ads logo
-    },
-    {
-      id: 11,
-      name: 'BigCommerce',
-      logo: 'https://www.bigcommerce.com/assets/logos/bigcommerce-logo-dark.svg', // BigCommerce logo
-    },
-    {
-      id: 12,
-      name: 'Best Buy',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Best_Buy_Logo.svg/512px-Best_Buy_Logo.svg.png', // Best Buy logo
-    },
-    {
-      id: 13,
-      name: 'Amazon',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/512px-Amazon_logo.svg.png', // Amazon logo
-    },
-  ];  
+  {
+    id: 1,
+    name: 'Amadeus',
+    logo: 'https://amadeus.com/content/dam/amadeuswebevo/brand/amadeus/logos/amadeus-logo-dark-sky.png',
+  },
+  {
+    id: 2,
+    name: 'Expedia',
+    logo: 'https://www.expedia.co.in/_dms/header/logo.svg?locale=en_GB&siteid=27&2&6f9ec7db',
+  },
+  {
+    id: 3,
+    name: 'OTOAI',
+    logo: 'http://otoai.org/assets/frontend/images/logo.jpg',
+  },
+  {
+    id: 4,
+    name: 'Batik Air',
+    logo: 'https://cms-cdn.batikair.com/assets/66472e6388f4647bd5f90f87/common/logo-white.png',
+  },
+  {
+    id: 5,
+    name: 'Viator',
+    logo: 'https://cloud.asset.cronberry.com/image_file/originalFile_1746722240958_viator_logo.png',
+  },
+  {
+    id: 6,
+    name: 'IATA',
+    logo: 'https://www.iata.org/contentassets/3e83770142a040d688e269bb2f709b7b/iata-logo-header.svg?height=127&rmode=crop&v=20240116100112',
+  },
+  {
+    id: 7,
+    name: 'Dubai DET',
+    logo: 'https://www.dubaidet.gov.ae/en/tourism-training/-/media/common/logos/logo-det-teal-30x50.svg?h=31&iar=0&w=52',
+  },
+  {
+    id: 8,
+    name: 'Qatar Tourism',
+    logo: 'https://visitqatar.com/etc.clientlibs/visitqatar/clientlibs/clientlib-static/resources/img/logo-qatar-tourism.svg',
+  },
+  {
+    id: 9,
+    name: 'Pure New Zealand',
+    logo: 'https://www.newzealand.com/resources/themes/reimagine/dist/2025.4.2/images/logos/pure-new-zealand-dual-logo.svg',
+  },
+]; 
 
 const sliderSettings = {
   infinite: true,

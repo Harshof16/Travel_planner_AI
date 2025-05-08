@@ -1,4 +1,5 @@
 import React from 'react';
+import Slider from 'react-slick';
 
 interface Experience {
   id: number;
@@ -29,32 +30,40 @@ const experiences: Experience[] = [
     category: 'Nature',
     image: 'https://images.pexels.com/photos/4577791/pexels-photo-4577791.jpeg?auto=compress&cs=tinysrgb&w=1600',
     description: 'Encounter diverse wildlife in their natural habitats with expert guides and photographers.'
+  },
+  {
+    id: 4,
+    title: 'Heritage Walks',
+    category: 'History',
+    image: 'https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    description: 'Explore ancient forts, palaces, and UNESCO World Heritage sites across India.'
+  },
+  {
+    id: 5,
+    title: 'Spiritual Retreats',
+    category: 'Wellness',
+    image: 'https://images.pexels.com/photos/2730218/pexels-photo-2730218.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    description: 'Rejuvenate your mind and body with yoga, meditation, and spiritual practices in serene locations.'
+  },
+  {
+    id: 6,
+    title: 'Beach Escapes',
+    category: 'Relaxation',
+    image: 'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    description: 'Unwind on pristine beaches, enjoy water sports, and soak in the coastal beauty of India.'
   }
 ];
 
-// const experiences: Experience[] = [
-//   {
-//     id: 1,
-//     title: 'Taj Mahal Tour',
-//     category: 'Heritage',
-//     image: 'https://images.pexels.com/photos/356844/pexels-photo-356844.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     description: 'Experience the grandeur of the Taj Mahal, a symbol of love and one of the Seven Wonders of the World.'
-//   },
-//   {
-//     id: 2,
-//     title: 'Kerala Backwaters',
-//     category: 'Nature',
-//     image: 'https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     description: 'Cruise through the serene backwaters of Kerala and enjoy the lush green landscapes.'
-//   },
-//   {
-//     id: 3,
-//     title: 'Rajasthan Desert Safari',
-//     category: 'Adventure',
-//     image: 'https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     description: 'Embark on a thrilling desert safari in Rajasthan and explore the golden sands of the Thar Desert.'
-//   }
-// ];
+const sliderSettings = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  arrows: false,
+  dots: false,
+};
 
 const IndianDestinations: React.FC = () => {
   return (
@@ -68,9 +77,9 @@ const IndianDestinations: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <Slider {...sliderSettings}>
           {experiences.map((experience) => (
-            <div key={experience.id} className="group cursor-pointer">
+            <div key={experience.id} className="group cursor-pointer px-4">
               <div className="relative overflow-hidden rounded-xl mb-4">
                 <img 
                   src={experience.image} 
@@ -91,7 +100,7 @@ const IndianDestinations: React.FC = () => {
               </p>
             </div>
           ))}
-        </div>
+          </Slider>
         
         {/* Testimonials Section */}
         {/* <div className="mt-20">

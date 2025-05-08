@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
-import { companyName } from '../../data/constants';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -47,9 +46,13 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-16">
-            <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 cursor-pointer" onClick={() => navigate('/')}>
-              {companyName}
+          <div className="flex items-center space-x-16 gap-4">
+            <div className="cursor-pointer" onClick={() => navigate('/')}>
+            <img
+                src={(theme === 'dark' || !isScrolled) ? '/src/assets/logo/darkLogo.png' : '/src/assets/logo/lightLogo.png'}
+                alt="Company Logo"
+                className="h-48 w-auto"
+              />
             </div>
 
             {/* Desktop Navigation */}
@@ -87,7 +90,7 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Google Rating Badge */}
-            <div className="md:flex flex-col items-center space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md">
+            <div className="md:flex flex-col items-center space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md cursor-pointer" onClick={() => window.open('https://www.google.com/search?sca_esv=35dc981465dfcda7&sxsrf=AHTn8zrDvWvMHl5HifheMG352Puv6YLAyw:1746553295797&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzbbK8c1OVNRVD44NTuLFZmVj_Zvpw03MZ5zULxRZKRg_x4utHu1LPG28COPhGdt1nBJbqWyDrnAxD6qgK60RnAqh4eGG&q=Escapenfly+Reviews&sa=X&ved=2ahUKEwib3ZuGso-NAxWk8zgGHbxUAl4Q0bkNegQIIRAE&cshid=1746553382540124&biw=1366&bih=563&dpr=1#lrd=0x390fe9e57a8ebcc3:0x6c755ac036d38fcc,3', '_blank')}>
               <img
                 src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000"
                 alt="Google Rating Badge"
@@ -97,7 +100,7 @@ const Navbar: React.FC = () => {
                 4.8 <span className="text-yellow-500">★</span>
               </span>
               <span className="text-xs text-gray-100 dark:text-gray-300">
-                (1,234 reviews)
+                (238 reviews)
               </span>
             </div>
 
