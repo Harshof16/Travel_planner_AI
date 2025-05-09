@@ -2,82 +2,80 @@ import React from 'react';
 import { Card, CardImage, CardBody } from '../ui/Card';
 import { MapPin } from 'lucide-react';
 import Slider from 'react-slick';
+import data from '../../data/internationalDestinations.json';
+
+const destinations: Destination[] = data;
 
 interface Destination {
-  id: number;
-  name: string;
-  location: string;
+  city: string;
+  country: string;
+  province: string;
   image: string;
   description: string;
-  price: string;
   rating: number;
 }
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    name: 'Santorini',
-    location: 'Greece',
-    image: 'https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Discover the beauty of white-washed buildings and blue domes overlooking the Aegean Sea.',
-    price: '$1,299',
-    rating: 4.9
-  },
-  {
-    id: 2,
-    name: 'Kyoto',
-    location: 'Japan',
-    image: 'https://images.pexels.com/photos/31001135/pexels-photo-31001135.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Experience traditional Japanese culture among ancient temples and beautiful gardens.',
-    price: '$1,599',
-    rating: 4.8
-  },
-  {
-    id: 3,
-    name: 'Bali',
-    location: 'Indonesia',
-    image: 'https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Relax on pristine beaches, explore lush rice terraces, and immerse in Balinese spirituality.',
-    price: '$1,099',
-    rating: 4.7
-  },
-  {
-    id: 4,
-    name: 'Amalfi Coast',
-    location: 'Italy',
-    image: 'https://images.pexels.com/photos/2225442/pexels-photo-2225442.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Drive along the stunning coastal roads and discover picturesque cliffside villages.',
-    price: '$1,499',
-    rating: 4.8
-  },
-  {
-    id: 5,
-    name: 'Paris',
-    location: 'France',
-    image: 'https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Explore the romantic city of lights, iconic landmarks, and world-class cuisine.',
-    price: '$1,899',
-    rating: 4.9
-  },
-  {
-    id: 6,
-    name: 'Maui',
-    location: 'Hawaii',
-    image: 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Enjoy breathtaking beaches, lush rainforests, and the famous Road to Hana.',
-    price: '$1,699',
-    rating: 4.8
-  },
-  {
-    id: 7,
-    name: 'Cape Town',
-    location: 'South Africa',
-    image: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Discover the stunning Table Mountain, vibrant culture, and beautiful beaches.',
-    price: '$1,299',
-    rating: 4.7
-  },
-];
+//     name: 'Santorini',
+//     location: 'Greece',
+//     image: 'https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Discover the beauty of white-washed buildings and blue domes overlooking the Aegean Sea.',
+//     price: '$1,299',
+//     rating: 4.9
+//   },
+//   {
+//     id: 2,
+//     name: 'Kyoto',
+//     location: 'Japan',
+//     image: 'https://images.pexels.com/photos/31001135/pexels-photo-31001135.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Experience traditional Japanese culture among ancient temples and beautiful gardens.',
+//     price: '$1,599',
+//     rating: 4.8
+//   },
+//   {
+//     id: 3,
+//     name: 'Bali',
+//     location: 'Indonesia',
+//     image: 'https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Relax on pristine beaches, explore lush rice terraces, and immerse in Balinese spirituality.',
+//     price: '$1,099',
+//     rating: 4.7
+//   },
+//   {
+//     id: 4,
+//     name: 'Amalfi Coast',
+//     location: 'Italy',
+//     image: 'https://images.pexels.com/photos/2225442/pexels-photo-2225442.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Drive along the stunning coastal roads and discover picturesque cliffside villages.',
+//     price: '$1,499',
+//     rating: 4.8
+//   },
+//   {
+//     id: 5,
+//     name: 'Paris',
+//     location: 'France',
+//     image: 'https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Explore the romantic city of lights, iconic landmarks, and world-class cuisine.',
+//     price: '$1,899',
+//     rating: 4.9
+//   },
+//   {
+//     id: 6,
+//     name: 'Maui',
+//     location: 'Hawaii',
+//     image: 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Enjoy breathtaking beaches, lush rainforests, and the famous Road to Hana.',
+//     price: '$1,699',
+//     rating: 4.8
+//   },
+//   {
+//     id: 7,
+//     name: 'Cape Town',
+//     location: 'South Africa',
+//     image: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1600',
+//     description: 'Discover the stunning Table Mountain, vibrant culture, and beautiful beaches.',
+//     price: '$1,299',
+//     rating: 4.7
+//   },
+// ];
 
 const sliderSettings = {
   infinite: true,
@@ -85,7 +83,7 @@ const sliderSettings = {
   slidesToShow: 4,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2500,
+  autoplaySpeed: 2000,
   arrows: false,
   dots: false,
 };
@@ -104,22 +102,23 @@ const InternationalDestinations: React.FC = () => {
         
         {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> */}
         <Slider {...sliderSettings}>
-          {destinations.map((destination) => (
-            <div className="px-4" key={destination.id}>
+          {destinations.sort(() => 0.5 - Math.random())
+            .slice(0, 8).map((destination) => (
+            <div className="px-4" key={destination.city}>
               <Card 
                 className="group hover:translate-y-[-8px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
               >
                 <CardImage 
                   src={destination.image} 
-                  alt={destination.name}
+                  alt={destination.city}
                   className="h-56"
                 />
                 <CardBody>
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold">{destination.name}</h3>
+                    <h3 className="text-xl font-bold">{destination.city}</h3>
                     <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
                     <MapPin size={16} className="mr-1 text-teal-600 dark:text-teal-400" />
-                    {destination.location}
+                    {destination.country}
                   </div>
                     {/* <span className="flex items-center text-amber-500">
                       <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">

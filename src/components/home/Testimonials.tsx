@@ -1,7 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
-import { testimonials } from '../../data/testimonials';
+import data from '../../data/testimonials.json';
+import { getRelativeTime } from '../../utils';
 
+const testimonials: testimonial[] = data;
+
+interface testimonial {
+  id: number;
+  name: string;
+  profile: string;
+  rating: number;
+  date: number;
+  review: string;
+  complete_review: string;
+  language: string;
+};
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,55 +69,59 @@ const Testimonials = () => {
         <div className="max-w-4xl mx-auto relative">
           {/* Testimonial Carousel */}
           <div className="overflow-hidden relative">
-            <div 
+            <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
+                {testimonials
+                .sort((a, b) => b.date - a.date)
+                .map((testimonial) => (
+                  <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
                   <div className="bg-white/10 dark:bg-gray-700 backdrop-blur-sm rounded-lg p-8 text-center">
                     <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-6 border-4 border-teal-400">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.name} 
-                        className="w-full h-full object-cover"
-                      />
+                    <img
+                      src={testimonial.profile}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
                     </div>
-                    
+
                     <div className="flex justify-center mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          size={20} 
-                          className={i < testimonial.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-400"} 
-                        />
-                      ))}
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                      key={i}
+                      size={20}
+                      className={i < testimonial.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-400"}
+                      />
+                    ))}
                     </div>
-                    
+
                     <blockquote className="text-lg italic text-teal-50 mb-6">
-                      "{testimonial.text}"
+                    "{testimonial.review}"
                     </blockquote>
-                    
+
                     <div>
-                      <p className="font-bold text-white">{testimonial.name}</p>
-                      <p className="text-teal-200 text-sm">{testimonial.location}</p>
+                    <p className="font-bold text-white">{testimonial.name}</p>
+                    <p className="text-teal-200 text-sm">
+                      {testimonial.date && getRelativeTime(testimonial.date)}
+                    </p>
                     </div>
                   </div>
-                </div>
-              ))}
+                  </div>
+                ))}
             </div>
           </div>
-          
+
           {/* Navigation Buttons */}
-          <button 
+          <button
             className="absolute top-1/2 left-0 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 dark:bg-gray-600 dark:hover:bg-gray-500 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors"
             onClick={prevTestimonial}
             aria-label="Previous testimonial"
           >
             <ChevronLeft size={24} />
           </button>
-          
-          <button 
+
+          <button
             className="absolute top-1/2 right-0 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 dark:bg-gray-600 dark:hover:bg-gray-500 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors"
             onClick={nextTestimonial}
             aria-label="Next testimonial"
@@ -117,9 +134,8 @@ const Testimonials = () => {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  currentIndex === index ? 'bg-white w-6 dark:bg-gray-400' : 'bg-white/40 dark:bg-gray-600'
-                }`}
+                className={`w-3 h-3 rounded-full transition-all ${currentIndex === index ? 'bg-white w-6 dark:bg-gray-400' : 'bg-white/40 dark:bg-gray-600'
+                  }`}
                 onClick={() => {
                   setIsTransitioning(true);
                   setCurrentIndex(index);

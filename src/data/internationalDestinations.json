@@ -1,0 +1,203 @@
+[
+    {
+      "city": "Dubai",
+      "country": "UAE",
+      "province": "Dubai",
+      "description": "A glamorous city offering world-class shopping, desert adventures, and iconic skyscrapers.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/1707310/pexels-photo-1707310.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Bangkok",
+      "country": "Thailand",
+      "province": "Bangkok",
+      "description": "A bustling metropolis known for its vibrant street life, ornate temples, and delectable cuisine.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/28264971/pexels-photo-28264971/free-photo-of-ancient-city-bangkok.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Singapore",
+      "country": "Singapore",
+      "province": "Central Region",
+      "description": "A modern city-state famed for its cleanliness, cutting-edge architecture, and family-friendly attractions.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/2434268/pexels-photo-2434268.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Bali",
+      "country": "Indonesia",
+      "province": "Bali",
+      "description": "A tropical paradise known for its lush rice terraces, beaches, and spiritual culture.",
+      "rating": 4.9,
+      "image": "https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "province": "Federal Territory of Kuala Lumpur",
+      "description": "A vibrant capital blending modern skyscrapers with colonial architecture and local flavors.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/2449510/pexels-photo-2449510.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "London",
+      "country": "UK",
+      "province": "England",
+      "description": "A historic city offering world-famous landmarks, museums, and a rich cultural tapestry.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/1906879/pexels-photo-1906879.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "New York City",
+      "country": "USA",
+      "province": "New York",
+      "description": "A global metropolis known for its skyline, Broadway, and diverse neighborhoods.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Toronto",
+      "country": "Canada",
+      "province": "Ontario",
+      "description": "A cosmopolitan city with a diverse culture, iconic skyline, and natural wonders nearby.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/1868676/pexels-photo-1868676.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Paris",
+      "country": "France",
+      "province": "Île-de-France",
+      "description": "A romantic destination known for its art, fashion, and gourmet cuisine.",
+      "rating": 4.9,
+      "image": "https://images.pexels.com/photos/739407/pexels-photo-739407.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Rome",
+      "country": "Italy",
+      "province": "Lazio",
+      "description": "A timeless city with ancient ruins, Renaissance art, and the Vatican.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "province": "North Holland",
+      "description": "A scenic city known for its canals, historic buildings, and vibrant nightlife.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/415352/pexels-photo-415352.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Frankfurt",
+      "country": "Germany",
+      "province": "Hesse",
+      "description": "A European financial hub with a blend of modern and old-world charm.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/1397736/pexels-photo-1397736.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Tokyo",
+      "country": "Japan",
+      "province": "Tokyo Metropolis",
+      "description": "A high-energy city where ancient culture meets futuristic innovation.",
+      "rating": 4.9,
+      "image": "https://images.pexels.com/photos/3779837/pexels-photo-3779837.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Sydney",
+      "country": "Australia",
+      "province": "New South Wales",
+      "description": "A vibrant city with iconic landmarks like the Opera House and Harbour Bridge.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/1533721/pexels-photo-1533721.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Melbourne",
+      "country": "Australia",
+      "province": "Victoria",
+      "description": "A cultural capital famed for its art, food, and coffee scenes.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/3142004/pexels-photo-3142004.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Doha",
+      "country": "Qatar",
+      "province": "Doha",
+      "description": "A rapidly growing city blending modern architecture with rich traditions.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/3884744/pexels-photo-3884744.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Istanbul",
+      "country": "Turkey",
+      "province": "Istanbul",
+      "description": "A historic city straddling Europe and Asia, full of culture and architectural wonders.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/3613958/pexels-photo-3613958.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Male",
+      "country": "Maldives",
+      "province": "Kaafu Atoll",
+      "description": "A gateway to the Maldives’ luxury resorts and turquoise waters.",
+      "rating": 4.9,
+      "image": "https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Colombo",
+      "country": "Sri Lanka",
+      "province": "Western Province",
+      "description": "A coastal city offering colonial architecture, temples, and vibrant markets.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/18245862/pexels-photo-18245862/free-photo-of-man-sitting-on-palm-tree-over-beach.png?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Kathmandu",
+      "country": "Nepal",
+      "province": "Bagmati",
+      "description": "A spiritual and trekking hub nestled in the Himalayas.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/3097592/pexels-photo-3097592.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Baku",
+      "country": "Azerbaijan",
+      "province": "Baku",
+      "description": "An emerging city known for its modern skyline and ancient architecture.",
+      "rating": 4.3,
+      "image": "https://images.pexels.com/photos/2716795/pexels-photo-2716795.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Tbilisi",
+      "country": "Georgia",
+      "province": "Tbilisi",
+      "description": "A charming city with a mix of Eastern and Western architectural styles.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/31974655/pexels-photo-31974655/free-photo-of-holy-trinity-cathedral-in-tbilisi-georgia.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Hanoi",
+      "country": "Vietnam",
+      "province": "Hanoi",
+      "description": "A cultural capital known for its historic sites and street food.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/2602490/pexels-photo-2602490.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Phuket",
+      "country": "Thailand",
+      "province": "Phuket",
+      "description": "A tropical island famous for its beaches, nightlife, and marine adventures.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/824298/pexels-photo-824298.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Hong Kong",
+      "country": "China",
+      "province": "Hong Kong SAR",
+      "description": "A dynamic city known for its skyline, shopping, and East-meets-West culture.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/2481670/pexels-photo-2481670.jpeg?auto=compress&cs=tinysrgb&w=600"
+    }
+  ]
+  

@@ -1,0 +1,155 @@
+[
+    {
+      "city": "Agra",
+      "country": "India",
+      "province": "Uttar Pradesh",
+      "description": "Home to the iconic Taj Mahal, a UNESCO World Heritage Site and symbol of eternal love.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Jaipur",
+      "country": "India",
+      "province": "Rajasthan",
+      "description": "Known as the Pink City, famous for its historic forts, palaces, and vibrant culture.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/784879/pexels-photo-784879.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Varanasi",
+      "country": "India",
+      "province": "Uttar Pradesh",
+      "description": "One of the world's oldest living cities, renowned for its spiritual significance and the Ganga Aarti.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/3988075/pexels-photo-3988075.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Kerala Backwaters",
+      "country": "India",
+      "province": "Kerala",
+      "description": "A network of serene canals and lagoons, offering unique houseboat experiences.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/17870090/pexels-photo-17870090/free-photo-of-bridge-over-a-canal-surrounded-by-tropical-trees.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Goa",
+      "country": "India",
+      "province": "Goa",
+      "description": "Famous for its pristine beaches, vibrant nightlife, and Portuguese heritage.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/4427149/pexels-photo-4427149.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Leh",
+      "country": "India",
+      "province": "Ladakh",
+      "description": "Gateway to the high Himalayas, known for its stunning landscapes and Buddhist monasteries.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/11194563/pexels-photo-11194563.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Rishikesh",
+      "country": "India",
+      "province": "Uttarakhand",
+      "description": "A spiritual town on the Ganges, popular for yoga, meditation, and adventure sports.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/7104962/pexels-photo-7104962.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Udaipur",
+      "country": "India",
+      "province": "Rajasthan",
+      "description": "Known as the City of Lakes, featuring majestic palaces and romantic boat rides.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/31866953/pexels-photo-31866953/free-photo-of-historic-city-palace-on-lake-pichola-udaipur.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Amritsar",
+      "country": "India",
+      "province": "Punjab",
+      "description": "Home to the Golden Temple, the spiritual center of Sikhism.",
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/5458388/pexels-photo-5458388.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Hampi",
+      "country": "India",
+      "province": "Karnataka",
+      "description": "A UNESCO World Heritage Site with ancient ruins from the Vijayanagara Empire.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/14496568/pexels-photo-14496568.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Darjeeling",
+      "country": "India",
+      "province": "West Bengal",
+      "description": "Famous for its tea plantations and panoramic views of the Himalayas.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/634753/pexels-photo-634753.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Shimla",
+      "country": "India",
+      "province": "Himachal Pradesh",
+      "description": "A popular hill station known for its colonial architecture and scenic beauty.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/2418400/pexels-photo-2418400.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Mysore",
+      "country": "India",
+      "province": "Karnataka",
+      "description": "Renowned for the opulent Mysore Palace and its rich cultural heritage.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/31088977/pexels-photo-31088977/free-photo-of-mysore-palace-gate-in-golden-morning-haze.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Jaisalmer",
+      "country": "India",
+      "province": "Rajasthan",
+      "description": "Known as the Golden City, famous for its sandstone architecture and desert safaris.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/19195921/pexels-photo-19195921/free-photo-of-kotharis-patwon-ki-haveli-museum-in-jaisalmer-in-india.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Kodaikanal",
+      "country": "India",
+      "province": "Tamil Nadu",
+      "description": "A serene hill station known for its lakes, waterfalls, and forested valleys.",
+      "rating": 4.3,
+      "image": "https://images.pexels.com/photos/9411136/pexels-photo-9411136.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Nainital",
+      "country": "India",
+      "province": "Uttarakhand",
+      "description": "A charming hill station centered around a beautiful lake and surrounded by mountains.",
+      "rating": 4.4,
+      "image": "https://images.pexels.com/photos/17004229/pexels-photo-17004229/free-photo-of-boats-on-the-shore-of-the-nainital-lake-in-india.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Tawang",
+      "country": "India",
+      "province": "Arunachal Pradesh",
+      "description": "Known for its 17th-century monastery and stunning Himalayan landscapes.",
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/2815093/pexels-photo-2815093.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Khajuraho",
+      "country": "India",
+      "province": "Madhya Pradesh",
+      "description": "Famous for its group of medieval Hindu and Jain temples with intricate sculptures.",
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/11404373/pexels-photo-11404373.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "city": "Ranthambore",
+      "country": "India",
+      "province": "Rajasthan",
+      "description": "A renowned national park known for its tiger reserve and historic fort.",
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/16007592/pexels-photo-16007592/free-photo-of-temple-ruins-ranthambore-fort-ranthambore-national-park-rajasthan-india.jpeg?auto=compress&cs=tinysrgb&w=600"
+    }
+  ]
+  

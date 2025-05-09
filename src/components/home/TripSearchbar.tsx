@@ -1,15 +1,30 @@
+import API from "../../apis/axios";
 import { MapPin, Calendar, Search } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import CustomAutocomplete from '../ui/CustomAutocomplete';
 
 export default function TripToolkit() {
-    const [activeTab, setActiveTab] = useState<'toolkit' | 'visa' | 'weather' | 'hacks'>("toolkit");
+    const [activeTab, setActiveTab] = useState<'trip' | 'visa' | 'weather' | 'hacks'>("trip");
+    const [userInputLocation, setUserInputLocation] = useState("");
+    const [userInputMonth, setUserInputMonth] = useState("January");
+    const navigate = useNavigate();
 
     const tabs = [
-        { label: "Trip Toolkit", url: 'toolkit' }, { label: "Visa Info", url: 'visa' }, { label: "Weather Watch", url: 'weather' }, { label: "Smart Travel Hacks", url: 'hacks' }];
+        { label: "Trip Toolkit", url: 'trip' }, { label: "Visa Info", url: 'visa' }, { label: "Weather Watch", url: 'weather' }, { label: "Smart Travel Hacks", url: 'hacks' }];
 
     const months = [
         "January", "February", "March", "April", "May", "June", "July", "August",
         "September", "October", "November", "December"]
+
+    const fetchSuggestions = async (event: string) => {
+        try {
+            const response = await API.get(`/amadeus/locations?keyword=${event}`,);
+            return response.data
+        } catch (error) {
+            console.error("Error fetching suggestions:", error);
+        }
+    };
 
     const toolkitUI = <>
         {/* Location Input */}
@@ -17,10 +32,11 @@ export default function TripToolkit() {
             <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Location</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                 <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <input
-                    type="text"
-                    placeholder="Brisbane"
-                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
+                <CustomAutocomplete
+                    value={userInputLocation}
+                    onChange={setUserInputLocation}
+                    suggestions={fetchSuggestions}
+                    placeholder="Search location..."
                 />
             </div>
         </div>
@@ -30,7 +46,11 @@ export default function TripToolkit() {
             <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Month</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg relative dark:bg-gray-700">
                 <Calendar className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <select className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer px-2">
+                <select
+                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer px-2"
+                    value={userInputMonth}
+                    onChange={(e) => setUserInputMonth(e.target.value)}
+                >
                     {months.map((month) => (
                         <option
                             key={month}
@@ -85,6 +105,11 @@ export default function TripToolkit() {
         </div>
     </>
 
+    const handleSearch = () => {
+        const query = `type=${activeTab}&location=${userInputLocation}&month=${userInputMonth}`;
+        navigate(`/trips?${query}`);
+    };
+
     return (
         <div className="w-full max-w-6xl mx-auto mt-16">
             {/* Tabs */}
@@ -92,7 +117,7 @@ export default function TripToolkit() {
                 {tabs.map((tab) => (
                     <button
                         key={tab.url}
-                        onClick={() => setActiveTab(tab.url as 'toolkit' | 'visa' | 'weather' | 'hacks')}
+                        onClick={() => setActiveTab(tab.url as 'trip' | 'visa' | 'weather' | 'hacks')}
                         className={`px-10 py-2 text-sm font-semibold rounded-t-2xl transition-all
                     ${activeTab === tab.url
                                 ? "bg-teal-100 text-teal-700 shadow-md dark:bg-teal-900 dark:text-teal-300 font-bold"
@@ -114,9 +139,14 @@ export default function TripToolkit() {
 
                     {/* Search Button */}
                     <div className="flex justify-center md:justify-end mt-4 md:mt-0 flex-[0_0_1]">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-lg shadow dark:bg-teal-600 dark:hover:bg-teal-500">
-                            <Search className="w-5 h-5" />
-                            Search
+                        <button 
+                          className={`flex items-center gap-2 px-6 py-3 rounded-lg text-white transition-colors 
+                            ${!userInputLocation ? 'bg-teal-700/60 cursor-not-allowed' : 'bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500'}`} 
+                          onClick={handleSearch} 
+                          disabled={!userInputLocation}
+                        >
+                          <Search className="w-5 h-5" />
+                          Search
                         </button>
                     </div>
 

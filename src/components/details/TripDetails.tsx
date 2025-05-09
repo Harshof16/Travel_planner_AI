@@ -9,7 +9,7 @@ const TripDetails = () => {
 
             <div className="container mx-auto px-4 py-8 h-[calc(100vh-37rem)]">
                 <p className="text-gray-500 text-sm">Home &gt; Details</p>
-                <div className="text-center mt-16">
+                <div className="flex flex-col items-center justify-center h-[calc(100vh-35rem)]">
                     <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">Coming Soon</h1>
                     <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
                         We are working hard to bring you something amazing. Stay tuned!

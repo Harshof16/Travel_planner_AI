@@ -3,6 +3,8 @@ import TripSearchBar from './TripSearchbar';
 
 const Hero: React.FC = () => {
   const [offset, setOffset] = useState(0);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setOffset(window.pageYOffset);
@@ -15,19 +17,36 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  const handleVideoLoad = () => {
+    setTimeout(() => {
+      if (!isVideoLoaded) {
+        setIsVideoLoaded(true);
+      }
+    }, 3000);
+  };
+
   return (
     <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden pt-20 md:pt-24" id='home'>
       {/* Parallax Background */}
       <div 
       className="absolute inset-0 z-0"
       style={{ 
-        backgroundImage: 'url("https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=1600")',
+        backgroundImage: isVideoLoaded ? 'none' : 'url("https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=1600")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transform: `translateY(${offset * 0.5}px)`,
-        filter: 'brightness(0.7)'
+        filter: 'brightness(0.8)'
       }}
-      />
+      >
+        <video 
+          className={`absolute inset-0 w-full h-full object-cover ${isVideoLoaded ? '' : 'hidden'}`} 
+          src="/landing_page_video.mov" 
+          autoPlay 
+          loop 
+          muted 
+          onLoadedData={handleVideoLoad}
+        />
+      </div>
       
       {/* Gradient Overlay */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 to-black/60" />
