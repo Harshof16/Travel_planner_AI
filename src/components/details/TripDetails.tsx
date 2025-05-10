@@ -7,9 +7,9 @@ const TripDetails = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 py-8 h-[calc(100vh-37rem)]">
+            <div className="container mx-auto px-4 h-[calc(100vh-37rem)] min-h-36 py-8">
                 <p className="text-gray-500 text-sm">Home &gt; Details</p>
-                <div className="flex flex-col items-center justify-center h-[calc(100vh-35rem)]">
+                <div className="flex flex-col items-center justify-center h-full py-4">
                     <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">Coming Soon</h1>
                     <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
                         We are working hard to bring you something amazing. Stay tuned!
