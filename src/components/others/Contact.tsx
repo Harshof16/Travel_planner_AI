@@ -35,7 +35,7 @@ const Contact = () => {
         <div className="relative">
             <div className="h-64 bg-cover bg-center" style={{ backgroundImage: "url('https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg')", backgroundColor: '#1E293B' }}>
                 <div className="h-full bg-black bg-opacity-50 flex items-center justify-center">
-                    <h1 className="text-4xl font-bold text-white-400">Contact Us</h1>
+                    <h1 className="text-4xl font-bold text-white">Contact Us</h1>
                 </div>
             </div>
             <div className="container mx-auto px-4 py-8">

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface Suggestion {
   name: string;
@@ -28,6 +28,7 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
 }) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState<Suggestion[]>([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState<'top' | 'bottom'>('bottom');
 
   const debouncedFetchSuggestions = useRef(
     debounce(async (query: string) => {
@@ -60,6 +61,16 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
     setIsDropdownVisible(false);
   };
 
+  useEffect(() => {
+    const inputElement = document.querySelector('.autocomplete-input');
+    if (inputElement) {
+      const rect = inputElement.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      setDropdownPosition(spaceBelow < 300 && spaceAbove > spaceBelow ? 'top' : 'bottom');
+    }
+  }, [value]);
+
   return (
     <div className="relative w-full">
       <input
@@ -67,15 +78,19 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
         value={value}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className="w-full px-4 border-none rounded-lg focus:ring-0 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none"
+        className="w-full px-4 border-none rounded-lg focus:ring-0 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none autocomplete-input"
       />
       {isDropdownVisible && (
-        <ul className="absolute z-100 w-full bg-white dark:bg-gray-800 dark:border-none rounded-lg shadow-lg mt-1 max-h-48 overflow-y-auto">
-          {filteredSuggestions.map((suggestion, index) => (
+        <ul
+          className={`absolute z-100 w-full bg-white dark:bg-gray-800 dark:border-none rounded-lg shadow-lg max-h-48 ${
+            dropdownPosition === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'
+          }`}
+        >
+          {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
             <li
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="text-left text-gray-700 px-4 py-2 cursor-pointer hover:bg-teal-100 dark:hover:bg-teal-900 hover:text-teal-700 dark:hover:text-teal-300"
+              className="text-left text-gray-700 px-4 py-2 cursor-pointer hover:bg-teal-100 dark:text-gray-300 dark:hover:bg-teal-900 hover:text-teal-700 dark:hover:text-teal-300"
             >
               {suggestion.name}
             </li>
