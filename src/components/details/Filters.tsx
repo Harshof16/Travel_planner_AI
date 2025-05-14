@@ -26,7 +26,7 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
+    <div>
       <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Filters</h2>
 
       <div className="space-y-4">

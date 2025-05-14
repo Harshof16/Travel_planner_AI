@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 const Itinerary: React.FC = () => {
   const [activeDay, setActiveDay] = useState<number | null>(null);
-
-  const itineraryData = [
+  const [itineraryData, setItineraryData] = useState([
     {
       day: 1,
       title: 'Arrival and Relaxation in Bali',
@@ -47,20 +46,45 @@ const Itinerary: React.FC = () => {
       date: '5 Jun, 2025',
       activities: [],
     },
-  ];
+  ]);
 
   const toggleDay = (day: number) => {
     setActiveDay(activeDay === day ? null : day);
+  };
+
+  // Drag and drop handlers
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (index: number) => {
+    if (draggedIndex === null || draggedIndex === index) return;
+    const newData = [...itineraryData];
+    const [removed] = newData.splice(draggedIndex, 1);
+    newData.splice(index, 0, removed);
+    setItineraryData(newData);
+    setDraggedIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
   };
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
       <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Itinerary</h2>
       <div className="space-y-4">
-        {itineraryData.map((day) => (
+        {itineraryData.map((day, index) => (
           <div
             key={day.day}
             className="border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden"
+            draggable
+            onDragStart={() => handleDragStart(index)}
+            onDragOver={(e) => { e.preventDefault(); handleDragOver(index); }}
+            onDragEnd={handleDragEnd}
+            style={{ cursor: 'grab', opacity: draggedIndex === index ? 0.5 : 1 }}
           >
             <button
               onClick={() => toggleDay(day.day)}
@@ -77,8 +101,8 @@ const Itinerary: React.FC = () => {
             {activeDay === day.day && (
               <div className="p-4 bg-white dark:bg-gray-800">
                 {day.activities.length > 0 ? (
-                  day.activities.map((activity, index) => (
-                    <div key={index} className="mb-4">
+                  day.activities.map((activity, idx) => (
+                    <div key={idx} className="mb-4">
                       <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">
                         {activity.time}
                       </h4>

@@ -1,6 +1,8 @@
 import WeatherForecast from './WeatherForecast';
 import Itinerary from './Itinerary';
-import Filters from './Filters';
+import TripBlueprintHeader from './TripBlueprintHeader';
+import HandpickedForYou from './HandpickedForYou';
+import SmartTravelHacks from './SmartTravelHacks';
 // import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 // const containerStyle = {
@@ -23,17 +25,11 @@ const TripDetails = () => {
             </div>
 
             <div className="container mx-auto px-4 py-8">
-                <p className="text-gray-500 text-sm">Home &gt; Details</p>
-                <div className="flex flex-col items-center justify-center h-[calc(100vh-37rem)]">
-                    <h1 className="text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">Coming Soon</h1>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                        We are working hard to bring you something amazing. Stay tuned!
-                    </p>
-                </div>
-
+                <TripBlueprintHeader />
                 <WeatherForecast />
                 <Itinerary />
-                <Filters />
+                <HandpickedForYou />
+                <SmartTravelHacks />
 
                 {/* <div className="mt-8">
                     <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Location</h2>
