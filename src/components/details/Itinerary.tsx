@@ -1,59 +1,26 @@
 import React, { useState } from 'react';
+import { Schedule } from '../../types/tripDetailsTypes';
 
-const Itinerary: React.FC = () => {
+interface DayWithSchedule {
+  day: number;
+  title: string;
+  date?: string;
+  schedule: Schedule[];
+}
+
+const Itinerary: React.FC<{ days: DayWithSchedule[] }> = ({ days }) => {
   const [activeDay, setActiveDay] = useState<number | null>(null);
-  const [itineraryData, setItineraryData] = useState([
-    {
-      day: 1,
-      title: 'Arrival and Relaxation in Bali',
-      date: '1 Jun, 2025',
-      activities: [
-        {
-          time: 'Check-in at Bella Kita Mountain Retreat & Spa',
-          description: 'Arrive and settle into your luxurious accommodation with mountain views.',
-        },
-        {
-          time: 'Visit Uluwatu Temple',
-          description: 'Experience stunning ocean views and traditional Balinese architecture.',
-        },
-        {
-          time: 'Dinner at Drifter Cafe',
-          description: 'Enjoy healthy bowls and smoothies in a relaxed atmosphere.',
-        },
-      ],
-    },
-    {
-      day: 2,
-      title: 'Beach Day and Temple Tour',
-      date: '2 Jun, 2025',
-      activities: [],
-    },
-    {
-      day: 3,
-      title: 'Cultural Experience and Sunset Views',
-      date: '3 Jun, 2025',
-      activities: [],
-    },
-    {
-      day: 4,
-      title: 'Adventure and Wellness Day',
-      date: '4 Jun, 2025',
-      activities: [],
-    },
-    {
-      day: 5,
-      title: 'Adventure and Wellness Day',
-      date: '5 Jun, 2025',
-      activities: [],
-    },
-  ]);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [orderedDays, setOrderedDays] = useState<DayWithSchedule[]>(days);
+
+  // Update orderedDays if days prop changes
+  React.useEffect(() => {
+    setOrderedDays(days);
+  }, [days]);
 
   const toggleDay = (day: number) => {
     setActiveDay(activeDay === day ? null : day);
   };
-
-  // Drag and drop handlers
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
@@ -61,10 +28,10 @@ const Itinerary: React.FC = () => {
 
   const handleDragOver = (index: number) => {
     if (draggedIndex === null || draggedIndex === index) return;
-    const newData = [...itineraryData];
+    const newData = [...orderedDays];
     const [removed] = newData.splice(draggedIndex, 1);
     newData.splice(index, 0, removed);
-    setItineraryData(newData);
+    setOrderedDays(newData);
     setDraggedIndex(index);
   };
 
@@ -72,13 +39,19 @@ const Itinerary: React.FC = () => {
     setDraggedIndex(null);
   };
 
+  const timeOfDayIcons: Record<string, JSX.Element> = {
+    Morning: <span role="img" aria-label="morning" className="mr-2">🌅</span>,
+    Afternoon: <span role="img" aria-label="afternoon" className="mr-2">🌞</span>,
+    Evening: <span role="img" aria-label="evening" className="mr-2">🌙</span>,
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
       <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Itinerary</h2>
       <div className="space-y-4">
-        {itineraryData.map((day, index) => (
+        {orderedDays.map((day, index) => (
           <div
-            key={day.day}
+            key={index}
             className="border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden"
             draggable
             onDragStart={() => handleDragStart(index)}
@@ -87,32 +60,41 @@ const Itinerary: React.FC = () => {
             style={{ cursor: 'grab', opacity: draggedIndex === index ? 0.5 : 1 }}
           >
             <button
-              onClick={() => toggleDay(day.day)}
+              onClick={() => toggleDay(index)}
               className="w-full text-left px-4 py-3 bg-gray-100 dark:bg-gray-700 flex justify-between items-center"
             >
               <div>
                 <h3 className="text-sm font-bold text-gray-800 dark:text-gray-200">
-                  Day {day.day}: {day.title}
+                  Day {index + 1}: {day.title}
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">{day.date}</p>
+                {day.date && <p className="text-xs text-gray-600 dark:text-gray-400">{day.date}</p>}
               </div>
-              <span>{activeDay === day.day ? '▲' : '▼'}</span>
+              <span>{activeDay === index ? '▲' : '▼'}</span>
             </button>
-            {activeDay === day.day && (
+            {activeDay === index && (
               <div className="p-4 bg-white dark:bg-gray-800">
-                {day.activities.length > 0 ? (
-                  day.activities.map((activity, idx) => (
-                    <div key={idx} className="mb-4">
-                      <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">
-                        {activity.time}
+                {day.schedule && day.schedule.length > 0 ? (
+                  day.schedule.map((slot, idx) => (
+                    <div key={idx} className="mb-5">
+                      <h4 className="text-md font-extrabold text-gray-700 dark:text-teal-500 mb-2 flex items-center tracking-wide">
+                        {timeOfDayIcons[slot.time_of_day] || null}
+                        {slot.time_of_day}
                       </h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        {activity.description}
-                      </p>
+                      {slot.activities.length > 0 ? (
+                        <ul className="list-disc ml-6">
+                          {slot.activities.map((activity, aidx) => (
+                            <li key={aidx} className="text-sm text-gray-700 dark:text-gray-200 mb-1 leading-relaxed">
+                              {activity}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">No activities planned for this time.</p>
+                      )}
                     </div>
                   ))
                 ) : (
-                  <p className="text-sm text-gray-600 dark:text-gray-400">No activities planned for this day.</p>
+                  <p className="text-base text-gray-600 dark:text-gray-400">No activities planned for this day.</p>
                 )}
               </div>
             )}

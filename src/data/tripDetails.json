@@ -1,0 +1,336 @@
+{
+    "title": "Exciting 7-Day Adventure from Delhi, India",
+    "days": [
+        {
+            "day": 1,
+            "title": "Arrival in Delhi",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Arrive at Indira Gandhi International Airport",
+                        "Check into hotel and freshen up"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Visit India Gate and Rajpath",
+                        "Explore Humayun’s Tomb"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Dinner at Karim's in Old Delhi"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Indira Gandhi International Airport",
+                    "to": "Hotel",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Hotel",
+                    "to": "India Gate",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "India Gate",
+                    "to": "Humayun’s Tomb",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "The Oberoi, New Delhi"
+        },
+        {
+            "day": 2,
+            "title": "Discover Delhi",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Visit Red Fort",
+                        "Explore Jama Masjid"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Shopping at Chandni Chowk",
+                        "Lunch at Paranthe Wali Gali"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Visit Qutub Minar",
+                        "Relax at Hauz Khas Village, dinner at a local restaurant"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Hotel",
+                    "to": "Red Fort",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Red Fort",
+                    "to": "Jama Masjid",
+                    "mode": "Walking"
+                },
+                {
+                    "from": "Jama Masjid",
+                    "to": "Chandni Chowk",
+                    "mode": "Walking"
+                },
+                {
+                    "from": "Chandni Chowk",
+                    "to": "Hotel",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Hotel",
+                    "to": "Qutub Minar",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Qutub Minar",
+                    "to": "Hauz Khas Village",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "The Oberoi, New Delhi"
+        },
+        {
+            "day": 3,
+            "title": "Travel to Agra",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Check out from Delhi hotel",
+                        "Drive to Agra (4-hour drive)"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Check into hotel in Agra",
+                        "Visit Agra Fort"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Sunset at the Taj Mahal",
+                        "Dinner at Peshawri, ITC Mughal"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Delhi",
+                    "to": "Agra",
+                    "mode": "Rental Vehicle"
+                },
+                {
+                    "from": "Agra Hotel",
+                    "to": "Agra Fort",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Agra Fort",
+                    "to": "Taj Mahal",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "The Oberoi Amarvilas, Agra"
+        },
+        {
+            "day": 4,
+            "title": "Explore Agra & Travel to Jaipur",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Sunrise visit to the Taj Mahal",
+                        "Breakfast at hotel"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Travel to Jaipur (5-hour drive)"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Check into hotel in Jaipur",
+                        "Dinner at Suvarna Mahal, Rambagh Palace"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Agra Hotel",
+                    "to": "Taj Mahal",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Agra",
+                    "to": "Jaipur",
+                    "mode": "Rental Vehicle"
+                }
+            ],
+            "accommodation": "Taj Jai Mahal Palace, Jaipur"
+        },
+        {
+            "day": 5,
+            "title": "Jaipur Sightseeing",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Visit Amber Fort",
+                        "Explore Jaigarh Fort"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Lunch at Laxmi Misthan Bhandar",
+                        "Visit City Palace and Jantar Mantar"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Shopping at Johari Bazaar",
+                        "Dinner at Chokhi Dhani"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Jaipur Hotel",
+                    "to": "Amber Fort",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Amber Fort",
+                    "to": "Jaigarh Fort",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Jaigarh Fort",
+                    "to": "City Palace",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "City Palace",
+                    "to": "Johari Bazaar",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "Taj Jai Mahal Palace, Jaipur"
+        },
+        {
+            "day": 6,
+            "title": "Return to Delhi",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Breakfast in Jaipur",
+                        "Travel back to Delhi (5-hour drive)"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Check into hotel in Delhi",
+                        "Visit Lotus Temple"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Dinner at Bukhara, ITC Maurya"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Jaipur",
+                    "to": "Delhi",
+                    "mode": "Rental Vehicle"
+                },
+                {
+                    "from": "Delhi Hotel",
+                    "to": "Lotus Temple",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "The Leela Palace, New Delhi"
+        },
+        {
+            "day": 7,
+            "title": "Departure",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Pack and relax",
+                        "Visit Connaught Place for last-minute shopping"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Check out and travel to Indira Gandhi International Airport"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Hotel",
+                    "to": "Connaught Place",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Connaught Place",
+                    "to": "Indira Gandhi International Airport",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "The Leela Palace, New Delhi"
+        }
+    ],
+    "notes": [
+        "This itinerary covers major attractions in Delhi, Agra, and Jaipur, forming the renowned Golden Triangle of India.",
+        "Remember to check for any travel advisories or restrictions ahead of travel."
+    ],
+    "top_recommendations": {
+        "accommodations": [
+            "The Oberoi, New Delhi",
+            "The Oberoi Amarvilas, Agra",
+            "Taj Jai Mahal Palace, Jaipur"
+        ],
+        "activities": [
+            "Taj Mahal sunrise visit",
+            "Amber Fort exploration",
+            "Shopping at Chandni Chowk"
+        ]
+    },
+    "visa_requirements": [
+        {
+            "country": "India",
+            "requirement": "A valid visa is required for most travelers. Check if you're eligible for an e-Visa or Visa on Arrival depending on your nationality."
+        }
+    ]
+}
