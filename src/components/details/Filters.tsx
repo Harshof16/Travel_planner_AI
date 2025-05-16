@@ -6,16 +6,6 @@ import API from '../../apis/axios';
 const inclusionsOptions = ['Flight', 'Hotel', 'Sightseeing', 'Transfer', 'Meal'];
 const themeOptions = ['Beach', 'Adventure', 'Wildlife', 'Shopping', 'Honeymoon', 'Family', 'Culture'];
 const tripTypeOptions = ['solo', 'couple', 'family', 'friends'];
-const nationalityOptions = [
-  'India', 'United States', 'United Kingdom', 'Australia', 'Canada', 'Germany', 'France', 'UAE', 'Qatar', 'Syria'
-];
-const destinationOptions = [
-  'Dubai - United Arab Emirates',
-  'Qatar, Syria',
-  'Bali, Indonesia',
-  'Paris, France',
-  'London, United Kingdom',
-];
 
 const MultiSelectDropdown: React.FC<{
   options: string[];
@@ -111,6 +101,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
     tripType: filtersStore.tripType,
   });
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [destinationInput, setDestinationInput] = useState("");
 
   // Sync no_of_days.location_wise with destination if set from outside (e.g., query)
   React.useEffect(() => {
@@ -169,32 +160,77 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
               dropdownClassName="absolute z-20 mt-1 w-full max-h-48 overflow-y-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg"
             />
           </div>
-          {/* Going To (multi select dropdown) */}
+          {/* Going To (autocomplete chips) */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Going To</label>
-            <MultiSelectDropdown
-              options={destinationOptions}
-              selected={filter.destination}
-              onChange={val => setFilter(f => {
-                // Build new location_wise array: 1 night per destination by default
-                const newLocationWise = val.map(dest => {
-                  // Try to preserve previous value if exists
-                  const prev = f.no_of_days.location_wise.find(obj => Object.keys(obj)[0] === dest);
-                  return prev ? prev : { [dest]: 1 };
-                });
-                // Remove any locations that are no longer selected
-                const total = newLocationWise.reduce((sum, obj) => sum + Object.values(obj)[0], 0);
-                return {
-                  ...f,
-                  destination: val,
-                  no_of_days: { location_wise: newLocationWise, total },
-                };
-              })}
-              placeholder="Select destinations"
-              openDropdown={openDropdown}
-              setOpenDropdown={setOpenDropdown}
-              dropdownKey="destination"
+            <CustomAutocomplete
+              value={destinationInput}
+              onChange={val => {
+                // Only set on explicit selection (onSelectSuggestion)
+                setDestinationInput(val);
+              }}
+              suggestions={async (query) => {
+                try {
+                  const response = await API.get(`/amadeus/locations?keyword=${query}`);
+                  return response.data;
+                } catch {
+                  return [];
+                }
+              }}
+              onSelectSuggestion={val => {
+                if (val && !filter.destination.includes(val)) {
+                  setFilter(f => {
+                    const newDest = [...f.destination, val];
+                    const newLocationWise = newDest.map(dest => {
+                      const prev = f.no_of_days.location_wise.find(obj => Object.keys(obj)[0] === dest);
+                      return prev ? prev : { [dest]: 1 };
+                    });
+                    const total = newLocationWise.reduce((sum, obj) => sum + Object.values(obj)[0], 0);
+                    return {
+                      ...f,
+                      destination: newDest,
+                      no_of_days: { location_wise: newLocationWise, total },
+                    };
+                  });
+                }
+                setDestinationInput(""); // Clear input after selection
+              }}
+              placeholder="Search and add destinations..."
+              inputClassName="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              dropdownClassName="absolute z-20 mt-1 w-full max-h-48 overflow-y-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg"
             />
+            {/* Chips for selected destinations */}
+            {filter.destination.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {filter.destination.map((val) => (
+                  <span
+                    key={val}
+                    className="flex items-center bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm shadow-sm"
+                  >
+                    {val}
+                    <button
+                      type="button"
+                      className="ml-2 text-teal-500 hover:text-teal-700 dark:hover:text-teal-300 focus:outline-none"
+                      onClick={() => {
+                        setFilter(f => {
+                          const newDest = f.destination.filter((s) => s !== val);
+                          const newLocationWise = f.no_of_days.location_wise.filter(obj => Object.keys(obj)[0] !== val);
+                          const total = newLocationWise.reduce((sum, obj) => sum + Object.values(obj)[0], 0);
+                          return {
+                            ...f,
+                            destination: newDest,
+                            no_of_days: { location_wise: newLocationWise, total },
+                          };
+                        });
+                      }}
+                      aria-label={`Remove ${val}`}
+                    >
+                      &times;
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           {/* Travel Date */}
           <div>
@@ -306,16 +342,21 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
           {/* Nationality (autocomplete) */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nationality</label>
-            <select
+            <CustomAutocomplete
               value={filter.nationality}
-              onChange={e => setFilter(f => ({ ...f, nationality: e.target.value }))}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            >
-              <option value="">Select nationality</option>
-              {nationalityOptions.map(opt => (
-                <option key={opt} value={opt}>{opt}</option>
-              ))}
-            </select>
+              onChange={val => setFilter(f => ({ ...f, nationality: val }))}
+              suggestions={async (query) => {
+                try {
+                  const response = await API.get(`/amadeus/locations?keyword=${query}&subType=Country`);
+                  return response.data;
+                } catch {
+                  return [];
+                }
+              }}
+              placeholder="Search nationality..."
+              inputClassName="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              dropdownClassName="absolute z-20 mt-1 w-full max-h-48 overflow-y-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg"
+            />
           </div>
           {/* Visa requirement (boolean) */}
           <div>
