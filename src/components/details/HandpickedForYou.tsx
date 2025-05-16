@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useLocationPhoto } from '../../hooks/useLocationPhoto';
 import { TopRecommendations } from '../../types/tripDetailsTypes';
 
@@ -23,7 +23,8 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
       if (!photoCache[location] && !loadingCache[location]) {
         setLoadingCache((prev) => ({ ...prev, [location]: true }));
         try {
-          const url = await fetchPhoto(location);
+          // Pass height/width for consistent card images
+          const url = await fetchPhoto(location, 320, 480);
           setPhotoCache((prev) => ({ ...prev, [location]: url ?? null }));
         } catch {
           setPhotoCache((prev) => ({ ...prev, [location]: null }));
@@ -53,6 +54,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
         ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <Suspense fallback={<div>Loading...</div>}>
         {recommendations[activeTab].map((item, idx) => {
           return (
             <div
@@ -65,7 +67,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
                 {loadingCache[item] ? (
                   <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 animate-pulse">Loading...</div>
                 ) : photoCache[item] ? (
-                  <img src={photoCache[item]!} alt={item} className="object-cover w-full h-full" />
+                  <img src={photoCache[item]!} alt={item} className="object-cover w-full h-full" loading="lazy" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-400">No Image</div>
                 )}
@@ -84,6 +86,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
             </div>
           );
         })}
+        </Suspense>
       </div>
     </div>
   );

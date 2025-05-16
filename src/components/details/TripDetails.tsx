@@ -5,21 +5,50 @@ import { useTripDetailsStore } from '../../store/tripDetailsStore';
 import VisaRequirements from './VisaRequirements';
 import TripNotes from './TripNotes';
 import { useFiltersStore } from '../../store/filtersStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import TripMap from './TripMap';
 import TripHeader from './TripHeader';
 import API from '../../apis/axios';
 import { FilterType } from '../../types/filtersTypes';
+import Skeleton from '../ui/Skeleton';
+import { useLocationPhoto } from '../../hooks/useLocationPhoto';
 
 const TripDetails = () => {
     const tripDetails = useTripDetailsStore((state) => state.tripDetails);
     const setTripDetails = useTripDetailsStore((state) => state.setTripDetails);
     const filters = useFiltersStore();
     const setFilters = useFiltersStore((state) => state.setFilters);
+    const [loading, setLoading] = useState(false);
+    const { fetchPhoto } = useLocationPhoto();
+    const [bgImage, setBgImage] = useState<string | null>(null);
+    const [bgLoading, setBgLoading] = useState(false);
 
     console.log('filters:', filters);
 
+    // Fetch background image for the first destination
     useEffect(() => {
+        const getBg = async () => {
+            if (filters.destination && filters.destination[0]) {
+                setBgLoading(true);
+                try {
+                    // Use a wide aspect ratio for banner
+                    const url = await fetchPhoto(filters.destination[0], 400, 1200);
+                    setBgImage(url || null);
+                } catch {
+                    setBgImage(null);
+                } finally {
+                    setBgLoading(false);
+                }
+            } else {
+                setBgImage(null);
+            }
+        };
+        getBg();
+        // eslint-disable-next-line
+    }, [filters.destination && filters.destination[0]]);
+
+    useEffect(() => {
+        if (!filters.destination || filters.destination.length === 0) return;
         const {
             type,
             tripType,
@@ -55,12 +84,15 @@ const TripDetails = () => {
         };
         console.log('Payload:', payload);
         const fetchTripDetails = async () => {
+            setLoading(true);
             try {
                 const response = await API.post('/proposals/AIsuggestion', payload);
                 setTripDetails(response.data);
                 console.log('Trip details:', response.data);
             } catch (error) {
                 console.error('Error fetching trip details:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -105,20 +137,34 @@ const TripDetails = () => {
 
     return (
         <div className="relative">
-            <div className="h-64 bg-cover bg-center" style={{ backgroundImage: "url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg')" }}>
+            <div className="h-64 bg-cover bg-center" style={{ backgroundImage: bgImage ? `url('${bgImage}')` : "url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg')" }}>
                 <div className="h-full bg-black bg-opacity-50 flex items-center justify-center">
-                    <h1 className="text-4xl font-bold text-white">{tripDetails.title || 'Trip Details'}</h1>
+                    <h1 className="text-4xl font-bold text-white">{!loading && (tripDetails.title || 'Trip Details')}</h1>
                 </div>
+                {bgLoading && <div className="absolute inset-0 bg-gray-200/60 dark:bg-gray-800/60 flex items-center justify-center"><Skeleton height={64} width={400} /></div>}
             </div>
             <div className="container mx-auto px-4 py-8">
-                <TripHeader tripTitle={tripDetails.title} tripDescription={tripDetails.description}/>
+                <TripHeader tripTitle={tripDetails.title} tripDescription={tripDetails.description} loading={loading}/>
                 <div className="container mx-auto" id="trip-details-content">
-                    <WeatherForecast />
-                    {tripDetails?.days && <Itinerary days={tripDetails.days} />}
-                    {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} />}
-                    {tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} />}
-                    {tripDetails?.notes && <TripNotes notes={tripDetails.notes} />}
-                    {filters.destination.length > 0 && <TripMap />}
+                    {loading ? (
+                        <>
+                            <Skeleton height={120} className="mb-6" /> {/* WeatherForecast skeleton */}
+                            <Skeleton height={300} className="mb-6" /> {/* Itinerary skeleton */}
+                            <Skeleton height={180} className="mb-6" /> {/* HandpickedForYou skeleton */}
+                            <Skeleton height={120} className="mb-6" /> {/* VisaRequirements skeleton */}
+                            <Skeleton height={100} className="mb-6" /> {/* TripNotes skeleton */}
+                            <Skeleton height={200} className="mb-6" /> {/* TripMap skeleton */}
+                        </>
+                    ) : (
+                        <>
+                            <WeatherForecast />
+                            {tripDetails?.days && <Itinerary days={tripDetails.days} />}
+                            {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} />}
+                            {tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} />}
+                            {tripDetails?.notes && <TripNotes notes={tripDetails.notes} />}
+                            {filters.destination.length > 0 && <TripMap />}
+                        </>
+                    )}
                 </div>
             </div>
         </div>

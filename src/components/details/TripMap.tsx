@@ -38,7 +38,7 @@ const TripMap: React.FC = () => {
       }
     };
     fetchLocation();
-  }, [filters.destination]);
+  }, [filters]);
 
   return (
     <div className="mt-8">
