@@ -5,9 +5,25 @@ import { useNavigate } from 'react-router-dom';
 import CustomAutocomplete from '../ui/CustomAutocomplete';
 import { FilterType } from "../../types/filtersTypes";
 
+interface Params {
+    type: string;
+    source: string;
+    destination: string[];
+    date: string;
+    nationality: string;
+    no_of_days: string;
+}
 export default function TripToolkit() {
     const [activeTab, setActiveTab] = useState<FilterType>("package");
-    const [userInputLocation, setUserInputLocation] = useState("");
+    const [userInputLocation, setUserInputLocation] = useState<string>("");
+    const [params, setParams] = useState<Params>({
+        type: "package",
+        source: "",
+        destination: [],
+        date: "",
+        nationality: "",
+        no_of_days: "5"
+    });
     const [userInputMonth, setUserInputMonth] = useState<string | undefined>(undefined);
     const [visaLeavingFrom, setVisaLeavingFrom] = useState("");
     const [visaTravelTo, setVisaTravelTo] = useState("");
@@ -17,9 +33,17 @@ export default function TripToolkit() {
     const tabs = [
         { label: "Trip Toolkit", url: 'package' }, { label: "Visa Info", url: 'visa' }, { label: "Weather Watch", url: 'weather' }, { label: "Smart Travel Hacks", url: 'hacks' }];
 
-    const fetchSuggestions = async (event: string) => {
+    const fetchSuggestions = async (event: string, type: string) => {
         try {
-            const response = await API.get(`/amadeus/locations?keyword=${event}`,);
+            if (!type) {
+                type = 'Location';
+            }
+            console.log(`Fetching suggestions for ${event} with type ${type}`);
+            
+            if (!event) {
+                return [];
+            }
+            const response = await API.get(`/amadeus/locations?keyword=${event}&subType=${type}`);
             return response.data
         } catch (error) {
             console.error("Error fetching suggestions:", error);
@@ -27,73 +51,111 @@ export default function TripToolkit() {
     };
 
     const toolkitUI = <>
-        {/* Location Input */}
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Location</label>
-            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
-                <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <CustomAutocomplete
-                    value={userInputLocation}
-                    onChange={(val) => setUserInputLocation(val)}
-                    suggestions={fetchSuggestions}
-                    placeholder="Search location..."
-                    onSelectSuggestion={(val) => setUserInputLocation(val)}
-                />
+        {/* Destinations Input */}
+            <div className="flex flex-col flex-1">
+                <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Destinations</label>
+                <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
+                    <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
+                    <CustomAutocomplete
+                        value={userInputLocation}
+                        onChange={(val) => {
+                            setUserInputLocation(val);
+                        }}
+                        suggestions={(query) => fetchSuggestions(query, 'Location')}
+                        placeholder="Search destinations..."
+                        onSelectSuggestion={(val) => {
+                            if (val && !params.destination.includes(val)) {
+                                setParams(prev => ({
+                                    ...prev,
+                                    destination: [...prev.destination, val]
+                                }));
+                            }
+                            setUserInputLocation("");
+                        }}
+                    />
+                </div>
             </div>
-        </div>
 
-        {/* Month Selector (now Date Picker) */}
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Travel Date</label>
-            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg relative dark:bg-gray-700">
-                <Calendar className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <input
-                    type="date"
-                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer px-2"
-                    value={userInputMonth || ""}
-                    min={new Date().toISOString().split('T')[0]}
-                    onChange={e => setUserInputMonth(e.target.value)}
-                />
+            {/* Month Selector (now Date Picker) */}
+            <div className="flex flex-col flex-1">
+                <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Travel Date</label>
+                <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg relative dark:bg-gray-700">
+                    <Calendar className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
+                    <input
+                        type="date"
+                        className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer px-2"
+                        value={userInputMonth || ""}
+                        min={new Date().toISOString().split('T')[0]}
+                        onChange={(e) => {
+                            setUserInputMonth(e.target.value);
+                            setParams(prev => ({
+                                ...prev,
+                                date: e.target.value
+                            }));
+                        }}
+                    />
+                </div>
             </div>
-        </div></>
+        </>
 
     const visaUI = <>
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Leaving From</label>
-            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
-                <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <input
-                    type="text"
-                    placeholder="Brisbane"
-                    value={visaLeavingFrom}
-                    onChange={e => setVisaLeavingFrom(e.target.value)}
-                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
-                />
-            </div>
-        </div>
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Travel To</label>
-            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
-                <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <input
-                    type="text"
-                    placeholder="Brisbane"
-                    value={visaTravelTo}
-                    onChange={e => setVisaTravelTo(e.target.value)}
-                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
-                />
-            </div>
-        </div>
         <div className="flex flex-col flex-1">
             <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Nationality</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                 <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
-                <input
+                {/* <input
                     type="text"
                     placeholder="Brisbane"
                     value={visaNationality}
                     onChange={e => setVisaNationality(e.target.value)}
                     className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
+                /> */}
+                <CustomAutocomplete
+                    value={visaNationality}
+                    onChange={(val) => setVisaNationality(val)}
+                    suggestions={(query) => fetchSuggestions(query, 'Country')}
+                    placeholder="Search country..."
+                    onSelectSuggestion={(val) => setVisaNationality(val)}
+                />
+            </div>
+        </div>
+        <div className="flex flex-col flex-1">
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Departure City</label>
+            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
+                <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
+                {/* <input
+                    type="text"
+                    placeholder="Brisbane"
+                    value={visaLeavingFrom}
+                    onChange={e => setVisaLeavingFrom(e.target.value)}
+                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
+                /> */}
+                <CustomAutocomplete
+                    value={visaLeavingFrom}
+                    onChange={(val) => setVisaLeavingFrom(val)}
+                    suggestions={(query) => fetchSuggestions(query, 'Location')}
+                    placeholder="Search city..."
+                    onSelectSuggestion={(val) => setVisaLeavingFrom(val)}
+                />
+            </div>
+        </div>
+        <div className="flex flex-col flex-1">
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Destinations</label>
+            <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
+                <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
+                {/* <input
+                    type="text"
+                    placeholder="Brisbane"
+                    value={visaTravelTo}
+                    onChange={e => setVisaTravelTo(e.target.value)}
+                    className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200"
+                /> */}
+                <CustomAutocomplete
+                    value={visaTravelTo}
+                    onChange={(val) => setVisaTravelTo(val)}
+                    suggestions={(query) => fetchSuggestions(query, 'Location')}
+                    placeholder="Search destination..."
+                    onSelectSuggestion={(val) => setVisaTravelTo(val)}
                 />
             </div>
         </div>
@@ -107,23 +169,42 @@ export default function TripToolkit() {
         setVisaLeavingFrom("");
         setVisaTravelTo("");
         setVisaNationality("");
+        setParams({
+            type: tab,
+            source: "",
+            destination: [],
+            date: "",
+            nationality: "",
+            no_of_days: "5"
+        });
     };
 
     const handleSearch = () => {
-        const params: string[] = [];
+        // const params: string[] = [];
         if (activeTab === 'package' || activeTab === 'weather' || activeTab === 'hacks') {
-            params.push(`type=${activeTab}`);
-            params.push(`destination=${userInputLocation}`);
-            if (userInputMonth) {
-                params.push(`date=${userInputMonth}`);
-            }
+            // params.push(`type=${activeTab}`);
+            // params.push(`destination=${userInputLocation}`);
+            // params.push(`no_of_days={total:5}`);
+            // if (userInputMonth) {
+            //     params.push(`date=${userInputMonth}`);
+            // }
         } else if (activeTab === 'visa') {
-            params.push(`type=visa`);
-            if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
-            if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
-            if (visaNationality) params.push(`nationality=${visaNationality}`);
+            // params.push(`type=visa`);
+            // if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
+            // if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
+            // if (visaNationality) params.push(`nationality=${visaNationality}`);
         }
-        const query = params.join('&');
+        const query = Object.entries(params)
+            .map(([key, value]) => {
+                if (value === undefined || value === "") {
+                    return "";
+                }
+                return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : value)}`;
+            })
+            .join('&');
+        
+        // console.log(`Navigating to /trips?${query}`);
+        
         navigate(`/trips?${query}`);
     };
 
@@ -158,15 +239,38 @@ export default function TripToolkit() {
                     <div className="flex justify-center md:justify-end mt-4 md:mt-0 flex-[0_0_1]">
                         <button 
                           className={`flex items-center gap-2 px-6 py-3 rounded-lg text-white transition-colors 
-                            ${!userInputLocation ? 'bg-teal-700/60 cursor-not-allowed' : 'bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500'}`} 
+                            ${(params.destination.length === 0 )? 'bg-teal-700/60 cursor-not-allowed' : 'bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500'}`} 
                           onClick={handleSearch} 
-                          disabled={!userInputLocation}
+                          disabled={params.destination.length === 0}
                         >
                           <Search className="w-5 h-5" />
                           Search
                         </button>
                     </div>
-
+                </div>
+                {/* Chips for selected destinations */}
+                <div className="flex flex-wrap gap-2 m-2">
+                    {params.destination.length > 0 && params.destination.map((val) => (
+                        <span
+                            key={val}
+                            className="flex items-center bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm shadow-sm"
+                        >
+                            {val}
+                            <button
+                            type="button"
+                            className="ml-2 text-teal-500 hover:text-teal-700 dark:hover:text-teal-300 focus:outline-none"
+                            onClick={() => {
+                                setParams(prev => ({
+                                    ...prev,
+                                    destination: prev.destination.filter((s) => s !== val)
+                                }));
+                            }}
+                            aria-label={`Remove ${val}`}
+                            >
+                            &times;
+                            </button>
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>

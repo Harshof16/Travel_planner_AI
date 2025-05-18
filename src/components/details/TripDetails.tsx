@@ -12,6 +12,7 @@ import API from '../../apis/axios';
 import { FilterType } from '../../types/filtersTypes';
 import Skeleton from '../ui/Skeleton';
 import { useLocationPhoto } from '../../hooks/useLocationPhoto';
+import { useToken } from '../../context/TokenProvider';
 
 const TripDetails = () => {
     const tripDetails = useTripDetailsStore((state) => state.tripDetails);
@@ -22,6 +23,7 @@ const TripDetails = () => {
     const { fetchPhoto } = useLocationPhoto();
     const [bgImage, setBgImage] = useState<string | null>(null);
     const [bgLoading, setBgLoading] = useState(false);
+    const { token } = useToken();
 
     console.log('filters:', filters);
 
@@ -32,7 +34,7 @@ const TripDetails = () => {
                 setBgLoading(true);
                 try {
                     // Use a wide aspect ratio for banner
-                    const url = await fetchPhoto(filters.destination[0], 400, 1200);
+                    const url = await fetchPhoto(filters.destination[0], 400, 1200 , "");
                     setBgImage(url || null);
                 } catch {
                     setBgImage(null);
@@ -86,9 +88,26 @@ const TripDetails = () => {
         const fetchTripDetails = async () => {
             setLoading(true);
             try {
-                const response = await API.post('/proposals/AIsuggestion', payload);
-                setTripDetails(response.data);
-                console.log('Trip details:', response.data);
+                if (type === "package" || type === "visa" || type === "hacks" ) {
+                    const response = await API.post('/proposals/AIsuggestion'
+                    , payload, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setTripDetails(response.data);
+                    console.log('Trip details:', response.data);    
+                } else {
+                    // const response = await API.post('/weather/by-city', payload, {
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // });
+                    // setTripDetails(response.data);
+                    // console.log('Trip details:', response.data);
+                }
             } catch (error) {
                 console.error('Error fetching trip details:', error);
             } finally {
@@ -138,8 +157,36 @@ const TripDetails = () => {
     return (
         <div className="relative">
             <div className="h-64 bg-cover bg-center" style={{ backgroundImage: bgImage ? `url('${bgImage}')` : "url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg')" }}>
-                <div className="h-full bg-black bg-opacity-50 flex items-center justify-center">
-                    <h1 className="text-4xl font-bold text-white">{!loading && (tripDetails.title || 'Trip Details')}</h1>
+                <div className="h-full bg-black bg-opacity-50 flex flex-col items-center justify-center">
+                    <div className="text-4xl font-bold text-white">{!loading && 'Trip Details'}</div>
+                    <div className="flex flex-col items-center text-white mt-4">
+                        <div className="flex space-x-2">
+                            {filters.destination.map((dest, index) => (
+                                <div key={index} className="flex items-center space-x-1">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={2}
+                                        stroke="currentColor"
+                                        className="w-5 h-5 text-red-500"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 2c3.866 0 7 3.134 7 7 0 5.25-7 13-7 13s-7-7.75-7-13c0-3.866 3.134-7 7-7z"
+                                        />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 9a2 2 0 110-4 2 2 0 010 4z"
+                                        />
+                                    </svg>
+                                    <span>{dest}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
                 {bgLoading && <div className="absolute inset-0 bg-gray-200/60 dark:bg-gray-800/60 flex items-center justify-center"><Skeleton height={64} width={400} /></div>}
             </div>

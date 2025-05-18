@@ -54,12 +54,11 @@ const Hero: React.FC = () => {
       {/* Content */}
       <div className="container mx-auto px-4 z-20 text-center text-white relative mb-16">
       <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 transition-all duration-700 animate-fadeIn">
-        <span className="block"><span className="text-teal-400">Escape</span> the Ordinary</span>
-        Embrace the<span className="text-teal-400"> Extraordinary</span>
+        <span className="block"><span className="text-teal-400">Build</span> Your Dream Trip<span className="text-teal-400"> in 60 Seconds</span></span>
       </h1>
       
       <p className="text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-6 text-gray-100">
-        Epic destinations, unforgettable memories crafted just for you.
+        Smart itineraries. No hassle. Anywhere in the world.
       </p>
       
       {/* Search Form */}

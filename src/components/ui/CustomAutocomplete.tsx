@@ -62,7 +62,7 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
         setIsLoading(false);
         setError('No data found');
       }
-    }, 300)
+    }, 1000)
   ).current;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,7 +138,7 @@ const CustomAutocomplete: React.FC<CustomAutocompleteProps> = ({
           {!isLoading && error && (
             <li className="px-4 py-2 text-gray-500 dark:text-gray-400 text-center">{error}</li>
           )}
-          {!isLoading && !error && filteredSuggestions.slice(0, 5).map((suggestion, index) => (
+          {!isLoading && !error && filteredSuggestions.length > 0 && filteredSuggestions.slice(0, 5).map((suggestion, index) => (
             <li
               key={index}
               onMouseDown={() => handleSuggestionClick(suggestion)}

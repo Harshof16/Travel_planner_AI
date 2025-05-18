@@ -14,6 +14,11 @@ import { getCookie, setCookie } from '../../utils'
 const Home = () => {
     const [contactModalOpen, setContactModalOpen] = useState(false);
 
+    // useEffect(() => {
+    //     fetchToken();
+    // }, []);
+
+    
     useEffect(() => {
         const modalShown = getCookie('contactModalShown');
 

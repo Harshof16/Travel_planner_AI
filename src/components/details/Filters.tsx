@@ -140,10 +140,10 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
     <div className="max-h-[80vh] overflow-y-auto p-1 flex flex-col">
       <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0">Advanced Search</h2>
       <div className="flex-1 overflow-y-auto pr-2">
-        <div className="space-y-4">
+        <div className="space-y-8">
           {/* Going from */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Going from</label>
+          <div className='gap-4'>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Departure City</label>
             <CustomAutocomplete
               value={filter.source}
               onChange={val => setFilter(f => ({ ...f, source: val }))}
@@ -161,8 +161,8 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             />
           </div>
           {/* Going To (autocomplete chips) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Going To</label>
+          <div className='gap-4'>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Destinatios</label>
             <CustomAutocomplete
               value={destinationInput}
               onChange={val => {
@@ -233,7 +233,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             )}
           </div>
           {/* Travel Date */}
-          <div>
+          <div className='gap-4'>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Travel Date</label>
             <input
               type="date"
@@ -245,8 +245,8 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
           </div>
             {/* No of Nights per Destination */}
           {filter.destination.length > 0 && (
-            <div>
-              <label className="block text-base font-bold text-gray-700 dark:text-gray-300 mb-2">No. of Nights per Destination</label>
+            <div className='gap-4'>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">No. of Nights per Destination</label>
               <div className="flex flex-col gap-2 justify-between">
                 {filter.destination.map((dest: string) => {
                   // Find value in location_wise
@@ -284,8 +284,8 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             </div>
           )}
           {/* Inclusions (multi select dropdown) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select inclusions</label>
+          <div className="gap-4">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Inclusions</label>
             <MultiSelectDropdown
               options={inclusionsOptions}
               selected={filter.inclusions}
@@ -297,20 +297,20 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             />
           </div>
           {/* Theme/Interests (multi select dropdown) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Theme/Interests</label>
+          <div className="gap-4">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Interests</label>
             <MultiSelectDropdown
               options={themeOptions}
               selected={filter.theme}
               onChange={val => setFilter(f => ({ ...f, theme: val }))}
-              placeholder="Select themes/interests"
+              placeholder="Select interests"
               openDropdown={openDropdown}
               setOpenDropdown={setOpenDropdown}
               dropdownKey="theme"
             />
           </div>
           {/* Trip type (single select) */}
-          <div>
+          <div className="gap-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Trip Type</label>
             <select
               value={filter.tripType}
@@ -322,7 +322,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             </select>
           </div>        
           {/* No. of Travelers (adults, children, infants) */}
-          <div>
+          <div className="gap-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">No. of Travelers</label>
             <div className="flex gap-4">
               <div>
@@ -340,7 +340,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             </div>
           </div>
           {/* Nationality (autocomplete) */}
-          <div>
+          <div className="gap-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nationality</label>
             <CustomAutocomplete
               value={filter.nationality}
@@ -359,7 +359,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
             />
           </div>
           {/* Visa requirement (boolean) */}
-          <div>
+          <div className="gap-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Visa Requirement</label>
             <input
               type="checkbox"
@@ -385,6 +385,8 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
         <button
           className="px-6 py-2 bg-teal-500 text-white rounded-lg"
           onClick={() => {
+            console.log('Filters applied:', filter);
+            
             filtersStore.setFilters(filter);
             setOpenDropdown(null);
             closeModal();
