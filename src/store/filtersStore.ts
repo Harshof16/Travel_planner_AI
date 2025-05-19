@@ -19,8 +19,8 @@ export const useFiltersStore = create<FiltersState>()((set) => ({
   ...initialFilters,
   setFilters: (filters) =>
     set((state) => {
-      console.log('Filters:', filters);
-      console.log("dasdasdkjashdj", typeof filters.destination);
+      // console.log('Filters:', filters);
+      // console.log("dasdasdkjashdj", typeof filters.destination);
       
       
       if (
