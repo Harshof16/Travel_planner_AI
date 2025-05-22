@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import tripDetailsData from '../data/tripDetails.json';
+import tripDetailsData from '../data/tripDetailsV2.json';
 import {
   TripDetails,
   TripDetailsState

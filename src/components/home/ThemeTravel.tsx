@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Experience {
   id: number;
@@ -40,6 +41,37 @@ const experiences: Experience[] = [
 ];
 
 const ThemeTravel: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (activeTab: string, params: object) => {
+    // const params: string[] = [];
+    if (activeTab === 'package' || activeTab === 'weather' || activeTab === 'hacks') {
+        // params.push(`type=${activeTab}`);
+        // params.push(`destination=${userInputLocation}`);
+        // params.push(`no_of_days={total:5}`);
+        // if (userInputMonth) {
+        //     params.push(`date=${userInputMonth}`);
+        // }
+    } else if (activeTab === 'visa') {
+        // params.push(`type=visa`);
+        // if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
+        // if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
+        // if (visaNationality) params.push(`nationality=${visaNationality}`);
+    }
+    const query = Object.entries(params)
+        .map(([key, value]) => {
+            if (value === undefined || value === "") {
+                return "";
+            }
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+        })
+        .join('&');
+    
+    // console.log(`Navigating to /trips?${query}`);
+    
+    navigate(`/trips?${query}`);
+  };
+
   return (
     <section id="experiences" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -53,7 +85,7 @@ const ThemeTravel: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
           {experiences.map((experience) => (
-            <div key={experience.id} className="group cursor-pointer">
+            <div key={experience.id} className="group cursor-pointer" onClick={() => handleSearch('package', { inclusions: experience.title, type: 'package' })}>
               <div className="relative overflow-hidden rounded-xl mb-4">
                 <img 
                   src={experience.image} 
@@ -65,7 +97,7 @@ const ThemeTravel: React.FC = () => {
                     <span className="inline-block px-3 py-1 bg-teal-600 text-white text-xs rounded-full mb-2">
                       {experience.category}
                     </span>
-                    <h3 className="text-xl font-bold text-white">{experience.title}</h3>
+                    <h3 className="text-xl font-bold text-white hover:text-teal-500">{experience.title}</h3>
                   </div>
                 </div>
               </div>

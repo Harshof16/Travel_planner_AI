@@ -13,6 +13,7 @@ import { FilterType } from '../../types/filtersTypes';
 import Skeleton from '../ui/Skeleton';
 import { useLocationPhoto } from '../../hooks/useLocationPhoto';
 import { useToken } from '../../context/TokenProvider';
+import TripHacks from './TripHacks';
 
 const TripDetails = () => {
     const tripDetails = useTripDetailsStore((state) => state.tripDetails);
@@ -88,16 +89,28 @@ const TripDetails = () => {
         const fetchTripDetails = async () => {
             setLoading(true);
             try {
-                if (type === "package" || type === "visa" || type === "hacks" ) {
-                    const response = await API.post('/proposals/AIsuggestion'
-                    , payload, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${token}`,
-                        },
+                if (destination.length === 0) {
+                    setTripDetails({
+                        title: '',
+                        days: [],
+                        notes: '',
+                        top_recommendations: [],
+                        visa_requirements: null,
+                        smart_travel_hacks: null,
+                        description: ''
                     });
-                    setTripDetails(response.data);
-                    console.log('Trip details:', response.data);    
+                    return;
+                }
+                if (type === "package" || type === "visa" || type === "hacks" ) {
+                    // const response = await API.post('/proposals/AIsuggestion'
+                    // , payload, {
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // });
+                    // setTripDetails(response.data);
+                    // console.log('Trip details:', response.data);    
                 } else {
                     // const response = await API.post('/weather/by-city', payload, {
                     //     headers: {
@@ -204,12 +217,13 @@ const TripDetails = () => {
                         </>
                     ) : (
                         <>
-                            <WeatherForecast />
+                            {/* <WeatherForecast /> */}
                             {tripDetails?.days && <Itinerary days={tripDetails.days} />}
                             {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} />}
                             {tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} />}
+                            {tripDetails?.smart_travel_hacks && <TripHacks requirements={tripDetails.smart_travel_hacks} />}
                             {tripDetails?.notes && <TripNotes notes={tripDetails.notes} />}
-                            {filters.destination.length > 0 && <TripMap />}
+                            {/* {filters.destination.length > 0 && <TripMap />} */}
                         </>
                     )}
                 </div>

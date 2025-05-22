@@ -31,7 +31,11 @@ export default function TripToolkit() {
     const navigate = useNavigate();
 
     const tabs = [
-        { label: "Trip Toolkit", url: 'package' }, { label: "Visa Info", url: 'visa' }, { label: "Weather Watch", url: 'weather' }, { label: "Smart Travel Hacks", url: 'hacks' }];
+        { label: "Trip Toolkit", url: 'package' },
+        { label: "Visa Info", url: 'visa' },
+        // { label: "Weather Watch", url: 'weather' },
+        { label: "Smart Travel Hacks", url: 'hacks' }
+    ];
 
     const fetchSuggestions = async (event: string, type: string) => {
         try {

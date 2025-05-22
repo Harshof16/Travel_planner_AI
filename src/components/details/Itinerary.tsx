@@ -47,7 +47,7 @@ const Itinerary: React.FC<{ days: DayWithSchedule[] }> = ({ days }) => {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
-      <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Itinerary</h2>
+      <h2 className="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-6">Itinerary</h2>
       <div className="space-y-4">
         {orderedDays.map((day, index) => (
           <div

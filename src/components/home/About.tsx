@@ -11,29 +11,80 @@ const About: React.FC = () => {
     { value: '95%', label: 'Customer Satisfaction' }
   ];
 
+  // const values = [
+  //   { 
+  //     icon: <MapPin className="w-6 h-6" />,
+  //     title: 'Local Expertise',
+  //     description: 'Our team has in-depth knowledge of each destination we offer.'
+  //   },
+  //   { 
+  //     icon: <Clock className="w-6 h-6" />,
+  //     title: 'Time-Saving',
+  //     description: 'We handle all the details so you can focus on enjoying your journey.'
+  //   },
+  //   { 
+  //     icon: <Award className="w-6 h-6" />,
+  //     title: 'Quality Service',
+  //     description: 'We partner with the best local providers to ensure exceptional experiences.'
+  //   },
+  //   { 
+  //     icon: <Heart className="w-6 h-6" />,
+  //     title: 'Sustainable Travel',
+  //     description: 'We prioritize eco-friendly options and support local communities.'
+  //   }
+  // ];
   const values = [
-    { 
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Local Expertise',
-      description: 'Our team has in-depth knowledge of each destination we offer.'
+    {
+      id: 1,
+      title: "AI-Powered Itinerary Builder",
+      icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>,
+      description: "Create custom trip plans with flights, stays and sightseeing in just 60 seconds - no hassle!",
     },
-    { 
-      icon: <Clock className="w-6 h-6" />,
-      title: 'Time-Saving',
-      description: 'We handle all the details so you can focus on enjoying your journey.'
+    {
+      id: 2,
+      title: "100+ Global Destinations",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-map-pin-icon lucide-map-pin">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+      </svg>,
+      description: "From Landon to Bali, plan vecasssions, honeymoons, and family trips to over 100 destinations worldwide.",
     },
-    { 
-      icon: <Award className="w-6 h-6" />,
-      title: 'Quality Service',
-      description: 'We partner with the best local providers to ensure exceptional experiences.'
+    {
+      id: 3,
+      title: "Instant Quote via WhatsApp",
+      icon: 
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 16l2 2 4-4"
+        />
+      </svg>,
+      description: "Get Quick responses, customized quotes, and real-time updates via WhatsApp.",
     },
-    { 
-      icon: <Heart className="w-6 h-6" />,
-      title: 'Sustainable Travel',
-      description: 'We prioritize eco-friendly options and support local communities.'
-    }
-  ];
-
+    {
+      id: 4,
+      title: "Visa & Travel Support",
+      icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>,
+      description: "We handle all your travel needs, including visa applications, insurance and airport transfers - so you can just pack and go!.",
+      },
+  ]
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -98,7 +149,7 @@ const About: React.FC = () => {
                 <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center mx-auto mb-4">
                   {value.icon}
                 </div>
-                <h4 className="text-xl font-bold mb-2">{value.title}</h4>
+                <h4 className="text-xl font-bold mb-4">{value.title}</h4>
                 <p className="text-gray-600 dark:text-gray-300">
                   {value.description}
                 </p>

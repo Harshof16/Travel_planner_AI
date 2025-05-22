@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import data from '../../data/indianDestinations.json';
+import { useNavigate } from 'react-router-dom';
 
 const experiences: Experience[] = data;
 
@@ -68,6 +69,37 @@ const sliderSettings = {
 };
 
 const IndianDestinations: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (activeTab: string, params: object) => {
+    // const params: string[] = [];
+    if (activeTab === 'package' || activeTab === 'weather' || activeTab === 'hacks') {
+        // params.push(`type=${activeTab}`);
+        // params.push(`destination=${userInputLocation}`);
+        // params.push(`no_of_days={total:5}`);
+        // if (userInputMonth) {
+        //     params.push(`date=${userInputMonth}`);
+        // }
+    } else if (activeTab === 'visa') {
+        // params.push(`type=visa`);
+        // if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
+        // if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
+        // if (visaNationality) params.push(`nationality=${visaNationality}`);
+    }
+    const query = Object.entries(params)
+        .map(([key, value]) => {
+            if (value === undefined || value === "") {
+                return "";
+            }
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+        })
+        .join('&');
+    
+    // console.log(`Navigating to /trips?${query}`);
+    
+    navigate(`/trips?${query}`);
+  };
+
   return (
     <section id="experiences" className="py-20 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -89,12 +121,12 @@ const IndianDestinations: React.FC = () => {
                   alt={experience.city}
                   className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end" onClick={() => handleSearch('package', { destination: experience.city + ", " + experience.country, type: 'package' })}>
                   <div className="p-6">
                     <span className="inline-block px-3 py-1 bg-teal-600 text-white text-xs rounded-full mb-2">
                       {experience.province}
                     </span>
-                    <h3 className="text-xl font-bold text-white">{experience.city}</h3>
+                    <h3 className="text-xl font-bold text-white hover:text-teal-500 ">{experience.city}</h3>
                   </div>
                 </div>
               </div>
