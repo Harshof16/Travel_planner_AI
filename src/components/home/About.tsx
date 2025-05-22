@@ -2,8 +2,15 @@ import React from 'react';
 import Button from '../ui/Button';
 import { Award, MapPin, Clock, Heart } from 'lucide-react';
 import { companyName } from '../../data/constants';
+import { useNavigate } from 'react-router-dom';
 
 const About: React.FC = () => {
+  const navigate = useNavigate();
+  
+  const handleNavigate = () => {
+    navigate('/contact');
+  };
+
   const stats = [
     { value: '10+', label: 'Years of Experience' },
     { value: '50+', label: 'Destinations' },
@@ -133,7 +140,7 @@ const About: React.FC = () => {
               ))}
             </div>
             
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" onClick={handleNavigate}>
               Contact Us
             </Button>
           </div>

@@ -7,9 +7,10 @@ interface TripHeaderProps {
   tripTitle: string;
   tripDescription?: string;
   loading: boolean
+  destinations?: string[];
 }
 
-const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loading }) => {
+const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loading, destinations }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
 
@@ -68,6 +69,16 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
         <div className="flex items-center">
           <MapPin className="w-6 h-6 text-teal-600 dark:text-teal-400 mr-4" />
           <div className="flex-1">
+            {tripTitle && (
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                {loading ? <Skeleton height={32} width={300} className="mb-2" /> : tripTitle}
+              </h1>
+            )}
+            {!tripTitle && (
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                {destinations && destinations.length > 0 ? destinations.join(', ') : 'Trip Details'}
+              </h1>
+            )}
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
               {loading ? <Skeleton height={28} width={220} className="mb-2" /> : tripTitle}
             </h2>

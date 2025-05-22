@@ -26,7 +26,7 @@ const TripDetails = () => {
     const [bgLoading, setBgLoading] = useState(false);
     const { token } = useToken();
 
-    console.log('filters:', filters);
+    // console.log('filters:', filters);
 
     // Fetch background image for the first destination
     useEffect(() => {
@@ -85,7 +85,7 @@ const TripDetails = () => {
             visa_requirement: visaRequirement,
             nationality,
         };
-        console.log('Payload:', payload);
+        // console.log('Payload:', payload);
         const fetchTripDetails = async () => {
             setLoading(true);
             try {
@@ -102,14 +102,14 @@ const TripDetails = () => {
                     return;
                 }
                 if (type === "package" || type === "visa" || type === "hacks" ) {
-                    // const response = await API.post('/proposals/AIsuggestion'
-                    // , payload, {
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //         Authorization: `Bearer ${token}`,
-                    //     },
-                    // });
-                    // setTripDetails(response.data);
+                    const response = await API.post('/proposals/AIsuggestion'
+                    , payload, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setTripDetails(response.data);
                     // console.log('Trip details:', response.data);    
                 } else {
                     // const response = await API.post('/weather/by-city', payload, {
@@ -204,7 +204,7 @@ const TripDetails = () => {
                 {bgLoading && <div className="absolute inset-0 bg-gray-200/60 dark:bg-gray-800/60 flex items-center justify-center"><Skeleton height={64} width={400} /></div>}
             </div>
             <div className="container mx-auto px-4 py-8">
-                <TripHeader tripTitle={tripDetails.title} tripDescription={tripDetails.description} loading={loading}/>
+                <TripHeader tripTitle={tripDetails.title} tripDescription={tripDetails.description} loading={loading} destinations={filters.destination}/>
                 <div className="container mx-auto" id="trip-details-content">
                     {loading ? (
                         <>

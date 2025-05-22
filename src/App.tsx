@@ -14,6 +14,7 @@ import Feedback from './components/others/Feedback';
 import Contact from './components/others/Contact';
 import TripDetails from './components/details/TripDetails';
 import { TokenProvider } from './context/TokenProvider';
+import ChatbotButton from './components/layout/chatbot';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
               </Routes>
             </main>
+            <ChatbotButton />
             <Footer />
           </div>
         </Router>

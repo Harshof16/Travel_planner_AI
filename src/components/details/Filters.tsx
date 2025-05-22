@@ -385,7 +385,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal }) => {
         <button
           className="px-6 py-2 bg-teal-500 text-white rounded-lg"
           onClick={() => {
-            console.log('Filters applied:', filter);
+            // console.log('Filters applied:', filter);
             
             filtersStore.setFilters(filter);
             setOpenDropdown(null);
