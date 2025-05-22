@@ -53,8 +53,8 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
   }, [activeTab, recommendations]);
 
   return (
-    <div className="mb-8 mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Handpicked for You</h2>
+    <div className="mb-8 mt-8 pt-8">
+      <h2 className="text-2xl font-bold mb-6 text-teal-700 dark:text-teal-300">Handpicked for You</h2>
       <div className="mb-6 flex gap-2">
         {tabOptions.map((tab) => (
           <button
@@ -69,7 +69,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 mt-8 pt-8">
         <Suspense fallback={<div>Loading...</div>}>
         <Slider {...sliderSettings}>
 

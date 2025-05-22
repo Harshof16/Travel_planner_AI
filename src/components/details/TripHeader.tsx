@@ -14,6 +14,8 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
   const [showShareMenu, setShowShareMenu] = useState(false);
 
   const handleDownload = () => {
+
+    return;
     const content = document.getElementById('trip-details-content');
     if (!content) return;
     const theme = localStorage.getItem('theme');
@@ -71,21 +73,29 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
             </h2>
           </div>
           <div className="flex items-center gap-2 relative">
-            <button
+            
+          <button
+              className={`p-2 rounded transition-colors ${true ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleDownload}
+              disabled={true}
+            >
+              <Download className={`w-6 h-6 ${true ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400'}`} />
+            </button>
+            {/* <button
               className={`p-2 rounded transition-colors ${loading ? 'opacity-50 cursor-not-allowed bg-gray-200 dark:bg-gray-700' : ''}`}
               onClick={handleDownload}
               disabled={loading}
             >
               <Download className={`w-6 h-6 ${loading ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400'}`} />
-            </button>
-            <button
+            </button> */}
+            {/* <button
               className={`p-2 rounded transition-colors ${loading ? 'opacity-50 cursor-not-allowed bg-gray-200 dark:bg-gray-700' : ''}`}
               disabled={loading}
               onClick={() => setShowShareMenu((prev) => !prev)}
               aria-label="Share"
             >
               <Share2 className={`w-6 h-6 ${loading ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400'}`} />
-            </button>
+            </button> */}
             {showShareMenu && !loading && (
               <div className="absolute right-0 top-12 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 min-w-[180px]">
                 <button

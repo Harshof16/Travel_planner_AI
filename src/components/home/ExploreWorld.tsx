@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 
 // const destinations = [
@@ -48,9 +49,41 @@ const destinations = [
   { name: 'Neuschwanstein Castle', image: 'https://images.pexels.com/photos/187854/pexels-photo-187854.jpeg?auto=compress&cs=tinysrgb&w=600', city:"Bavaria, Germany" },
   { name: 'Sagrada Familia', image: 'https://images.pexels.com/photos/4946674/pexels-photo-4946674.jpeg?auto=compress&cs=tinysrgb&w=600', city:"Barcelona, Spain" },
 ];
+
 const ExploreWorld: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (activeTab: string, params: object) => {
+    // const params: string[] = [];
+    if (activeTab === 'package' || activeTab === 'weather' || activeTab === 'hacks') {
+        // params.push(`type=${activeTab}`);
+        // params.push(`destination=${userInputLocation}`);
+        // params.push(`no_of_days={total:5}`);
+        // if (userInputMonth) {
+        //     params.push(`date=${userInputMonth}`);
+        // }
+    } else if (activeTab === 'visa') {
+        // params.push(`type=visa`);
+        // if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
+        // if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
+        // if (visaNationality) params.push(`nationality=${visaNationality}`);
+    }
+    const query = Object.entries(params)
+        .map(([key, value]) => {
+            if (value === undefined || value === "") {
+                return "";
+            }
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+        })
+        .join('&');
+    
+    // console.log(`Navigating to /trips?${query}`);
+    
+    navigate(`/trips?${query}`);
+  };
+
   return (
-    <section className="py-16 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
+    <section id='attractions' className="py-16 bg-slate-100 dark:bg-gray-800 transition-colors duration-300">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Explore Earth's Masterpieces</h2>
         <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mb-12">
@@ -70,7 +103,12 @@ const ExploreWorld: React.FC = () => {
                   />
                 </div>
                 <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <div 
+                    className="hover:text-teal-500 transition-colors cursor-pointer"
+                    onClick={() => handleSearch('package', { destination: destination.city, type: 'package' })}
+                  >
                   {destination.name}
+                  </div>
                 </p>
               </div>
           ))}

@@ -1,0 +1,279 @@
+{
+    "title": "Romantic Beach Honeymoon in Dubai and Qatar",
+    "description": "A 5-day itinerary exploring the stunning beaches and vibrant culture of Dubai and Qatar, perfect for a romantic honeymoon.",
+    "days": [
+        {
+            "day": 1,
+            "title": "Arrival in Dubai",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Flight from Delhi to Dubai"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Check-in at the hotel",
+                        "Relax at Jumeirah Beach"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Dine at a beachside restaurant"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Delhi",
+                    "to": "Dubai",
+                    "mode": "Flight"
+                },
+                {
+                    "from": "Dubai Airport",
+                    "to": "Hotel",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "Atlantis The Palm"
+        },
+        {
+            "day": 2,
+            "title": "Explore Dubai's Beaches and Attractions",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Visit Kite Beach",
+                        "Breakfast at a beach cafe"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Explore the Palm Jumeirah",
+                        "Lunch and shopping at The Pointe"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Sunset at Burj Al Arab beach",
+                        "Dinner cruise on Dubai Marina"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Hotel",
+                    "to": "Kite Beach",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Kite Beach",
+                    "to": "Palm Jumeirah",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "The Pointe",
+                    "to": "Dubai Marina",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "Atlantis The Palm"
+        },
+        {
+            "day": 3,
+            "title": "Travel to Doha, Qatar",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Flight from Dubai to Doha"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Check-in at the hotel",
+                        "Visit Katara Beach"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Dinner at The Pearl-Qatar"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Dubai",
+                    "to": "Doha",
+                    "mode": "Flight"
+                },
+                {
+                    "from": "Doha Airport",
+                    "to": "Hotel",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "Sheraton Grand Doha Resort & Convention Hotel"
+        },
+        {
+            "day": 4,
+            "title": "Explore the Culture and Beaches of Doha",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Visit the Museum of Islamic Art",
+                        "Walk along Doha Corniche"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Relax at Sealine Beach",
+                        "Lunch at a local restaurant"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Visit Souq Waqif",
+                        "Traditional Qatari dinner"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Hotel",
+                    "to": "Museum of Islamic Art",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Doha Corniche",
+                    "to": "Sealine Beach",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Sealine Beach",
+                    "to": "Souq Waqif",
+                    "mode": "Taxi"
+                }
+            ],
+            "accommodation": "Sheraton Grand Doha Resort & Convention Hotel"
+        },
+        {
+            "day": 5,
+            "title": "Relax and Departure",
+            "schedule": [
+                {
+                    "time_of_day": "Morning",
+                    "activities": [
+                        "Relax at the hotel",
+                        "Enjoy spa facilities"
+                    ]
+                },
+                {
+                    "time_of_day": "Afternoon",
+                    "activities": [
+                        "Shopping at Villaggio Mall"
+                    ]
+                },
+                {
+                    "time_of_day": "Evening",
+                    "activities": [
+                        "Flight back to Delhi"
+                    ]
+                }
+            ],
+            "transportation": [
+                {
+                    "from": "Hotel",
+                    "to": "Villaggio Mall",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Hotel",
+                    "to": "Doha Airport",
+                    "mode": "Taxi"
+                },
+                {
+                    "from": "Doha",
+                    "to": "Delhi",
+                    "mode": "Flight"
+                }
+            ],
+            "accommodation": "N/A"
+        }
+    ],
+    "notes": [
+        "Ensure passports are valid for at least 6 months from the date of travel.",
+        "Currency exchange for UAE Dirham (AED) and Qatari Riyal (QAR) might be useful."
+    ],
+    "top_recommendations": {
+        "accommodations": [
+            "Atlantis The Palm",
+            "Sheraton Grand Doha Resort & Convention Hotel"
+        ],
+        "activities": [
+            "Jumeirah Beach",
+            "Kite Beach",
+            "Palm Jumeirah",
+            "Katara Beach",
+            "Sealine Beach",
+            "Museum of Islamic Art"
+        ]
+    },
+    "smart_travel_hacks": {
+        "packing_tips": [
+            "Use packing cubes to maximize luggage space and keep things organized.",
+            "Pack a mini beach essentials kit with sunscreen, hats, and water shoes."
+        ],
+        "local_experience_tips": [
+            "Try local street food at Souq Waqif for an authentic taste.",
+            "Engage in a beach clean-up activity for a unique experience."
+        ],
+        "transportation_advice": [
+            "Use Dubai’s Metro for affordable and efficient travel.",
+            "Hire a local guide in Doha for cultural insights and hidden gems."
+        ],
+        "safety_tips": [
+            "Stay hydrated and avoid prolonged sun exposure on the beach.",
+            "Use certified tour operators for activities like the dinner cruise."
+        ],
+        "tech_and_tools_recommendations": [
+            "Download local maps offline for easy navigation.",
+            "Use currency converter apps to stay updated with exchange rates."
+        ]
+    },
+    "visa_requirements": [
+        {
+            "country": "United Arab Emirates",
+            "visa_type": "Visa on Arrival",
+            "validity": "30 days",
+            "extension": "Can be extended for another 30 days",
+            "entry_requirements": [
+                "Valid passport",
+                "Return or onward ticket"
+            ],
+            "special_notes": "Ensure passport is valid for at least 6 months."
+        },
+        {
+            "country": "Qatar",
+            "visa_type": "Visa on Arrival",
+            "validity": "30 days",
+            "extension": "Can be extended for another 30 days",
+            "entry_requirements": [
+                "Valid passport",
+                "Return or onward ticket"
+            ],
+            "special_notes": "Pre-registration through the Hayya portal is recommended."
+        }
+    ]
+}

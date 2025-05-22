@@ -3,6 +3,7 @@ import { Card, CardImage, CardBody } from '../ui/Card';
 import { MapPin } from 'lucide-react';
 import Slider from 'react-slick';
 import data from '../../data/internationalDestinations.json';
+import { useNavigate } from 'react-router-dom';
 
 const destinations: Destination[] = data;
 
@@ -89,6 +90,37 @@ const sliderSettings = {
 };
 
 const InternationalDestinations: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleSearch = (activeTab: string, params: object) => {
+    // const params: string[] = [];
+    if (activeTab === 'package' || activeTab === 'weather' || activeTab === 'hacks') {
+        // params.push(`type=${activeTab}`);
+        // params.push(`destination=${userInputLocation}`);
+        // params.push(`no_of_days={total:5}`);
+        // if (userInputMonth) {
+        //     params.push(`date=${userInputMonth}`);
+        // }
+    } else if (activeTab === 'visa') {
+        // params.push(`type=visa`);
+        // if (visaLeavingFrom) params.push(`source=${visaLeavingFrom}`);
+        // if (visaTravelTo) params.push(`destination=${visaTravelTo}`);
+        // if (visaNationality) params.push(`nationality=${visaNationality}`);
+    }
+    const query = Object.entries(params)
+        .map(([key, value]) => {
+            if (value === undefined || value === "") {
+                return "";
+            }
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+        })
+        .join('&');
+    
+    // console.log(`Navigating to /trips?${query}`);
+    
+    navigate(`/trips?${query}`);
+  };
+
   return (
     <section id="destinations" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -104,7 +136,7 @@ const InternationalDestinations: React.FC = () => {
         <Slider {...sliderSettings}>
           {destinations.sort(() => 0.5 - Math.random())
             .slice(0, 8).map((destination) => (
-            <div className="px-4" key={destination.city}>
+                <div className="px-4" key={destination.city} onClick={() => handleSearch('package', { destination: destination.city + ", " + destination.country, type: 'package' })}>
               <Card 
                 className="group hover:translate-y-[-8px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
               >
@@ -113,9 +145,9 @@ const InternationalDestinations: React.FC = () => {
                   alt={destination.city}
                   className="h-56"
                 />
-                <CardBody>
+                <CardBody className='h-55'>
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold">{destination.city}</h3>
+                    <h3 className="text-xl font-bold hover:text-teal-500">{destination.city}</h3>
                     <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
                     <MapPin size={16} className="mr-1 text-teal-600 dark:text-teal-400" />
                     {destination.country}

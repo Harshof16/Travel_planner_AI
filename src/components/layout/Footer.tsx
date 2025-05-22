@@ -71,7 +71,19 @@ const Footer: React.FC = () => {
                 <a href="/trips" className="text-gray-400 hover:text-teal-500 transition-colors">All Trips</a>
               </li>
               <li>
-                <a href="/#deals" className="text-gray-400 hover:text-teal-500 transition-colors">Deals</a>
+                <a href="/#home" className="text-gray-400 hover:text-teal-500 transition-colors">Search</a>
+              </li>
+              <li>
+                <a href="/#destinations" className="text-gray-400 hover:text-teal-500 transition-colors">Destinations</a>
+              </li>
+              <li>
+                <a href="/#experiences" className="text-gray-400 hover:text-teal-500 transition-colors">Indian Destinations</a>
+              </li>
+              <li>
+                <a href="/#attractions" className="text-gray-400 hover:text-teal-500 transition-colors">Attractions</a>
+              </li>
+              <li>
+                <a href="/#testimonials" className="text-gray-400 hover:text-teal-500 transition-colors">Testimonials</a>
               </li>
               <li>
                 <a href="/contact" className="text-gray-400 hover:text-teal-500 transition-colors">Contact</a>
