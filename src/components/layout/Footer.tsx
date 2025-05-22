@@ -43,10 +43,10 @@ const Footer: React.FC = () => {
               Where your journey becomes an unforgettable story.
             </p>
             <div className="flex space-x-4">
-              <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.facebook.com/escapenfly/reviews', '_blank')}>
+              <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.facebook.com/escapenfly/reviews?utm_source=web', '_blank')}>
                 <Facebook size={20} />
               </a>
-              <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.instagram.com/escapenfly?utm_source=web', '_blank')}>
+              <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.instagram.com/escapenflyofficial?utm_source=web', '_blank')}>
                 <Instagram size={20} />
               </a>
               <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.linkedin.com/company/escapenflyofficial/about/', '_blank')}>

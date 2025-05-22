@@ -40,7 +40,7 @@ export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return () => clearInterval(interval);
   }, []);
 
-  console.log(`Token: ${token}`);
+  // console.log(`Token: ${token}`);
 
   return (
     <TokenContext.Provider value={{ token}}>

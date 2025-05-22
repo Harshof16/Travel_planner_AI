@@ -38,7 +38,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations }) 
           // Pass height/width for consistent card images
           const imageType = activeTab === 'accommodations' ? 'hotel' : '';
           const url = await fetchPhoto(location, 320, 480, imageType);
-          console.log('Fetched photo URL:', url);
+          // console.log('Fetched photo URL:', url);
           
           setPhotoCache((prev) => ({ ...prev, [location]: url ?? null }));
         } catch (error) {

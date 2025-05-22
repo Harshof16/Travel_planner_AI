@@ -42,7 +42,7 @@ export default function TripToolkit() {
             if (!type) {
                 type = 'Location';
             }
-            console.log(`Fetching suggestions for ${event} with type ${type}`);
+            // console.log(`Fetching suggestions for ${event} with type ${type}`);
             
             if (!event) {
                 return [];
@@ -159,7 +159,15 @@ export default function TripToolkit() {
                     onChange={(val) => setVisaTravelTo(val)}
                     suggestions={(query) => fetchSuggestions(query, 'Location')}
                     placeholder="Search destination..."
-                    onSelectSuggestion={(val) => setVisaTravelTo(val)}
+                    onSelectSuggestion={(val) => {
+                        if (val && !params.destination.includes(val)) {
+                            setParams(prev => ({
+                                ...prev,
+                                destination: [...prev.destination, val]
+                            }));
+                        }
+                        setVisaTravelTo(val);
+                    }}
                 />
             </div>
         </div>
