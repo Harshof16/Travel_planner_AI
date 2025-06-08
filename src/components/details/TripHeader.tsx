@@ -70,7 +70,7 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
           <MapPin className="w-6 h-6 text-teal-600 dark:text-teal-400 mr-4" />
           <div className="flex-1">
             {tripTitle && (
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                 {loading ? <Skeleton height={32} width={300} className="mb-2" /> : tripTitle}
               </h2>
             )}
@@ -85,13 +85,19 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
           </div>
           <div className="flex items-center gap-2 relative">
             
-          <button
+          <div className="relative group">
+            <button
               className={`p-2 rounded transition-colors ${true ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={handleDownload}
               disabled={true}
+              aria-label="Download"
             >
               <Download className={`w-6 h-6 ${true ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400'}`} />
             </button>
+            <div className="absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-10 whitespace-nowrap">
+              Download (coming soon)
+            </div>
+          </div>
             {/* <button
               className={`p-2 rounded transition-colors ${loading ? 'opacity-50 cursor-not-allowed bg-gray-200 dark:bg-gray-700' : ''}`}
               onClick={handleDownload}
@@ -147,14 +153,14 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
                 </button>
               </div>
             )}
-            <button
+            {/* <button
               className="ml-4 px-6 py-2 border border-teal-500 dark:border-teal-400 rounded-lg text-teal-700 dark:text-teal-300 font-semibold bg-white dark:bg-gray-900 hover:bg-teal-50 dark:hover:bg-teal-900 transition-colors"
               onClick={() => setShowFilters(true)}
               disabled={loading}
               style={loading ? { opacity: 0.7, cursor: 'not-allowed' } : {}}
             >
               Advance Search
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="mt-3 w-full">

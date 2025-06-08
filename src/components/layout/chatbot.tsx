@@ -4,10 +4,20 @@ import { useTheme } from '../../context/ThemeContext';
 
 const ChatbotButton: React.FC<{}> = () => {
     const { theme } = useTheme();
-    const size = 50;
     const linkUrl = 'https://wa.me/+919851739851?utm_source=web'; // Add linkUrl definition
     const iconUrl = theme === 'dark' ? '/logo/WAWhiteLogo.png' : '/logo/WAGreenLogo.png';
-    
+    const [isMobile, setIsMobile] = React.useState(false);
+    React.useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const size = isMobile ? 30 : 50;
     const openLink = () => {
         window.open(linkUrl, '_blank');
     };

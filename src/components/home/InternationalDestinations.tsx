@@ -84,9 +84,29 @@ const sliderSettings = {
   slidesToShow: 4,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 1500,
   arrows: false,
   dots: false,
+  responsive: [
+    {
+      breakpoint: 1380, // <1380px
+      settings: {
+        slidesToShow: 4,
+      },
+    },
+    {
+      breakpoint: 1024, // <1024px
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 640, // <640px
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 const InternationalDestinations: React.FC = () => {
@@ -112,7 +132,9 @@ const InternationalDestinations: React.FC = () => {
             if (value === undefined || value === "") {
                 return "";
             }
-            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : value)}`;
+
+            // return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
         })
         .join('&');
     
@@ -136,16 +158,14 @@ const InternationalDestinations: React.FC = () => {
         <Slider {...sliderSettings}>
           {destinations.sort(() => 0.5 - Math.random())
             .slice(0, 8).map((destination) => (
-                <div className="px-4" key={destination.city} onClick={() => handleSearch('package', { destination: destination.city + ", " + destination.country, type: 'package' })}>
-              <Card 
-                className="group hover:translate-y-[-8px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-2xl"
-              >
+            <div className="px-4" key={destination.city} onClick={() => handleSearch('package', { destination: [destination.city + ", " + destination.country], type: 'package' })}>
+              <Card className="min-h-[420px] group hover:translate-y-[-8px] transition-transform duration-300 cursor-pointer shadow-lg hover:shadow-2xl" >
                 <CardImage 
                   src={destination.image} 
                   alt={destination.city}
                   className="h-56"
                 />
-                <CardBody className='h-55'>
+                <CardBody className='h-85'>
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="text-xl font-bold hover:text-teal-500">{destination.city}</h3>
                     <div className="flex items-center text-gray-500 dark:text-gray-400 mb-3">
@@ -159,8 +179,9 @@ const InternationalDestinations: React.FC = () => {
                       {destination.rating}
                     </span> */}
                   </div>
-                
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">{destination.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 py-2 mb-4 break-words line-clamp-3">
+                    {destination.description}
+                  </p>
                   {/* <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-teal-700 dark:text-teal-400">{destination.price}</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400">per person</span>

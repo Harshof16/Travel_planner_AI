@@ -15,26 +15,36 @@ const initialFilters: Omit<FiltersState, 'setFilters'> = {
   tripType: '',
 };
 
-export const useFiltersStore = create<FiltersState>()((set) => ({
+export const useFiltersStore = create<FiltersState>()((set, get) => ({
   ...initialFilters,
   setFilters: (filters) =>
-    set((state) => {
-      // console.log('Filters:', filters);
-      // console.log("dasdasdkjashdj", typeof filters.destination);
-      
-      
-      if (
-        filters.destination &&
-        filters.destination.length > 0 &&
-        filters.destination.length < 2 &&
-        typeof filters.destination[0] === 'string'
-      ) {
-        filters.destination = JSON.parse(filters.destination[0]);
-      }
-      
-      return {
-        ...state,
-        ...filters
-      };
-    }),
+    set((state) => ({
+      ...state,
+      ...filters
+    })),
+  getFilters: () => get(),
 }));
+
+// export const useFiltersStore = create<FiltersState>()((set) => ({
+//   ...initialFilters,
+//   setFilters: (filters) =>
+//     set((state) => {
+//       console.log('Filters:', filters);
+//       // console.log("dasdasdkjashdj", typeof filters.destination);
+      
+      
+//       // if (
+//       //   filters.destination &&
+//       //   filters.destination.length > 0 &&
+//       //   filters.destination.length < 2 &&
+//       //   typeof filters.destination[0] === 'string'
+//       // ) {
+//       //   filters.destination = JSON.parse(filters.destination[0]);
+//       // }
+      
+//       return {
+//         ...state,
+//         ...filters
+//       };
+//     }),
+// }));

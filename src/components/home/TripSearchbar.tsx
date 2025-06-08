@@ -1,6 +1,6 @@
 import API from "../../apis/axios";
 import { MapPin, Calendar, Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import CustomAutocomplete from '../ui/CustomAutocomplete';
 import { FilterType } from "../../types/filtersTypes";
@@ -14,6 +14,7 @@ interface Params {
     no_of_days: string;
 }
 export default function TripToolkit() {
+    const [isMobile, setIsMobile] = useState(false);
     const [activeTab, setActiveTab] = useState<FilterType>("package");
     const [userInputLocation, setUserInputLocation] = useState<string>("");
     const [params, setParams] = useState<Params>({
@@ -30,8 +31,18 @@ export default function TripToolkit() {
     const [visaNationality, setVisaNationality] = useState("");
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const checkScreenSize = () => {
+        setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
     const tabs = [
-        { label: "Trip Toolkit", url: 'package' },
+        { label: "Itinerary", url: 'package' },
         { label: "Visa Info", url: 'visa' },
         // { label: "Weather Watch", url: 'weather' },
         { label: "Smart Travel Hacks", url: 'hacks' }
@@ -65,7 +76,7 @@ export default function TripToolkit() {
                         onChange={(val) => {
                             setUserInputLocation(val);
                         }}
-                        suggestions={(query) => fetchSuggestions(query, 'Location')}
+                        suggestions={(query) => fetchSuggestions(query, 'Locations')}
                         placeholder="Search destinations..."
                         onSelectSuggestion={(val) => {
                             if (val && !params.destination.includes(val)) {
@@ -90,9 +101,10 @@ export default function TripToolkit() {
                         className="bg-transparent focus:outline-none w-full text-gray-800 dark:text-gray-200 appearance-none cursor-pointer px-2"
                         value={userInputMonth || ""}
                         min={new Date().toISOString().split('T')[0]}
+                        onClick={(e) => e.currentTarget.showPicker() }
                         onChange={(e) => {
                             setUserInputMonth(e.target.value);
-                            setParams(prev => ({
+                            setParams(prev => ({    
                                 ...prev,
                                 date: e.target.value
                             }));
@@ -103,8 +115,8 @@ export default function TripToolkit() {
         </>
 
     const visaUI = <>
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Nationality</label>
+        <div className={`flex flex-col ${isMobile ? 'flex-2' : 'flex-1'}`}>
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Citizenship</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                 <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
                 {/* <input
@@ -118,13 +130,21 @@ export default function TripToolkit() {
                     value={visaNationality}
                     onChange={(val) => setVisaNationality(val)}
                     suggestions={(query) => fetchSuggestions(query, 'Country')}
-                    placeholder="Search country..."
-                    onSelectSuggestion={(val) => setVisaNationality(val)}
+                    placeholder="Type country name..."
+                    onSelectSuggestion={(val) => {
+                        setVisaNationality(val);
+                        if (val) {
+                            setParams(prev => ({
+                                ...prev,
+                                nationality: val
+                            }));
+                        }
+                    }}
                 />
             </div>
         </div>
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Departure City</label>
+        <div className={`flex flex-col ${isMobile ? 'flex-2' : 'flex-1'}`}>
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Living in</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                 <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
                 {/* <input
@@ -137,14 +157,22 @@ export default function TripToolkit() {
                 <CustomAutocomplete
                     value={visaLeavingFrom}
                     onChange={(val) => setVisaLeavingFrom(val)}
-                    suggestions={(query) => fetchSuggestions(query, 'Location')}
-                    placeholder="Search city..."
-                    onSelectSuggestion={(val) => setVisaLeavingFrom(val)}
+                    suggestions={(query) => fetchSuggestions(query, 'Country')}
+                    placeholder="Type country name..."
+                    onSelectSuggestion={(val) => {
+                        setVisaLeavingFrom(val);
+                        if (val) {
+                            setParams(prev => ({
+                                ...prev,
+                                source: val
+                            }));
+                        }
+                    }}
                 />
             </div>
         </div>
-        <div className="flex flex-col flex-1">
-            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Destinations</label>
+        <div className={`flex flex-col ${isMobile ? 'flex-2' : 'flex-1'}`}>
+            <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Travel Destinations</label>
             <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                 <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
                 {/* <input
@@ -157,8 +185,8 @@ export default function TripToolkit() {
                 <CustomAutocomplete
                     value={visaTravelTo}
                     onChange={(val) => setVisaTravelTo(val)}
-                    suggestions={(query) => fetchSuggestions(query, 'Location')}
-                    placeholder="Search destination..."
+                    suggestions={(query) => fetchSuggestions(query, 'Country')}
+                    placeholder="Type country name..."
                     onSelectSuggestion={(val) => {
                         if (val && !params.destination.includes(val)) {
                             setParams(prev => ({
@@ -221,9 +249,9 @@ export default function TripToolkit() {
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto mt-16">
+        <div className="w-full max-w-4xl mx-auto mt-4">
             {/* Tabs */}
-            <div className="flex to-white overflow-hidden gap-2 justify-start">
+            <div className="md:block to-white overflow-hidden gap-2 justify-start" style={{ display: isMobile ? 'none' : 'flex' }}>
                 {tabs.map((tab) => (
                     <button
                         key={tab.url}
@@ -240,9 +268,22 @@ export default function TripToolkit() {
                     </button>
                 ))}
             </div>
+            <div className="block md:hidden">
+                    <select
+                        className="w-full px-4 py-2 rounded-t-2xl bg-teal-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold"
+                        value={activeTab}
+                        onChange={e => handleTabSwitch(e.target.value as FilterType)}
+                    >
+                        {tabs.map(tab => (
+                            <option key={tab.url} value={tab.url}>
+                                {tab.label}
+                            </option>
+                        ))}
+                    </select>
+            </div>
 
             {/* Search Section */}
-            <div className="bg-white p-8 rounded-bl-xl rounded-tr-xl rounded-br-xl shadow-md dark:bg-gray-800 dark:text-gray-200">
+            <div className="bg-white px-8 pt-4 pb-8 rounded-bl-xl rounded-tr-xl rounded-br-xl shadow-md dark:bg-gray-800 dark:text-gray-200">
                 <div className="flex flex-wrap gap-6 items-end">
                     {activeTab !== 'visa' && toolkitUI}
                     {activeTab === 'visa' && visaUI}

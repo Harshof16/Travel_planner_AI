@@ -6,47 +6,68 @@ const partners = [
     id: 1,
     name: 'Amadeus',
     logo: 'https://amadeus.com/content/dam/amadeuswebevo/brand/amadeus/logos/amadeus-logo-dark-sky.png',
+    // logo: "logo/partners/amadeus_logo.png", // Assuming you have a local logo for Amadeus
   },
   {
     id: 2,
-    name: 'Expedia',
-    logo: 'https://www.expedia.co.in/_dms/header/logo.svg?locale=en_GB&siteid=27&2&6f9ec7db',
+    name: 'TripAdvisor',
+    logo: 'logo/partners/tripadvisor_logo.png', // Assuming you have a local logo for TripAdvisor
   },
   {
     id: 3,
-    name: 'OTOAI',
-    logo: 'http://otoai.org/assets/frontend/images/logo.jpg',
+    name: 'Qatar Airways',
+    logo: 'logo/partners/qatar_logo.png',
   },
   {
     id: 4,
-    name: 'Batik Air',
-    logo: 'https://cms-cdn.batikair.com/assets/66472e6388f4647bd5f90f87/common/logo-white.png',
+    name: 'Fly Emirates',
+    logo: 'logo/partners/flyEmirates_logo.png',
   },
   {
     id: 5,
     name: 'Viator',
-    logo: 'https://cloud.asset.cronberry.com/image_file/originalFile_1746722240958_viator_logo.png',
+    logo: 'logo/partners/viator_logo.png',
   },
   {
     id: 6,
     name: 'IATA',
-    logo: 'https://www.iata.org/contentassets/3e83770142a040d688e269bb2f709b7b/iata-logo-header.svg?height=127&rmode=crop&v=20240116100112',
+    logo: 'logo/partners/iata_logo.png', // Assuming you have a local logo for IATA
   },
   {
     id: 7,
-    name: 'Dubai DET',
-    logo: 'https://www.dubaidet.gov.ae/en/tourism-training/-/media/common/logos/logo-det-teal-30x50.svg?h=31&iar=0&w=52',
+    name: 'Taj Hotels',
+    logo: 'logo/partners/taj_logo.png',
   },
   {
     id: 8,
-    name: 'Qatar Tourism',
-    logo: 'https://visitqatar.com/etc.clientlibs/visitqatar/clientlibs/clientlib-static/resources/img/logo-qatar-tourism.svg',
+    name: 'Tourism Malaysia',
+    logo: 'logo/partners/malaysia_logo.png',
   },
   {
     id: 9,
-    name: 'Pure New Zealand',
-    logo: 'https://www.newzealand.com/resources/themes/reimagine/dist/2025.4.2/images/logos/pure-new-zealand-dual-logo.svg',
+    name: 'Tourism Australia',
+    logo: 'logo/partners/australiya_logo.png',
   },
+  {
+    id: 10,
+    name: 'IndiGo Airlines',
+    logo: 'logo/partners/indigo_logo.png',
+  },
+  {
+    id: 11,
+    name: 'Marriott International',
+    logo: 'logo/partners/marriott_logo.png',
+  },
+  {
+    id: 12,
+    name: 'Singapore Airlines',
+    logo: 'logo/partners/singapore_logo.png',
+  },
+  {
+    id: 13,
+    name: 'Accor Hotels',
+    logo: 'logo/partners/accor_logo.png',
+  }
 ]; 
 
 const sliderSettings = {
@@ -88,11 +109,11 @@ const PartnersSlider: React.FC = () => {
         <Slider {...sliderSettings}>
           {partners.map((partner) => (
             <div key={partner.id} className="px-4">
-              <div className="bg-gray-200 dark:bg-gray-800 p-4 rounded-lg flex items-center justify-center">
+              <div className="bg-gray-200 p-4 rounded-lg flex items-center justify-center">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-12 object-contain"
+                  className={`h-12 object-contain`}
                 />
               </div>
             </div>

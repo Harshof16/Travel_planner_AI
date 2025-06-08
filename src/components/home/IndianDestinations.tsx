@@ -60,12 +60,32 @@ interface Experience {
 const sliderSettings = {
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 1500,
   arrows: false,
   dots: false,
+  responsive: [
+    {
+      breakpoint: 1380, // <1380px
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 1024, // <1024px
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 640, // <640px
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 const IndianDestinations: React.FC = () => {
@@ -91,7 +111,8 @@ const IndianDestinations: React.FC = () => {
             if (value === undefined || value === "") {
                 return "";
             }
-            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : value)}`;
+            // return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
         })
         .join('&');
     
@@ -111,31 +132,34 @@ const IndianDestinations: React.FC = () => {
           </p>
         </div>
         
-        <Slider {...sliderSettings}>
-          {experiences.sort(() => 0.5 - Math.random())
-            .slice(0, 8).map((experience) => (
-            <div key={experience.city} className="group cursor-pointer px-4">
-              <div className="relative overflow-hidden rounded-xl mb-4">
-                <img 
-                  src={experience.image} 
-                  alt={experience.city}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end" onClick={() => handleSearch('package', { destination: experience.city + ", " + experience.country, type: 'package' })}>
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 bg-teal-600 text-white text-xs rounded-full mb-2">
-                      {experience.province}
-                    </span>
-                    <h3 className="text-xl font-bold text-white hover:text-teal-500 ">{experience.city}</h3>
+        <div className="">
+
+          <Slider {...sliderSettings}>
+            {experiences.sort(() => 0.5 - Math.random())
+              .slice(0, 8).map((experience) => (
+              <div key={experience.city} className="group cursor-pointer px-4">
+                <div className="relative overflow-hidden rounded-xl mb-4" onClick={() => handleSearch('package', { destination: [experience.city + ", " + experience.country], type: 'package' })}>
+                  <img 
+                    src={experience.image} 
+                    alt={experience.city}
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <div className="p-6">
+                      <span className="inline-block px-3 py-1 bg-teal-600 text-white text-xs rounded-full mb-2">
+                        {experience.province}
+                      </span>
+                      <h3 className="text-xl font-bold text-white hover:text-teal-500 ">{experience.city}</h3>
+                    </div>
                   </div>
                 </div>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {experience.description}
+                </p>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">
-                {experience.description}
-              </p>
-            </div>
-          ))}
+            ))}
           </Slider>
+        </div>
         
       </div>
     </section>

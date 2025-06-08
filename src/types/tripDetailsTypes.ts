@@ -19,13 +19,20 @@ export interface Day {
   accommodation: string;
 }
 
+interface VisaStepsGuide {
+  step_title : string;
+  description: string;
+  expected_duration: string;
+  tips: string;
+}
 export interface VisaRequirement {
   country: string;
-  entry_requirements: string[];
   visa_type: string;
-  validity: string;
-  extension: string;
-  special_notes: string;
+  required_documents: string[];
+  step_by_step_guide: VisaStepsGuide[];
+  fees?: string;
+  processing_time?: string;
+  special_considerations?: string[];
 }
 
 export interface TravelTips {
