@@ -14,16 +14,23 @@ import Skeleton from '../ui/Skeleton';
 import { useLocationPhoto } from '../../hooks/useLocationPhoto';
 import { useToken } from '../../context/TokenProvider';
 import TripHacks from './TripHacks';
+import TripSearchBar from './Searchbar';
+import Filters from './Filters';
+
 
 const TripDetails = () => {
+    const [isMobile, setIsMobile] = useState(false);
     const tripDetails = useTripDetailsStore((state) => state.tripDetails);
     const setTripDetails = useTripDetailsStore((state) => state.setTripDetails);
     const filters = useFiltersStore();
-    const setFilters = useFiltersStore((state) => state.setFilters);
+    // const setFilters = useFiltersStore((state) => state.setFilters);
     const [loading, setLoading] = useState(false);
     const { fetchPhoto } = useLocationPhoto();
     const [bgImage, setBgImage] = useState<string | null>(null);
     const [bgLoading, setBgLoading] = useState(false);
+    const [showFilters, setShowFilters] = useState(false);
+
+    const toggleFilters = () => setShowFilters(!showFilters);
     const { token } = useToken();
 
     // console.log('filters:', filters);
@@ -51,7 +58,10 @@ const TripDetails = () => {
     }, [filters.destination && filters.destination[0]]);
 
     useEffect(() => {
-        if (!filters.destination || filters.destination.length === 0) return;
+        if (!filters.destination || filters.destination.length === 0) {
+            setLoading(true);
+            return;
+        };
         const {
             type,
             tripType,
@@ -102,14 +112,33 @@ const TripDetails = () => {
                     return;
                 }
                 if (type === "package" || type === "visa" || type === "hacks" ) {
-                    const response = await API.post('/proposals/AIsuggestion'
-                    , payload, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-                    setTripDetails(response.data);
+                    let visaInfo = null;
+                    if (type === "package" && visaRequirement) {
+                        // const response = await API.post('/proposals/AIsuggestion'
+                        // , {
+                        //     ...payload,
+                        //     type: 'visa'
+                        // }, {
+                        //     headers: {
+                        //         'Content-Type': 'application/json',
+                        //         Authorization: `Bearer ${token}`,
+                        //     },
+                        // });
+                        // // setTripDetails(response.data);
+                        // visaInfo = response.data?.visa_requirements;
+                        // console.log('Visa Trip details:', response.data);
+                    }
+                    // const response = await API.post('/proposals/AIsuggestion'
+                    // , payload, {
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // });
+                    // if (visaInfo && typeof visaInfo !== undefined && visaInfo !== null) {
+                    //     response.data.visa_requirements = visaInfo;
+                    // }
+                    // setTripDetails(response.data);
                     // console.log('Trip details:', response.data);    
                 } else {
                     // const response = await API.post('/weather/by-city', payload, {
@@ -140,35 +169,62 @@ const TripDetails = () => {
         const date = params.get('date')?.replace(/\s+/g, '') || '';
         const nationality = params.get('nationality')?.replace(/\s+/g, '') || '';
 
-        if (type || source || destinationRaw || date || nationality) {
-            setFilters({
-                ...(type && { type }),
-                ...(source && { source }),
-                ...(destinationRaw && { destination: [destinationRaw] }),
-                ...(date && { travelDate: date }),
-                ...(nationality && { nationality }),
-            });
+        if (!destinationRaw) {
+            setLoading(true);
         }
+        // console.log('Parsed filters:', {
+        //     type,
+        //     source,
+        //     destinationRaw,
+        //     date,
+        //     nationality
+        // });
+        filters.setFilters({
+            type: type || filters.type,
+            source: source || filters.source,
+            destination: destinationRaw ? JSON.parse(destinationRaw) : filters.destination,
+            travelDate: date || filters.travelDate,
+            no_of_days: filters.no_of_days,
+            inclusions: filters.inclusions,
+            theme: filters.theme,
+            travelers: filters.travelers,
+            visaRequirement: filters.visaRequirement,
+            nationality: nationality || filters.nationality,
+            tripType: filters.tripType,
+        });
 
-        return () => {
-            setFilters({
-                type: '',
-                source: '',
-                destination: [],
-                travelDate: '',
-                no_of_days: { location_wise: [], total: 0 },
-                inclusions: [],
-                theme: [],
-                travelers: { adults: 0, child: 0, infants: 0 },
-                visaRequirement: false,
-                nationality: '',
-                tripType: '',
-            });
+        
+        // return () => {
+        //     filters.setFilters({
+        //         type: '',
+        //         source: '',
+        //         destination: [],
+        //         travelDate: '',
+        //         no_of_days: { location_wise: [], total: 0 },
+        //         inclusions: [],
+        //         theme: [],
+        //         travelers: { adults: 0, child: 0, infants: 0 },
+        //         visaRequirement: false,
+        //         nationality: '',
+        //         tripType: '',
+        //     });
+
+        //     console.log('Filters reset to initial state:', filters);
+            
+        // };
+    }, [filters.setFilters]);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+        setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
         };
-    }, [setFilters]);
 
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
     return (
-        <div className="relative">
+        <div className="relative items-center justify-center overflow-hidden top-0 right-0">
             <div className="h-64 bg-cover bg-center" style={{ backgroundImage: bgImage ? `url('${bgImage}')` : "url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg')" }}>
                 <div className="h-full bg-black bg-opacity-50 flex flex-col items-center justify-center">
                     <div className="text-4xl font-bold text-white">{!loading && 'Trip Details'}</div>
@@ -204,6 +260,10 @@ const TripDetails = () => {
                 {bgLoading && <div className="absolute inset-0 bg-gray-200/60 dark:bg-gray-800/60 flex items-center justify-center"><Skeleton height={64} width={400} /></div>}
             </div>
             <div className="container mx-auto px-4 py-8">
+                {/* Search Form */}
+                <div className="mb-8">
+                  <TripSearchBar toggleFilters={toggleFilters} filters={filters} />
+                </div>
                 <TripHeader tripTitle={tripDetails.title} tripDescription={tripDetails.description} loading={loading} destinations={filters.destination}/>
                 <div className="container mx-auto" id="trip-details-content">
                     {loading ? (
@@ -219,15 +279,29 @@ const TripDetails = () => {
                         <>
                             {/* <WeatherForecast /> */}
                             {tripDetails?.days && <Itinerary days={tripDetails.days} />}
-                            {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} />}
-                            {tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} />}
-                            {tripDetails?.smart_travel_hacks && <TripHacks requirements={tripDetails.smart_travel_hacks} />}
+                            {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} destinations={filters.destination} />}
+                            {(filters.visaRequirement || filters.type === "visa") && tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} isMobile={isMobile}/>}
+                            {tripDetails?.smart_travel_hacks && <TripHacks requirements={tripDetails.smart_travel_hacks} isMobile={isMobile}/>}
                             {tripDetails?.notes && <TripNotes notes={tripDetails.notes} />}
                             {/* {filters.destination.length > 0 && <TripMap />} */}
                         </>
                     )}
                 </div>
             </div>
+            {showFilters && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-2xl w-full p-6 relative">
+                        <button
+                        className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 dark:hover:text-white text-2xl"
+                        onClick={toggleFilters}
+                        aria-label="Close"
+                        >
+                        &times;
+                        </button>
+                        <Filters closeModal={toggleFilters} filtersStore={filters} />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

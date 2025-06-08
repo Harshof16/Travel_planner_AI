@@ -254,26 +254,121 @@
     },
     "visa_requirements": [
         {
-            "country": "United Arab Emirates",
-            "visa_type": "Visa on Arrival",
-            "validity": "30 days",
-            "extension": "Can be extended for another 30 days",
-            "entry_requirements": [
-                "Valid passport",
-                "Return or onward ticket"
+            "country": "UK",
+            "visa_type": "Standard Visitor Visa",
+            "step_by_step_guide": [
+                {
+                    "step_title": "Create an Online Application",
+                    "description": "Visit the official UK Visa website and create an account to start your application.",
+                    "expected_duration": "1 day",
+                    "tips": "Ensure all information is accurate and matches your supporting documents."
+                },
+                {
+                    "step_title": "Complete the Visa Application Form",
+                    "description": "Fill out the application form with your personal details, travel plans, and purpose of visit.",
+                    "expected_duration": "1 day",
+                    "tips": "Double-check all inputted information before submission."
+                },
+                {
+                    "step_title": "Pay the Visa Fee",
+                    "description": "Pay the required visa processing fee online using a debit or credit card.",
+                    "expected_duration": "Immediate",
+                    "tips": "Keep the receipt safe as proof of payment."
+                },
+                {
+                    "step_title": "Book a Visa Appointment",
+                    "description": "Schedule an appointment at your nearest Visa Application Centre (VAC) in Delhi.",
+                    "expected_duration": "Varies (Typically within a week)",
+                    "tips": "Plan your appointment well in advance to avoid last-minute hassle."
+                },
+                {
+                    "step_title": "Visit the Visa Application Centre",
+                    "description": "Attend your appointment for biometric submission (photo and fingerprints) and submit supporting documents.",
+                    "expected_duration": "1-2 hours",
+                    "tips": "Arrive early and ensure all documents are in order as per the checklist."
+                },
+                {
+                    "step_title": "Wait for a Decision",
+                    "description": "The processing begins after biometric submission. Wait for an email confirmation of your visa decision.",
+                    "expected_duration": "15 working days",
+                    "tips": "Track your application online or via the VAC contact."
+                }
             ],
-            "special_notes": "Ensure passport is valid for at least 6 months."
+            "required_documents": [
+                "Valid passport",
+                "Proof of travel itinerary",
+                "Financial evidence (bank statements)",
+                "Proof of accommodation",
+                "Cover letter stating travel purpose",
+                "Passport-sized photographs",
+                "Travel insurance"
+            ],
+            "fees": "£100 (approximately ₹10,700)",
+            "processing_time": "15 working days",
+            "special_considerations": [
+                "Ensure your passport has a validity of at least 6 months from the date of travel.",
+                "Provide a detailed travel itinerary, including cities and places you plan to visit.",
+                "Demonstrate sufficient funds to cover your travel and stay."
+            ]
         },
         {
-            "country": "Qatar",
-            "visa_type": "Visa on Arrival",
-            "validity": "30 days",
-            "extension": "Can be extended for another 30 days",
-            "entry_requirements": [
-                "Valid passport",
-                "Return or onward ticket"
+            "country": "France",
+            "visa_type": "Schengen Visa (Short Stay)",
+            "step_by_step_guide": [
+                {
+                    "step_title": "Fill the Visa Application Form",
+                    "description": "Complete the online Schengen visa application form for France.",
+                    "expected_duration": "1 day",
+                    "tips": "Use the format of the French Visa Application Center."
+                },
+                {
+                    "step_title": "Gather Required Documents",
+                    "description": "Compile all needed documents for your application as per the checklist.",
+                    "expected_duration": "1-2 days",
+                    "tips": "Ensure that all documents are original and clear."
+                },
+                {
+                    "step_title": "Make an Appointment",
+                    "description": "Schedule an appointment at the French Visa Application Center in Delhi (VFS).",
+                    "expected_duration": "Wait times vary (generally 1-2 weeks)",
+                    "tips": "Appointments may be limited during peak seasons. Book early."
+                },
+                {
+                    "step_title": "Attend Your Appointment",
+                    "description": "Submit your application in person, provide fingerprints, and photographs.",
+                    "expected_duration": "1-2 hours",
+                    "tips": "Arrive early and bring all necessary documents, including copies."
+                },
+                {
+                    "step_title": "Pay the Visa Fee",
+                    "description": "Payment is made at the Visa Application Center.",
+                    "expected_duration": "Immediate",
+                    "tips": "Keep the payment receipt as proof."
+                },
+                {
+                    "step_title": "Await Processing",
+                    "description": "Track your application status online or via SMS.",
+                    "expected_duration": "15 working days",
+                    "tips": "Ensure your contact details are correct to receive updates efficiently."
+                }
             ],
-            "special_notes": "Pre-registration through the Hayya portal is recommended."
+            "required_documents": [
+                "Completed visa application form",
+                "Valid passport",
+                "Recent passport-sized photographs",
+                "Flight itinerary",
+                "Proof of accommodation",
+                "Travel insurance",
+                "Financial proof (bank statements)",
+                "Covering letter explaining travel purpose"
+            ],
+            "fees": "€80 (approximately ₹7,000)",
+            "processing_time": "15 working days",
+            "special_considerations": [
+                "Ensure all documents are translated into French or English where necessary.",
+                "Double-check the validity period of your travel insurance.",
+                "Provide a thorough proof of financial means."
+            ]
         }
     ]
 }

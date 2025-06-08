@@ -2,7 +2,7 @@ import axios from "axios";
 import { Send } from "lucide-react";
 import { useState } from "react";
 
-const ContactModal = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (value: boolean) => void }) => {
+const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOpen: boolean; setIsOpen: (value: boolean) => void }) => {
     const toggleModal = () => {
         setIsOpen(false);
     };
@@ -61,89 +61,87 @@ const ContactModal = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (valu
     };
 
     return (
+       <div
+        id="modal-overlay"
+        className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-30 backdrop-blur-sm p-4 sm:p-6"
+        onClick={handleOutsideClick}
+    >
         <div
-            id="modal-overlay"
-            className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-30 backdrop-blur-sm"
-            onClick={handleOutsideClick}
+            className="relative w-full max-w-4xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden max-h-[95vh]"
+            onClick={(e) => e.stopPropagation()} // prevent modal close on internal click
         >
-            <div
-                className="rounded-lg shadow-lg relative flex flex-col md:flex-row bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                style={{ width: '90vw', maxWidth: '60rem', height: '90vh', maxHeight: '40rem' }}
+            {/* Close Button */}
+            <button
+                onClick={toggleModal}
+                className="absolute top-4 right-4 z-50 text-4xl text-gray-400 dark:text-white hover:text-gray-500 dark:hover:text-gray-300"
             >
-                <button
-                    onClick={toggleModal}
-                    className="absolute top-4 right-4 z-50 text-2xl text-gray-400 dark:text-white hover:text-gray-500 dark:hover:text-gray-300"
-                >
-                    &times;
-                </button>
-                <div className="md:w-1/2 p-6 items-center flex flex-col m-4">
-                    <div className="mb-4">
-                        <h2 className="text-3xl font-bold">Contact Us</h2>
+                &times;
+            </button>
 
-                    </div>
-                    <p className="text-sm mb-6">
-                        Whether you have a question about our destinations, need travel advice, or want to plan your next adventure, our team is here to help. Reach out and we'll get back to you promptly.
-                    </p>
-                    <form>
-                        <div className="gap-4 mb-4">
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                onChange={handleChange}
-                                placeholder="Name"
-                                className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-teal-500 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
-                            />
-                            {/* <input
-                                type="text"
-                                placeholder="Last Name"
-                                className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-teal-500 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
-                            /> */}
-                        </div>
-                        <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            onChange={handleChange}
-                            placeholder="Email"
-                            className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-teal-500 mb-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
-                        />
-                        <input
-                            id="phone"
-                            type="tel"
-                            name="phone"
-                            onChange={handleChange}
-                            placeholder="Phone"
-                            className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-teal-500 mb-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
-                        />
-                        <textarea
-                            id="query"
-                            name="query"
-                            onChange={handleChange}
-                            placeholder="How can we help you?"
-                            className="w-full px-3 py-2 rounded-md focus:ring-2 focus:ring-teal-500 mb-4 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
-                            rows={4}
-                        ></textarea>
-                        <button
-                            type="submit"
-                            className="w-full bg-teal-400 hover:bg-teal-500 text-gray-900 font-medium rounded-md px-6 py-3 transition-colors flex items-center justify-center text-white"
-                            onClick={handleSubmit}
-                        >
-                            <Send size={18} className="mr-2" />
-                            Submit
-                        </button>
-                    </form>
+            {/* Form Section */}
+            <div className={`md:w-1/2 ${isMobile ? 'px-8 py-8' : 'px-12 py-16'} flex flex-col justify-center`}>
+                <div className="mb-4 text-center">
+                    <span className="text-lg sm:text-3xl font-bold">Contact Us</span>
                 </div>
-                <div className="md:w-1/2 relative">
-                    <div className="absolute inset-0 bg-black bg-opacity-50 rounded-r-lg"></div>
-                    <img
-                        src="https://images.pexels.com/photos/7504896/pexels-photo-7504896.jpeg"
-                        alt="Contact Us"
-                        className="w-full h-full object-cover rounded-r-lg"
+                <p className={`text-xs mb-6 text-gray-900 dark:text-white ${isMobile ? 'hidden' : ''}`}>
+                    Whether you have a question about our destinations, need travel advice, or want to plan your next adventure, our team is here to help. Reach out and we'll get back to you promptly.
+                </p>
+                <form className="space-y-2">
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        onChange={handleChange}
+                        placeholder="Name"
+                        className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500"
                     />
-                </div>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        onChange={handleChange}
+                        placeholder="Email"
+                        className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500"
+                    />
+                    <input
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        onChange={handleChange}
+                        placeholder="Phone"
+                        className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500"
+                    />
+                    <textarea
+                        id="query"
+                        name="query"
+                        onChange={handleChange}
+                        placeholder="How can we help you?"
+                        rows={4}
+                        className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md px-3 py-2 flex items-center justify-center transition-colors"
+                        onClick={handleSubmit}
+                    >
+                        <Send size={18} className="mr-2" />
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            {/* Image Section */}
+            <div className={`md:w-1/2 w-full h-64 md:h-auto relative ${isMobile ? 'hidden' : 'block'}`}>
+                <div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-r-lg"></div>
+                <img
+                    src="https://images.pexels.com/photos/7504896/pexels-photo-7504896.jpeg"
+                    alt="Contact Us"
+                    className="w-full h-full object-cover rounded-b-lg md:rounded-b-none md:rounded-r-lg"
+                />
             </div>
         </div>
+    </div>
+
     );
 };
 

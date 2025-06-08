@@ -26,4 +26,5 @@ export interface FiltersState {
   visaRequirement: boolean;
   tripType: string;
   setFilters: (filters: Partial<Omit<FiltersState, 'setFilters'>>) => void;
+  getFilters: () => FiltersState;
 }

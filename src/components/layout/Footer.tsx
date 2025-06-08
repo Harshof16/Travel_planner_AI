@@ -34,8 +34,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div>
-            <div className="flex items-center h-16 cursor-pointer mb-2">
-              <img src="/logo/darkLogo.png" alt="Escape n fly" className="h-48 object-contain" />
+            <div className="flex items-center cursor-pointer">
+              <img src="/logo/darkLogo.png" alt="Escape n fly" className="h-16 object-contain" />
             </div>
 
             <p className="mb-4 text-gray-400">
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
 
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center text-gray-500">
+        <div className="border-t border-gray-800 mt-4 pt-4 text-sm text-center text-gray-500">
           <p>© {new Date().getFullYear()} {companyName}. All rights reserved.</p>
         </div>
       </div>

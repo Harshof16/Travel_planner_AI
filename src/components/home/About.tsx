@@ -13,7 +13,7 @@ const About: React.FC = () => {
 
   const stats = [
     { value: '10+', label: 'Years of Experience' },
-    { value: '50+', label: 'Destinations' },
+    { value: '100+', label: 'Destinations' },
     { value: '10,000+', label: 'Happy Travelers' },
     { value: '95%', label: 'Customer Satisfaction' }
   ];
@@ -104,16 +104,16 @@ const About: React.FC = () => {
                 alt="Our Team" 
                 className="rounded-lg shadow-xl w-full"
               />
-              <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg hidden md:block">
-                <div className="grid grid-cols-2 gap-4">
+              {/* <div className="absolute -bottom-6 -right-2 px-4">
+                <div className="grid grid-cols-4 gap-4 items-center">
                   {stats.map((stat, index) => (
-                    <div key={index} className="text-center px-4">
+                    <div key={index} className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg shadow-md">
                       <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{stat.value}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           
@@ -131,7 +131,7 @@ const About: React.FC = () => {
             </p>
             
             {/* Mobile Stats */}
-            <div className="grid grid-cols-2 gap-4 mb-8 md:hidden">
+            <div className="grid grid-cols-4 gap-4 mb-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{stat.value}</p>

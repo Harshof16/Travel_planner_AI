@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const navigate = useNavigate();
 
@@ -15,10 +16,20 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    
+
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
+    };
+
+    handleScroll();
+    checkScreenSize();
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkScreenSize);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
 
@@ -51,12 +62,12 @@ const Navbar: React.FC = () => {
             <img
                 src={(theme === 'dark' || !isScrolled) ? '/logo/darkLogo.png' : '/logo/lightLogo.png'}
                 alt="Company Logo"
-                className="h-48 w-auto"
+                className="h-16 w-auto"
               />
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="md:flex items-center space-x-8">
+            <nav className="items-center space-x-8" style={{ display: isMobile ? 'none' : 'flex' }}>
               {navItems.map((item) => (
                 <a
                   key={item.label}
@@ -90,29 +101,40 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Google Rating Badge */}
-            <div className="md:flex flex-col items-center space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md cursor-pointer" onClick={() => window.open('https://www.google.com/search?sca_esv=35dc981465dfcda7&sxsrf=AHTn8zrDvWvMHl5HifheMG352Puv6YLAyw:1746553295797&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzbbK8c1OVNRVD44NTuLFZmVj_Zvpw03MZ5zULxRZKRg_x4utHu1LPG28COPhGdt1nBJbqWyDrnAxD6qgK60RnAqh4eGG&q=Escapenfly+Reviews&sa=X&ved=2ahUKEwib3ZuGso-NAxWk8zgGHbxUAl4Q0bkNegQIIRAE&cshid=1746553382540124&biw=1366&bih=563&dpr=1#lrd=0x390fe9e57a8ebcc3:0x6c755ac036d38fcc,3', '_blank')}>
+            <div className={`flex ${isMobile ? 'absolute flex-rows top-16 right-0' : 'flex-col'} items-center gap-2 space-y-1 p-2 bg-gray-800 dark:bg-gray-800 rounded-md cursor-pointer`} onClick={() => window.open('https://www.google.com/search?sca_esv=35dc981465dfcda7&sxsrf=AHTn8zrDvWvMHl5HifheMG352Puv6YLAyw:1746553295797&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzbbK8c1OVNRVD44NTuLFZmVj_Zvpw03MZ5zULxRZKRg_x4utHu1LPG28COPhGdt1nBJbqWyDrnAxD6qgK60RnAqh4eGG&q=Escapenfly+Reviews&sa=X&ved=2ahUKEwib3ZuGso-NAxWk8zgGHbxUAl4Q0bkNegQIIRAE&cshid=1746553382540124&biw=1366&bih=563&dpr=1#lrd=0x390fe9e57a8ebcc3:0x6c755ac036d38fcc,3', '_blank')}>
               <img
                 src="https://img.icons8.com/?size=100&id=V5cGWnc9R4xj&format=png&color=000000"
                 alt="Google Rating Badge"
-                className="h-8 w-auto mt-2"
+                className={`${isMobile ? 'h-6' : 'h-8 mt-4'} w-auto`}
               />
               <span className="text-sm font-medium text-white dark:text-gray-200">
                 4.8 <span className="text-yellow-500">★</span>
               </span>
-              <span className="text-xs text-gray-100 dark:text-gray-300">
-                (238 reviews)
-              </span>
+              {!isMobile && <span className="text-xs text-gray-100 dark:text-gray-300">238 Reviews</span>}
             </div>
 
             {/* Mobile Menu Button */}
             <button 
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle menu"
+              style={{ display: isMobile ? 'flex' : 'none' }}
             >
               {isMobileMenuOpen ? 
-                <X className="h-6 w-6 text-gray-700 dark:text-gray-200" /> : 
-                <Menu className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+                <X className={`h-6 w-6
+                  ${
+                    isScrolled ?
+                      'text-gray-700 dark:text-gray-200' :
+                      'text-gray-200 dark:text-gray-200'
+                  }
+                  `} /> : 
+                <Menu className={`h-6 w-6
+                  ${
+                    isScrolled ?
+                      'text-gray-700 dark:text-gray-200' :
+                      'text-gray-200 dark:text-gray-200'
+                  }
+                  `} />
               }
             </button>
           </div>

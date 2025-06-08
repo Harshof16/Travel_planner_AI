@@ -73,7 +73,7 @@ const ExploreWorld: React.FC = () => {
             if (value === undefined || value === "") {
                 return "";
             }
-            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : value)}`;
         })
         .join('&');
     
@@ -88,32 +88,39 @@ const ExploreWorld: React.FC = () => {
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Explore Earth's Masterpieces</h2>
         <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300 mb-12">
           Discover the world's most iconic attractions with us.
-          </p>
-        <div className="flex flex-wrap justify-center gap-6">
-
-          {/* <Slider {...sliderSettings}> */}
-          {destinations.sort(() => 0.5 - Math.random())
-            .slice(0, 8).map((destination) => (
-              <div key={destination.name} className="flex flex-col items-center">
-                <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-110 cursor-pointer">
+        </p>
+        
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:justify-center gap-4 sm:gap-6 px-2">
+          {destinations
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 8)
+            .map((destination) => (
+              <div
+                key={destination.name}
+                className="flex flex-col items-center w-full lg:w-24"
+                onClick={() =>
+                    handleSearch("package", {
+                      destination: [destination.city],
+                      type: "package",
+                    })
+                  }
+              >
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-110 cursor-pointer">
                   <img
                     src={destination.image}
                     alt={destination.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  <div 
-                    className="hover:text-teal-500 transition-colors cursor-pointer"
-                    onClick={() => handleSearch('package', { destination: destination.city, type: 'package' })}
-                  >
+                <div
+                  className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-teal-500 transition-colors cursor-pointer text-center"
+                >
                   {destination.name}
-                  </div>
-                </p>
+                </div>
               </div>
-          ))}
-          {/* </Slider> */}
+            ))}
         </div>
+
       </div>
     </section>
   );

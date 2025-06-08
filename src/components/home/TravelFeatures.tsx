@@ -57,14 +57,14 @@ const TravelFeatures: React.FC = () => {
     <section id="plan-trip" className="py-2 relative overflow-hidden dark:bg-gray-900 ">
       {/* Background pattern */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-around gap-8 text-center">
+        <div className="flex flex-col md:flex-row items-center justify-around text-center">
           {features.map((feature) => (
-        <div key={feature.id} className="px-6 py-4 flex flex-col md:flex-row items-center gap-3">
+        <div key={feature.id} className="px-4 py-2 flex flex-col md:flex-row items-center gap-2">
           <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center">
             {feature.icon}
           </div>
           <div>
-            <h3 className="text-lg font-bold">{feature.title}</h3>
+            <h3 className="text-xs font-bold">{feature.title}</h3>
           </div>
         </div>
           ))}

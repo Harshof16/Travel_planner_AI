@@ -4,16 +4,21 @@ import TripSearchBar from './TripSearchbar';
 const Hero: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Handle navbar background on scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset);
+   
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
     };
-    
-    window.addEventListener('scroll', handleScroll);
-    
+
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
 
@@ -26,7 +31,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden pt-20 md:pt-24" id='home'>
+    <section className={`relative ${isMobile ? 'h-auto' : 'h-[calc(100vh-4.5rem)]'} flex items-center justify-center overflow-hidden pt-20 md:pt-24 right-0`} id='home'>
       {/* Parallax Background */}
       <div 
       className="absolute inset-0 z-0"
@@ -52,8 +57,8 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 to-black/60" />
       
       {/* Content */}
-      <div className="container mx-auto px-4 z-20 text-center text-white relative mb-16">
-      <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 transition-all duration-700 animate-fadeIn">
+      <div className="container mx-auto px-4 z-20 text-center text-white relative mb-16 mt-16">
+      <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold mb-4 transition-all duration-700 animate-fadeIn">
         <span className="block"><span className="text-teal-400">Build</span> Your Dream Trip<span className="text-teal-400"> in 60 Seconds</span></span>
       </h1>
       
@@ -68,7 +73,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Spacer to prevent collision with header on mobile */}
-      <div className="absolute top-0 left-0 right-0 h-20 md:h-24 bg-transparent z-30" />
+      {/* <div className="absolute top-0 left-0 right-0 h-20 md:h-24 bg-transparent z-30" /> */}
     </section>
   );
 };

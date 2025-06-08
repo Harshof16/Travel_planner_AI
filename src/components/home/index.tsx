@@ -13,6 +13,8 @@ import { getCookie, setCookie } from '../../utils'
 
 const Home = () => {
     const [contactModalOpen, setContactModalOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    
 
     // useEffect(() => {
     //     fetchToken();
@@ -41,8 +43,24 @@ const Home = () => {
         }
     }, []);
 
+    useEffect(() => {
+       
+        const checkScreenSize = () => {
+          setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
+        };
+    
+        checkScreenSize();
+    
+        window.addEventListener('resize', checkScreenSize);
+    
+        return () => {
+          window.removeEventListener('resize', checkScreenSize);
+        };
+      }, []);
+    
+
     return (
-        <>
+        <main className='relative overflow-hidden top-0 left-0 right-0 bottom-0'>
             <Hero />
             <TravelFeatures />
             <ExploreWorld />
@@ -54,8 +72,8 @@ const Home = () => {
             {/* <Deals /> */}
             <About />
             <PartnersSlider />
-            <ContactModal isOpen={contactModalOpen} setIsOpen={setContactModalOpen} />
-        </>
+            <ContactModal isMobile={isMobile} isOpen={contactModalOpen} setIsOpen={setContactModalOpen} />
+        </main>
     )
 }
 
