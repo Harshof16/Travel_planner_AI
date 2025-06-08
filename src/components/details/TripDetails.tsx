@@ -114,31 +114,31 @@ const TripDetails = () => {
                 if (type === "package" || type === "visa" || type === "hacks" ) {
                     let visaInfo = null;
                     if (type === "package" && visaRequirement) {
-                        // const response = await API.post('/proposals/AIsuggestion'
-                        // , {
-                        //     ...payload,
-                        //     type: 'visa'
-                        // }, {
-                        //     headers: {
-                        //         'Content-Type': 'application/json',
-                        //         Authorization: `Bearer ${token}`,
-                        //     },
-                        // });
+                        const response = await API.post('/proposals/AIsuggestion'
+                        , {
+                            ...payload,
+                            type: 'visa'
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Authorization: `Bearer ${token}`,
+                            },
+                        });
                         // // setTripDetails(response.data);
-                        // visaInfo = response.data?.visa_requirements;
+                        visaInfo = response.data?.visa_requirements;
                         // console.log('Visa Trip details:', response.data);
                     }
-                    // const response = await API.post('/proposals/AIsuggestion'
-                    // , payload, {
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //         Authorization: `Bearer ${token}`,
-                    //     },
-                    // });
-                    // if (visaInfo && typeof visaInfo !== undefined && visaInfo !== null) {
-                    //     response.data.visa_requirements = visaInfo;
-                    // }
-                    // setTripDetails(response.data);
+                    const response = await API.post('/proposals/AIsuggestion'
+                    , payload, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    if (visaInfo && typeof visaInfo !== undefined && visaInfo !== null) {
+                        response.data.visa_requirements = visaInfo;
+                    }
+                    setTripDetails(response.data);
                     // console.log('Trip details:', response.data);    
                 } else {
                     // const response = await API.post('/weather/by-city', payload, {
