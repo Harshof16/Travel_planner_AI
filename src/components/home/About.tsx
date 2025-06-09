@@ -4,7 +4,11 @@ import { Award, MapPin, Clock, Heart } from 'lucide-react';
 import { companyName } from '../../data/constants';
 import { useNavigate } from 'react-router-dom';
 
-const About: React.FC = () => {
+interface AboutProps {
+  isMobile: boolean;
+}
+
+const About: React.FC<AboutProps> = ({ isMobile }) => {
   const navigate = useNavigate();
   
   const handleNavigate = () => {
@@ -131,7 +135,7 @@ const About: React.FC = () => {
             </p>
             
             {/* Mobile Stats */}
-            <div className="grid grid-cols-4 gap-4 mb-8">
+            <div className={`grid ${isMobile ? "grid-cols-2" : "grid-cols-4"} gap-4 mb-8`}>
               {stats.map((stat, index) => (
                 <div key={index} className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{stat.value}</p>

@@ -70,7 +70,7 @@ const Home = () => {
             <Testimonials />
             <div className='h-2 dark:bg-gray-900'/>
             {/* <Deals /> */}
-            <About />
+            <About isMobile={isMobile} />
             <PartnersSlider />
             <ContactModal isMobile={isMobile} isOpen={contactModalOpen} setIsOpen={setContactModalOpen} />
         </main>
