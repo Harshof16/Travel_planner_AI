@@ -88,6 +88,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
         setLoadingCache((prev) => ({ ...prev, [cacheKey]: true }));
         try {
           const recommendationData = await getRecommendations(location, category);
+          // console.log('Fetched recommendation data:', recommendationData);
           if (!recommendationData) return;
           setPhotoCache((prev) => ({ ...prev, [cacheKey]: recommendationData ?? null }));
 
@@ -124,8 +125,11 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
 
         {
           destinations && destinations.length > 0 && destinations.map((location, idx) => {
-            const recommendationData = [photoCache[`${activeTab}_${location}`]];
+            const recommendationData = photoCache[`${activeTab}_${location}`] || null;
             const isLoading = loadingCache[`${activeTab}_${location}`];
+
+            // console.log("recommendation:::", recommendationData);
+            
             if (isLoading) {
               return (
                 <div key={idx} className="group cursor-pointer px-4">
@@ -150,8 +154,8 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
               return null;
             }
 
-            return recommendationData.map((rec: any, recIdx: number) => {
-              const photoUrl = rec.large_photos[0] || null;
+            return recommendationData.length > 0 && recommendationData.map((rec: any, recIdx: number) => {
+              const photoUrl = rec?.large_photos[0] || null;
               return (
                <div key={idx + "_" + recIdx} className="group cursor-pointer px-4">
                   <div className="relative overflow-hidden rounded-xl mb-4">
