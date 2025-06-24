@@ -68,7 +68,7 @@ const Filters: React.FC<FiltersProps> = ({ closeModal, filtersStore }) => {
 
   return (
     <div className="max-h-[80vh] overflow-y-auto p-1 flex flex-col">
-      <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0">Advanced Search</h2>
+      <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0">Advance Filters</h2>
       <div className="flex-1 overflow-y-auto pr-2">
         <div className="space-y-8">
           {/* Going from */}
@@ -187,7 +187,9 @@ const Filters: React.FC<FiltersProps> = ({ closeModal, filtersStore }) => {
                       const updated = f.no_of_days.location_wise.map((obj: { [key: string]: number }) =>
                         Object.keys(obj)[0] === dest ? { [dest]: newVal } : obj
                       );
-                      const total = updated.reduce((sum: number, obj: { [key: string]: number }) => sum + Object.values(obj)[0], 0);
+                      const totalNights = updated.reduce((sum: number, obj: { [key: string]: number }) => sum + Object.values(obj)[0], 0);
+                      const total = totalNights + 1;
+                      
                       return {
                         ...f,
                         no_of_days: { location_wise: updated, total },

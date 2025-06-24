@@ -63,7 +63,7 @@ const ThemeTravel: React.FC = () => {
             if (value === undefined || value === "") {
                 return "";
             }
-            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : JSON.stringify([value]))}`;
+            return `${encodeURIComponent(key)}=${encodeURIComponent(Array.isArray(value) ? JSON.stringify(value) : value)}`;
         })
         .join('&');
     
@@ -85,7 +85,7 @@ const ThemeTravel: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
           {experiences.map((experience) => (
-            <div key={experience.id} className="group cursor-pointer" onClick={() => handleSearch('package', { inclusions: experience.title, type: 'package' })}>
+            <div key={experience.id} className="group cursor-pointer" onClick={() => handleSearch('package', { theme: experience.title, type: 'package' })}>
               <div className="relative overflow-hidden rounded-xl mb-4">
                 <img 
                   src={experience.image} 

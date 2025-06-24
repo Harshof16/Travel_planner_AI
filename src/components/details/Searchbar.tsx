@@ -32,10 +32,12 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
     const [visaTravelTo, setVisaTravelTo] = useState(params.destination || "");
     
     useEffect(() => {
-        const locationUpdatedDays = filters.destination.map((dest: string) =>
-            // Object.keys(obj)[0] === dest ? { [dest]: newVal } : obj
-            filters.no_of_days.total <= 0 || filters.no_of_days.location_wise.length <= 0 ? { [dest]: 1 } : {}
-        );
+        const locationUpdatedDays = filters.destination.map((dest: string) => {
+            // Find if location_wise has an entry for this destination
+            const found = filters.no_of_days.location_wise.find((obj: { [key: string]: number }) => Object.keys(obj)[0] === dest);
+            // If found, use it; otherwise, default to { [dest]: 1 }
+            return found ? found : { [dest]: 1 };
+        });
 
         const totalDays = filters.no_of_days.total > 0 ? filters.no_of_days.total : filters.destination.length; // Default to 5 if not set
 
@@ -82,7 +84,7 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
     //     visaRequirement: filtersStore.visaRequirement,
     //     tripType: filtersStore.tripType,
     //   });
-      const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+      const [openDropdown, setOpenDropdown] = useState<string | null>();
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -268,8 +270,9 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
         <div className="w-full mx-auto mt-4">
 
             {/* Search Section */}
-            <div className="bg-white px-8 pt-4 pb-8 rounded-xl shadow-md dark:bg-gray-800 dark:text-gray-200">
-                {params.destination.length === 0 && (
+            <div className="bg-white px-8 pt-4 pb-8 rounded-xl shadow-md dark:bg-gray-800 dark:text-gray-200 border-l-4 border-yellow-500">
+                
+                {/* {params.destination.length === 0 && (
                     <div className="flex items-center mb-4 w-full">
                         <span className="w-full bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-3 py-2 rounded-full flex items-center">
                             <svg className="w-4 h-4 mr-1 text-yellow-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -278,7 +281,7 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
                             Let’s get moving! First pick a destination to kick off your dream trip.
                         </span>
                     </div>
-                )}
+                )} */}
                 <div className="flex flex-wrap gap-6 items-end">
                     {activeTab !== 'visa' && toolkitUI}
                     {activeTab === 'visa' && visaUI}
@@ -411,7 +414,8 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
                                     const updated = f.no_of_days.location_wise.map((obj: { [key: string]: number }) =>
                                         Object.keys(obj)[0] === dest ? { [dest]: newVal } : obj
                                     );
-                                    const total = updated.reduce((sum: number, obj: { [key: string]: number }) => sum + Object.values(obj)[0], 0);
+                                    const totalNights = updated.reduce((sum: number, obj: { [key: string]: number }) => sum + Object.values(obj)[0], 0);
+                                    const total = totalNights + 1;
                                     return {
                                     ...f,
                                     no_of_days: { location_wise: updated, total },

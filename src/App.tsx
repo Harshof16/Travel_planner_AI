@@ -1,4 +1,5 @@
 import './index.css';
+import { useEffect, useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -15,8 +16,23 @@ import Contact from './components/others/Contact';
 import TripDetails from './components/details/TripDetails';
 import { TokenProvider } from './context/TokenProvider';
 import ChatbotButton from './components/layout/chatbot';
-
+import NotFound from './components/others/NotFound';
 function App() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind's `md` breakpoint
+    };
+
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
   return (
     <TokenProvider>
       <ThemeProvider>
@@ -27,12 +43,13 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/trips" element={<TripDetails />} />
-                <Route path="/about-us" element={<AboutUs/>} />
-                <Route path="/terms-of-use" element={<Terms />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/refund-policy" element={<RefundPolicy />} />
-                <Route path="/feedback" element={<Feedback />} />
+                <Route path="/about-us" element={<AboutUs mobileView={isMobile}/>} />
+                <Route path="/terms-of-use" element={<Terms mobileView={isMobile}/>} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy mobileView={isMobile}/>} />
+                <Route path="/refund-policy" element={<RefundPolicy mobileView={isMobile}/>} />
+                {/* <Route path="/feedback" element={<Feedback />} /> */}
                 <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <ChatbotButton />

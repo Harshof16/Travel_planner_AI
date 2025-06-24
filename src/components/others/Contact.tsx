@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { AlertType, companyName } from "../../data/constants";
+import { Alert } from "../ui/Alert";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -8,9 +10,14 @@ const Contact = () => {
         email: '',
         phone: '',
         query: '',
-        contact: "",
+        mobile: "",
         type: "query"
     });
+
+    const [alert, setAlert] = useState<{
+        type: AlertType;
+        message: string;
+    } | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -22,28 +29,35 @@ const Contact = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would typically send the form data to your backend
-        const url = "https://hook.us2.make.com/9yrgcgtmuivj28j9q71a9qkrhbnnj0b7";
-        // post this form data to the constant url
-        formData.contact = formData.phone;
-        formData.type = "query";
-        axios.post(url, formData)
+        const url = "https://marketplace.cronberry.com/api/leads/webhook/f2648659bf224f7b";
+        const payload = {
+            name: formData.name,
+            email: formData.email,
+            query: formData.query,
+            mobile: formData.phone,
+            type: formData.type
+        };
+
+        axios.post(url, payload)
             .then(response => {
-                // console.log('Form submitted successfully:', response.data);
-                alert('Thank you for your message. We will get back to you soon!');
+                setAlert({
+                    type: "success",
+                    message: `Thank you for contacting ${companyName}. Our customer support team will get back to you within 24 hours.`
+                });
             })
             .catch(error => {
-                // console.error('Error submitting the form:', error);
-                alert('There was an error submitting the form. Please try again later.');
+                setAlert({
+                    type: "error",
+                    message: "Error! Please try again later."
+                });
             });
-        // console.log(formData);
-        // Reset form
+
         setFormData({
             name: '',
             email: '',
             phone: '',
             query: '',
-            contact: '',
+            mobile: '',
             type: 'query'
         });
     };
@@ -56,6 +70,7 @@ const Contact = () => {
                 </div>
             </div>
             <div className="container mx-auto px-4 py-8">
+
                 <div className="text-center mb-16">
                     <span className="block text-teal-600 dark:text-teal-400 font-medium mb-2">Get in Touch</span>
                     <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
@@ -119,7 +134,14 @@ const Contact = () => {
                     {/* Contact Form */}
                     <div className="lg:col-span-3 bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-md">
                         <h3 className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-6">Send us a Message</h3>
-
+                        {alert && (
+                            <Alert
+                                type={alert.type}
+                                message={alert.message}
+                                duration={10000}
+                                onClose={() => setAlert(null)}
+                            />
+                        )}
                         <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
@@ -150,7 +172,6 @@ const Contact = () => {
                                         onChange={handleChange}
                                         className="w-full px-4 py-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-teal-400 focus:border-teal-400 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                                         placeholder="john@example.com"
-                                        required
                                     />
                                 </div>
                             </div>
@@ -167,6 +188,7 @@ const Contact = () => {
                                     onChange={handleChange}
                                     className="w-full px-4 py-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-teal-400 focus:border-teal-400 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                                     placeholder="+91 123 4567 890"
+                                    required
                                 />
                             </div>
 

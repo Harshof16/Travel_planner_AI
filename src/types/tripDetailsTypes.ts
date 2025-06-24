@@ -6,9 +6,13 @@ export interface Transportation {
   mode: string;
 }
 
+export interface Activity {
+  title: string;
+  description: string;
+}
 export interface Schedule {
   time_of_day: string;
-  activities: string[];
+  activities: Activity[];
 }
 
 export interface Day {
@@ -57,6 +61,7 @@ export interface TopRecommendations {
 export interface TripDetails {
   title: string;
   description?: string;
+  historical_description?: string;
   days: Day[];
   notes: string[];
   top_recommendations: TopRecommendations;

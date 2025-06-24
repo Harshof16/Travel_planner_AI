@@ -15,7 +15,12 @@ const MultiSelectDropdown: React.FC<{
   const open = openDropdown === dropdownKey;
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" tabIndex={0} onBlur={e => {
+      // Only close if focus moves outside the dropdown container
+      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        setOpenDropdown(null);
+      }
+    }}>
       <div
         className="w-full px-4 py-3 border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 cursor-pointer"
         onClick={() => setOpenDropdown(open ? null : dropdownKey)}

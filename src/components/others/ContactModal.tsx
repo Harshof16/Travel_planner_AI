@@ -1,12 +1,17 @@
 import axios from "axios";
 import { Send } from "lucide-react";
 import { useState } from "react";
+import { Alert } from "../ui/Alert";
+import { AlertType, companyName } from "../../data/constants";
 
 const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOpen: boolean; setIsOpen: (value: boolean) => void }) => {
     const toggleModal = () => {
         setIsOpen(false);
     };
-
+    const [alert, setAlert] = useState<{
+            type: AlertType;
+            message: string;
+        } | null>(null);
     if (!isOpen) return null;
 
     const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -35,18 +40,30 @@ const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOp
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Here you would typically send the form data to your backend
-        const url = "https://hook.us2.make.com/9yrgcgtmuivj28j9q71a9qkrhbnnj0b7";
+        const url = "https://marketplace.cronberry.com/api/leads/webhook/f2648659bf224f7b";
         // post this form data to the constant url
-        formData.contact = formData.phone;
-        formData.type = "query";
-        axios.post(url, formData)
+        const payload = {
+            name: formData.name,
+            email: formData.email,
+            query: formData.query,
+            mobile: formData.phone,
+            type: formData.type
+        };
+
+        axios.post(url, payload)
             .then(response => {
                 // console.log('Form submitted successfully:', response.data);
-                alert('Thank you for your message. We will get back to you soon!');
+                setAlert({
+                    type: "success",
+                    message: `Thank you for contacting ${companyName}. Our customer support team will get back to you within 24 hours.`
+                });
             })
             .catch(error => {
                 // console.error('Error submitting the form:', error);
-                alert('There was an error submitting the form. Please try again later.');
+                setAlert({
+                    type: "error",
+                    message: 'There was an error submitting the form. Please try again later.'
+                });
             });
         // console.log(formData);
         // Reset form
@@ -86,6 +103,9 @@ const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOp
                 <p className={`text-xs mb-6 text-gray-900 dark:text-white ${isMobile ? 'hidden' : ''}`}>
                     Whether you have a question about our destinations, need travel advice, or want to plan your next adventure, our team is here to help. Reach out and we'll get back to you promptly.
                 </p>
+                {alert && (
+                    <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} duration={10000}/>
+                )}
                 <form className="space-y-2">
                     <input
                         id="name"

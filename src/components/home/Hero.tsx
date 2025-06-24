@@ -48,7 +48,9 @@ const Hero: React.FC = () => {
           src="/landing_page_video.mov" 
           autoPlay 
           loop 
-          muted 
+          muted
+          playsInline
+          poster="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=1600"
           onLoadedData={handleVideoLoad}
         />
       </div>

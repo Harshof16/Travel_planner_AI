@@ -7,7 +7,8 @@ export default {
       animation: {
         'fadeIn': 'fadeIn 1s ease-in-out',
         'fadeInUp': 'fadeInUp 1s ease-out',
-        'bounce': 'bounce 2s infinite'
+        'bounce': 'bounce 2s infinite',
+        'vehicle-move': 'vehicle-move 3s infinite linear',
       },
       keyframes: {
         fadeIn: {
@@ -21,6 +22,10 @@ export default {
         bounce: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' }
+        },
+        'vehicle-move': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(8rem)' }
         }
       }
     },

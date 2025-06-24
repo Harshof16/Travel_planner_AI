@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 import { MapPin, Download, Share2 } from 'lucide-react';
 import Filters from './Filters';
 import Skeleton from '../ui/Skeleton';
+import Login from '../others/Login';
 
 interface TripHeaderProps {
   tripTitle: string;
   tripDescription?: string;
   loading: boolean
   destinations?: string[];
+  tripAdditionalDescription?: string;
 }
 
-const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loading, destinations }) => {
+const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, tripAdditionalDescription, loading, destinations }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
 
   const handleDownload = () => {
 
@@ -88,12 +91,13 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
           <div className="relative group">
             <button
               className={`p-2 rounded transition-colors ${true ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleDownload}
+              onClick={() => setOpenLogin(true)}
               disabled={true}
               aria-label="Download"
             >
               <Download className={`w-6 h-6 ${true ? 'text-gray-400 dark:text-gray-600' : 'text-gray-700 dark:text-gray-200 hover:text-teal-600 dark:hover:text-teal-400'}`} />
             </button>
+            <Login isOpen={openLogin} onClose={() => setOpenLogin(false)} />
             <div className="absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-10 whitespace-nowrap">
               Download (coming soon)
             </div>
@@ -168,6 +172,13 @@ const TripHeader: React.FC<TripHeaderProps> = ({ tripTitle, tripDescription, loa
             <Skeleton height={18} width={320} className="mb-2" />
           ) : (
             tripDescription && <p className="text-gray-500 dark:text-gray-400 text-sm w-full">{tripDescription}</p>
+          )}
+        </div>
+        <div className="mt-3 w-full">
+          {loading ? (
+            <Skeleton height={18} width={320} className="mb-2" />
+          ) : (
+            tripAdditionalDescription && <p className="text-gray-500 dark:text-gray-400 text-sm w-full">{tripAdditionalDescription}</p>
           )}
         </div>
       </div>
