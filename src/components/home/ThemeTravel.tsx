@@ -15,28 +15,28 @@ const experiences: Experience[] = [
     title: 'Honeymoon',
     category: 'Trip',
     image: 'https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Plan your romantic getaway to the most beautiful destinations.'
+    description: 'Start your new journey with the best international travel packages for couples created by EscapenFly.'
   },
   {
     id: 2,
     title: 'Family',
     category: 'Vacation',
     image: 'https://images.pexels.com/photos/2870167/pexels-photo-2870167.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Create unforgettable memories with your loved ones.'
+    description: 'Create unforgettable family memories with EscapenFly.'
   },
   {
     id: 3,
     title: 'Beach',
     category: 'Holiday',
     image: 'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Relax and unwind on the world’s most stunning beaches.'
+    description: 'Unwind on stunning beaches. From tourist visa services to a complete checklist of visa documents, we make your holiday seamless and stress-free.'
   },
   {
     id: 4,
     title: 'Adventure',
     category: 'Trails',
     image: 'https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    description: 'Embark on thrilling adventures and explore the great outdoors.'
+    description: 'Embark on thrilling adventures planned by a trusted travel planner in India and discover the great outdoors like never before.'
   }
 ];
 
@@ -79,7 +79,7 @@ const ThemeTravel: React.FC = () => {
           <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Unforgettable moments</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Craft your Travel Experience</h2>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Go beyond ordinary tourism with our specially crafted travel experiences.
+            Enjoy your travel experience beyond the ordinary tourism, created just for you.
           </p>
         </div>
         

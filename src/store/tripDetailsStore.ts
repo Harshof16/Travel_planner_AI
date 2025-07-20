@@ -7,5 +7,6 @@ import {
 
 export const useTripDetailsStore = create<TripDetailsState>((set) => ({
   tripDetails: {} as TripDetails,
+  // tripDetails: tripDetailsData as unknown as TripDetails,
   setTripDetails: (data) => set({ tripDetails: data }),
 }));

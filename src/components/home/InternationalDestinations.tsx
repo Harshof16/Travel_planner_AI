@@ -150,7 +150,7 @@ const InternationalDestinations: React.FC = () => {
           <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Start Exploring</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 ">Turn Wanderlust Into Plans</h2>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Discover our handpicked selection of the most breathtaking locations around the globe.
+            Explore our curated collection of the world's most breathtaking travel destinations.
           </p>
         </div>
         

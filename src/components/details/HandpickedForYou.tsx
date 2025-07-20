@@ -57,6 +57,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
   const [photoCache, setPhotoCache] = useState<Record<string, string | null>>({});
   const [loadingCache, setLoadingCache] = useState<Record<string, boolean>>({});
   const { fetchPhoto, getRecommendations } = useLocationPhoto();
+  const [noData, setNoData] = useState(false);
 
   // Fetch photos for all visible cards in the current tab
   React.useEffect(() => {
@@ -91,6 +92,7 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
           // console.log('Fetched recommendation data:', recommendationData);
           if (!recommendationData) return;
           setPhotoCache((prev) => ({ ...prev, [cacheKey]: recommendationData ?? null }));
+          setNoData(false);
 
         } catch (error) {
           console.error('Error fetching photo:', error);
@@ -105,17 +107,20 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
   return (
     <div className="mb-8 mt-8 pt-8">
       <h2 className="text-2xl font-bold mb-6 text-teal-700 dark:text-teal-300">Handpicked for You</h2>
-      <div className="mb-6 flex gap-2">
+      <div className="mb-6 flex gap-2 flex-wrap">
         {tabOptions.map((tab) => (
           <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key as keyof TabLabels)}
-            className={`px-4 py-1 rounded-full border text-sm font-medium transition-colors ${activeTab === tab.key
-                ? 'bg-teal-500 text-white border-teal-500'
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700'
-              }`}
+        key={tab.key}
+        onClick={() => setActiveTab(tab.key as keyof TabLabels)}
+        className={`px-4 py-1 rounded-full border text-sm font-medium transition-colors whitespace-nowrap
+          ${activeTab === tab.key
+            ? 'bg-teal-500 text-white border-teal-500'
+            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700'
+          }
+        `}
+        style={{ minWidth: '120px' }}
           >
-            {tab.label}
+        {tab.label}
           </button>
         ))}
       </div>
@@ -139,14 +144,15 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
                 </div>
               );
             }
-            if (!recommendationData || !Array.isArray(recommendationData) || recommendationData.length === 0) {
+            if (!isLoading && (!recommendationData || !Array.isArray(recommendationData) || recommendationData.length === 0)) {
               // Only show the "No data available" message for the first destination
-              if (idx === 0) {
+              if (idx === 0 && !noData) {
+                setNoData(true);
                 return (
                   <div key="no-data" className="group cursor-pointer px-4">
-                    <div className="w-full h-80 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
+                    {/* <div className="w-full h-80 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400">
                       No data available, Try again later!
-                    </div>
+                    </div> */}
                   </div>
                 );
               }
@@ -243,6 +249,26 @@ const HandpickedForYou: React.FC<HandpickedForYouProps> = ({ recommendations, de
         // })
   }
         </Slider>
+        {noData && (
+          <div key="no-data" className="flex flex-col items-center justify-center">
+            <div className="w-full h-80 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl text-gray-500 dark:text-gray-400 px-4">
+                {/* SVG illustration for "not found" - hotel themed */}
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" className="mb-4" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="38" stroke="#94A3B8" strokeWidth="4" fill="#F1F5F9"/>
+                <rect x="22" y="32" width="36" height="24" rx="4" fill="#38BDF8" stroke="#0EA5E9" strokeWidth="2"/>
+                <rect x="32" y="44" width="8" height="12" rx="2" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="1"/>
+                <rect x="40" y="44" width="8" height="12" rx="2" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="1"/>
+                <rect x="28" y="36" width="8" height="6" rx="1" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="1"/>
+                <rect x="44" y="36" width="8" height="6" rx="1" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="1"/>
+                <path d="M22 56H58" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M40 32V26" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="40" cy="24" r="2" fill="#0EA5E9"/>
+                </svg>
+                <span className="text-base font-semibold mb-2 text-center w-full">No recommendations found</span>
+                <span className="text-xs text-gray-400 text-center w-full">Please try again later or select a different tab.</span>
+            </div>
+          </div>
+        )}
         </Suspense>
       </div>
     </div>

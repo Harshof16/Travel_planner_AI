@@ -91,7 +91,7 @@ const Contact = () => {
                                 <div className="ml-4" onClick={() => window.open('https://www.google.com/maps/place/Escapenfly/@30.6593189,76.7304745,17z/data=!4m6!3m5!1s0x390fe9e57a8ebcc3:0x6c755ac036d38fcc!8m2!3d30.6593143!4d76.7330494!16s%2Fg%2F11ts3tk59v', '_blank')}>
                                     <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Office Address</h4>
                                     <p className="text-gray-400 mt-1 hover:text-teal-700 cursor-pointer">
-                                        Plot No.75 , 2nd Floor, Sector 82, <br />Sahibzada Ajit Singh Nagar, Punjab 140308
+                                        Plot No.75 , 2nd Floor, Sector 82, <br />Sahibzada Ajit Singh Nagar, Punjab, India, 140308
                                     </p>
                                 </div>
                             </div>

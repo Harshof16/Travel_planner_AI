@@ -2,12 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import { useLocationPhoto } from '../../hooks/useLocationPhoto';
+
 
 const Navbar: React.FC = () => {
+  const [isRatingLoading, setIsRatingLoading] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { getLocationDetails } = useLocationPhoto();
+  const [googleRating, setGoogleRating] = useState<{ rating: number; ratingCount: number } | null>(null);
+
+  useEffect(() => {
+    setIsRatingLoading(true);
+    if (!googleRating) {
+      const locationId = 'ChIJw7yOeuXpDzkRzI_TNsBadWw';
+      getLocationDetails(locationId).then((details) => {
+        if (details && details[0].rating && details[0].rating_count) {
+          setGoogleRating({
+            rating: details[0].rating,
+            ratingCount: details[0].rating_count,
+        });
+      }
+      setIsRatingLoading(false);
+    }).catch(() => {
+      setIsRatingLoading(false);
+    });
+    }
+  }, [getLocationDetails]);
   
   const navigate = useNavigate();
 
@@ -26,6 +49,7 @@ const Navbar: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', checkScreenSize);
+
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -107,10 +131,14 @@ const Navbar: React.FC = () => {
                 alt="Google Rating Badge"
                 className={`${isMobile ? 'h-6' : 'h-8 mt-4'} w-auto`}
               />
-              <span className="text-sm font-medium text-white dark:text-gray-200">
-                4.8 <span className="text-yellow-500">★</span>
-              </span>
-              {!isMobile && <span className="text-xs text-gray-100 dark:text-gray-300">238 Reviews</span>}
+                <span className="text-sm font-medium text-white dark:text-gray-200">
+                  {(googleRating?.rating ?? 4.8).toFixed(1)} <span className="text-yellow-500">★</span>
+                </span>
+                {!isMobile && (
+                  <span className="text-xs text-gray-100 dark:text-gray-300">
+                    {(googleRating?.ratingCount ?? 238)} Reviews
+                  </span>
+                )}
             </div>
 
             {/* Mobile Menu Button */}

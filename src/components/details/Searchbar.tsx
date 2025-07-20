@@ -299,7 +299,7 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
                     </div>
                 </div>
                 {/* Chips for selected destinations */}
-                {isMobile && (
+                {isMobile && activeTab !== 'visa' && (
                     <div className="text-xs text-teal-500 dark:text-teal-200 hover:underline p-2 cursor-pointer" onClick={toggleFilters}>
                         Advance Filters
                     </div>
@@ -358,7 +358,7 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
                             ))}
                         </div>
                     )}
-                    {!isMobile && (
+                    {!isMobile && activeTab !== 'visa' && (
                         <div className="text-xs text-teal-500 dark:text-teal-200 hover:underline p-2 text-end cursor-pointer" onClick={toggleFilters}>
                             Advance Filters
                         </div>
@@ -415,7 +415,7 @@ export default function TripToolkit({ toggleFilters, filters }: { toggleFilters:
                                         Object.keys(obj)[0] === dest ? { [dest]: newVal } : obj
                                     );
                                     const totalNights = updated.reduce((sum: number, obj: { [key: string]: number }) => sum + Object.values(obj)[0], 0);
-                                    const total = totalNights + 1;
+                                    const total = totalNights;
                                     return {
                                     ...f,
                                     no_of_days: { location_wise: updated, total },

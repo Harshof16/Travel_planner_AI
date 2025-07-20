@@ -60,10 +60,14 @@ const TripDetails = () => {
 
     useEffect(() => {
         if (!filters.destination || filters.destination.length === 0) {
-            toggleFilters();
+            // toggleFilters();
+            setShowFilters(true);
             setLoading(true);
             return;
-        };
+        } else {
+            setShowFilters(false);
+            setLoading(false);
+        }
         const {
             type,
             tripType,
@@ -128,6 +132,8 @@ const TripDetails = () => {
                         historical_description: ''
                     });
                     let visaInfo = null;
+                    console.log("Payload:", payload);
+
                     if (type === "package" && visaRequirement) {
                         // const response = await API.post('/proposals/AIsuggestion'
                         // , {
@@ -347,10 +353,12 @@ const TripDetails = () => {
                         </div>
                     )}
                 </div>
-                {/* Search Form */}
-                <div className="mb-8">
-                  <TripSearchBar toggleFilters={toggleFilters} filters={filters} />
-                </div>
+                {/* Search Form */
+                filters.type !== "hacks" && (
+                    <div className="mb-8">
+                    <TripSearchBar toggleFilters={toggleFilters} filters={filters} />
+                    </div>
+                )}
                 
                 {filters.destination.length !== 0 && (
                     <>
@@ -370,7 +378,7 @@ const TripDetails = () => {
                                 <>
                                     {/* <WeatherForecast /> */}
                                     {tripDetails?.days && <Itinerary days={tripDetails.days} isMobile={isMobile} />}
-                                    {tripDetails?.top_recommendations && <HandpickedForYou recommendations={tripDetails.top_recommendations} destinations={filters.destination} />}
+                                    {<HandpickedForYou recommendations={tripDetails?.top_recommendations} destinations={filters.destination} />}
                                     {(filters.visaRequirement || filters.type === "visa") && tripDetails?.visa_requirements && <VisaRequirements requirements={tripDetails.visa_requirements} isMobile={isMobile}/>}
                                     {tripDetails?.smart_travel_hacks && <TripHacks requirements={tripDetails.smart_travel_hacks} isMobile={isMobile}/>}
                                     {tripDetails?.notes && <TripNotes notes={tripDetails.notes} />}

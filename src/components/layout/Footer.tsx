@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
 
             <p className="mb-4 text-gray-400">
               Discover the world with our expertly curated travel experiences.
-              Where your journey becomes an unforgettable story.
+              Where your journey becomes a memorable story.
             </p>
             <div className="flex space-x-4">
               <a href="#footer" className="text-gray-400 hover:text-teal-500 transition-colors" onClick={() => window.open('https://www.facebook.com/escapenfly/reviews?utm_source=web', '_blank')}>
@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-star cursor-pointer" onClick={() => window.open('https://www.google.com/maps/place/Escapenfly/@30.6593189,76.7304745,17z/data=!4m6!3m5!1s0x390fe9e57a8ebcc3:0x6c755ac036d38fcc!8m2!3d30.6593143!4d76.7330494!16s%2Fg%2F11ts3tk59v', '_blank')}>
                 <MapPin size={20} className="text-blue-400 mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-300 hover:text-teal-500">Plot No.75 , 2nd Floor, Sector 82, Sahibzada Ajit Singh Nagar, Punjab 140308</span>
+                <span className="text-gray-300 hover:text-teal-500">Plot No.75 , 2nd Floor, Sector 82, Sahibzada Ajit Singh Nagar, Punjab, India, 140308</span>
               </li>
                 <li className="flex items-center cursor-pointer" onClick={() => window.open('tel:+919851739851', '_self')}>
                 <Phone size={20} className="text-blue-400 mr-3 flex-shrink-0" />

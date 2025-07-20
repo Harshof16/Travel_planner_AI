@@ -8,11 +8,14 @@ const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOp
     const toggleModal = () => {
         setIsOpen(false);
     };
+    
+    if (!isOpen) return null;
+    
     const [alert, setAlert] = useState<{
             type: AlertType;
             message: string;
         } | null>(null);
-    if (!isOpen) return null;
+    
 
     const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if ((e.target as HTMLElement).id === 'modal-overlay') {
@@ -25,7 +28,6 @@ const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOp
         email: '',
         phone: '',
         query: '',
-        contact: "",
         type: "query"
     });
 
@@ -72,7 +74,6 @@ const ContactModal = ({ isMobile, isOpen, setIsOpen }: { isMobile: boolean; isOp
             email: '',
             phone: '',
             query: '',
-            contact: '',
             type: 'query'
         });
     };

@@ -67,7 +67,7 @@ export default function TripToolkit() {
 
     const toolkitUI = <>
         {/* Destinations Input */}
-            <div className="flex flex-col flex-1">
+            <div className={`flex flex-col ${isMobile ? 'flex-2' : 'flex-1'}`}>
                 <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Destinations</label>
                 <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg dark:bg-gray-700">
                     <MapPin className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />
@@ -92,7 +92,7 @@ export default function TripToolkit() {
             </div>
 
             {/* Month Selector (now Date Picker) */}
-            <div className="flex flex-col flex-1">
+            <div className={`flex flex-col ${isMobile ? 'flex-2' : 'flex-1'}`}>
                 <label className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 text-left">Travel Date</label>
                 <div className="flex items-center px-4 py-3 bg-gray-100 rounded-lg relative dark:bg-gray-700">
                     <Calendar className="w-5 h-5 text-gray-500 mr-2 dark:text-gray-400" />

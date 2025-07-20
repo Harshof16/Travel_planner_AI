@@ -128,7 +128,7 @@ const IndianDestinations: React.FC = () => {
           <span className="text-teal-600 dark:text-teal-400 font-medium uppercase tracking-wider">Once-in-a-Lifetime Journey</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Incredible India Awaits You</h2>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-          Enjoy unbeatable deals through our exclusive travel partnerships your dream trip just got more affordable.
+          Enjoy the best deals through our exclusive travel partnerships, and make your dream trip more affordable.
           </p>
         </div>
         

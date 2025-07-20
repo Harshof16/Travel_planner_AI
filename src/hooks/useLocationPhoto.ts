@@ -1746,6 +1746,56 @@ export function useLocationPhoto() {
       setLoading(false);
     }
   };
+
+  const getLocationDetails = async (locationId: string, getInCache: boolean = true) => {
+    setLoading(true);
+    setError(null);
+    const cacheKey = `locationDetails_${locationId}`;
+    try {
+      if (getInCache) {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+          const { data, expiry } = JSON.parse(cached);
+          if (expiry > Date.now()) {
+            // Decrypt from base64
+            const decoded = atob(data);
+            return JSON.parse(decoded);
+          } else {
+            localStorage.removeItem(cacheKey);
+          }
+        }
+      }
+      // let response = {"data":[{
+      //     "name": "Escapenfly",
+      //     "rating": 4.8,
+      //     "address": "plot no 75, Sector 82, JLPL Industrial Area, Sahibzada Ajit Singh Nagar, Punjab 160055, India",
+      //     "website": "http://www.escapenfly.com/",
+      //     "rating_count": 244
+      // }]};
+      const response = await API.get(`/amadeus/locations/details?locationId=${locationId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+      if (getInCache) {
+        // Encrypt to base64
+        const encoded = btoa(JSON.stringify(response.data));
+        const expiry = Date.now() + 24 * 60 * 60 * 1000; // 24 hours TTL
+        localStorage.setItem(cacheKey, JSON.stringify({ data: encoded, expiry }));
+      }
+
+      return response.data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+       setError(err.message);
+      } else {
+        setError('Failed to fetch location details');
+      }
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
   // Return the photo, loading state, error message, and fetch function
-  return { photo, loading, error, fetchPhoto, getRecommendations };
+  return { photo, loading, error, fetchPhoto, getRecommendations, getLocationDetails };
 }
