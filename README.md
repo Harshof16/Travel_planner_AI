@@ -38,7 +38,7 @@ Plan your perfect trip with the power of AI. This web app uses **OpenAI GPT** to
 
 ---
 
-## 🖼️ UI Preview (Screenshots)
+## 🖼️ UI Preview
 
 ![Input Page ✈️](./public/itinary_gif.gif)
 
