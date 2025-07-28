@@ -40,9 +40,7 @@ Plan your perfect trip with the power of AI. This web app uses **OpenAI GPT** to
 
 ## 🖼️ UI Preview (Screenshots)
 
-<!-- Replace placeholders with real screenshots -->
-| Input Page ✈️ | Generated Itinerary 📅 |
-|--------------|------------------------|
+![Input Page ✈️](./public/itinary_gif.gif)
 
 ---
 
